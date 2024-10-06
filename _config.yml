@@ -1,6 +1,6 @@
 # Site settings
 title: Hux Blog
-SEOTitle: TH911的博客 | TH911 Blog
+SEOTitle: 
 header-img: img/home-bg.jpg
 email: 3260483661@qq.com
 description: "这里是 @TH911 的个人博客，与你一起发现更大的世界 | 要做一个优秀的 OIER"
@@ -16,6 +16,7 @@ RSS: false
 #weibo_username: huxpro
 zhihu_username: 45-46-14-76
 github_username: TH911
+luogu_userid: 967959
 #twitter_username: huxpro
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
