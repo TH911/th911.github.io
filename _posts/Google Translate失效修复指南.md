@@ -1,0 +1,110 @@
+# 前言
+众所周知，Chrome内置的网页翻译API就是Google Translate，然而失效后却十分不方便。
+
+声明：如果你害怕麻烦的话，可以**直接使用Edge**。
+
+# 为什么失效
+
+Google Translate失效的主要原因是Google退出中国市场，关闭了国内翻译API及网站。现在访问[translate.google.cn](https://translate.google.cn)也是这样：
+
+![ 2024-09-30 132849.png](https://s2.loli.net/2024/09/30/FJemIwciA83PRka.png)
+
+## 解决方案
+
+某些过期的文章给定的解决方案时**修改Hosts文件指向国内API**，然而现在国内API大多数也**关闭**了。
+
+所以说想要解决这个问题，只剩下了四种解决方案：
+
+* 科技，不过多解释。
+* 修改Hosts文件指向**国外仍可用的API**。
+* 重定向API至第三方CDN。
+* 自建代理/反向代理，（对于大多数人）难度过高，不过多解释。
+
+### 修改Hosts文件
+
+#### 什么是Hosts文件
+
+知周所众，访问一个网站需要找到其网址对应的IP地址（除非你就是直接访问IP，比如[某OJ](http://60.205.178.117:8888/)），而这个映射过程一般由DNS服务器完成。访问网址时会先向DNS服务器查询对应IP，再访问网站。
+
+然而，在DNS出现之前，是使用Hosts文件来实现网络域名的管理与映射的，因为最初的网络规模非常**小**，仅使用这个集中管理的文件就可以通过**FTP**为连入Internet的站点和主机提供域名的发布和下载。每个Internet站点将定期地更新其主机文件的副本，并且发布主机文件的更新版本来反映网络的变化。
+
+但是后来网络规模扩大，仅仅凭借Hosts文件便不足以支撑需求了，这才有了DNS。
+
+然而正是由于这些原因，计算机在请求IP时，会先在Hosts文件中查询，如果找到了便不会访问DNS服务器而直接使用Hosts文件中给定的IP。
+
+比如在Hosts文件中写入：
+
+```
+220.181.38.150 www.baidu.com
+```
+
+那么你访问 `www.baidu.com` 时，访问的便一定是 `220.181.38.150`。
+
+#### 操作方法
+
+首先，目前网络上**主流的IP查找方式均已失效**。
+
+给出一个~~（真找不到了）~~截止 $2024/9/30$ 仍然有效的IP：
+
+```
+216.239.32.40
+```
+
+这些IP日后仍然可能失效，建议自行寻找可用IP。
+
+建议工具：[GoogleTranslate_IPFinder](https://github.com/GoodCoder666/GoogleTranslate_IPFinder)、[GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck)
+
+**注意：前者扫描出的IP不可用。**那是**已关闭的**国内API的IP，后者给出的IP才**可能**有用。
+
+你可以访问[此处](https://github.com/Ponderfly/GoogleTranslateIpCheck/blob/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt)以获取可能有用的IP，然后使用前者进行测试（主要是因为前者**有GUI**）。
+
+随后你在Hosts文件中写入**可用的IP及网址**。
+
+想要**完美修复内置翻译**，你需要映射的网站有：
+
+```
+translate.googleapis.com
+translate-pa.googleapis.com
+```
+
+通过F12可以看到，当你启动内置网页翻译的时候，会访问这两个网站。
+
+测试是否正常，访问 https://translate.googleapis.com/translate_a/element.js 即可。
+
+如果你还想修复**网页版**的Google翻译，那么映射 `translate.google.com`  即可。
+
+比如这样：
+
+```
+216.239.32.40 translate.google.com
+216.239.32.40 translate.googleapis.com
+216.239.32.40 translate-pa.googleapis.com
+```
+
+然而，Google翻译**网页版**还有个**“网页翻译”**功能：
+
+![image-20240930143528447](https://s2.loli.net/2024/09/30/WtLX9qCMHN8kVIB.png)
+
+以 `www.baidu.com` 为例，翻译出来长这样（中译英）：
+
+![image-20240930144053462](https://s2.loli.net/2024/09/30/R7hVzdi4aNfyYIv.png)
+
+遗憾的是，目前并不能完全修复此功能~~（虽然也没用？）~~，因为其原理是访问[www-baidu-com.translate.goog](https://www-baidu-com.translate.goog)。也就是说，除非你闲到给所有站都映射上对应IP，不然没用。
+
+### 重定向至第三方CDN
+
+很多都已经失效了，目前稳定的推荐 `gtranslate.cdn.haah.net`。
+
+可以使用[Header Editor](https://he.firefoxcn.net/)。
+
+将 `translate.googleapis.com` 重定向到 `gtranslate.cdn.haah.net` 即可。
+
+别的也有，比如 `mathjoy.eu.org`。
+
+注：想要测试能否成功可以参考https://translate.googleapis.com/translate_a/element.js的验证方法。
+
+但是，实测发现高版本Chrome会访问 `translate-pa.googleapis.com`（之前不会且暂未发现其镜像站），访问失败便不会全文翻译，所以这种方法如果不搭配Hosts文件，就会**失效**。
+
+# Google翻译网页版镜像站
+
+附赠一个稳定的：[fanyi.azurewebsites.net](https://fanyi.azurewebsites.net)。
