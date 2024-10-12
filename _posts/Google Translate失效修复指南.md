@@ -1,13 +1,28 @@
+---
+layout:     post
+title:      "Google Translate失效修复指南"
+subtitle:   "网页与API"
+date:       2024-10-12
+author:     "TH911"
+header-img: "img/2024-10/005.jpg"
+tags:
+    - Google Translate
+    - 指南
+---
+
 # 前言
-众所周知，Chrome内置的网页翻译API就是Google Translate，然而失效后却十分不方便。
+
+众所周知，Chrome内置的网页翻译API就是Google Translate，然而失效后却十分不便。
 
 声明：如果你害怕麻烦的话，可以**直接使用Edge**。
 
 # 为什么失效
 
+![](http://th911.github.io/img/2024-10/001.gif)
+
 Google Translate失效的主要原因是Google退出中国市场，关闭了国内翻译API及网站。现在访问[translate.google.cn](https://translate.google.cn)也是这样：
 
-![ 2024-09-30 132849.png](https://s2.loli.net/2024/09/30/FJemIwciA83PRka.png)
+![](https://th911.github.io/img/2024-10/002.png)
 
 ## 解决方案
 
@@ -83,13 +98,13 @@ translate-pa.googleapis.com
 
 然而，Google翻译**网页版**还有个**“网页翻译”**功能：
 
-![image-20240930143528447](https://s2.loli.net/2024/09/30/WtLX9qCMHN8kVIB.png)
+![](https://th911.github.io/img/2024-10/003.png)
 
 以 `www.baidu.com` 为例，翻译出来长这样（中译英）：
 
-![image-20240930144053462](https://s2.loli.net/2024/09/30/R7hVzdi4aNfyYIv.png)
+![](https://th911.github.io/img/2024-10/004.png)
 
-遗憾的是，目前并不能完全修复此功能~~（虽然也没用？）~~，因为其原理是访问[www-baidu-com.translate.goog](https://www-baidu-com.translate.goog)。也就是说，除非你闲到给所有站都映射上对应IP，不然没用。
+遗憾的是，目前并不能完全修复此功能~~（虽然也没什么大用？）~~，因为其原理是访问[www-baidu-com.translate.goog](https://www-baidu-com.translate.goog)。也就是说，除非你闲到给所有站都映射上对应IP，不然没用。
 
 ### 重定向至第三方CDN
 
