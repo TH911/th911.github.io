@@ -56,6 +56,14 @@ layout: default
                 <!-- disqus 评论框 end -->
                 {% endif %}
 
+                {% if site.cusdis_comment %}
+                <!-- cusdis 评论框 start -->
+                <div class="comment">
+                    <div id="cusdis_thread" class="cusdis_thread-thread"></div>
+                </div>
+                <!-- cusdis 评论框 end -->
+                {% endif %}
+
                 {% if site.netease_comment %}
                 <!-- 网易云跟帖 评论框 start -->
                 <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
@@ -100,6 +108,19 @@ layout: default
 {% if page.mathjax %}
   {% include mathjax_support.html %}
 {% endif %}
+
+<!-- cusdis JS代码 start -->
+{% if site.cusdis_comment %}
+<div id="cusdis_thread"
+  data-host="https://cusdis.com"
+  data-app-id="035ea4d7-fa0e-4c41-ba17-aaa7efcb96e5"
+  data-page-id="{{ PAGE_ID }}"
+  data-page-url="{{ PAGE_URL }}"
+  data-page-title="{{ PAGE_TITLE }}"
+></div>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+{% endif %}
+<!-- cusdis JS代码 end -->
 
 {% if site.netease_comment %}
 <!-- 网易云跟帖JS代码 start -->

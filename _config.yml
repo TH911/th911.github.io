@@ -65,6 +65,9 @@ disqus_username: hux
 # Netease settings
 netease_comment: false
 
+#Cusdis settings
+cusdis_comment: true
+
 # Analytics settings
 # Baidu Analytics
 # ba_track_id: [your track id]
