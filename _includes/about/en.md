@@ -54,3 +54,7 @@ Recommend some good websites:
 * **ChatGPT**
 
 ​	[**ChatOS**](https://cat.chatavx.com)
+
+***
+
+Translate By [Google Translate](https://translate.google.com/).

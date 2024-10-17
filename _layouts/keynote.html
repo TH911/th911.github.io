@@ -149,6 +149,11 @@ layout: default
 </style>
 {% endif %}
 
+<!-- add support for mathjax by voleking-->
+{% if keynote.mathjax %}
+  {% include mathjax_support.html %}
+{% endif %}
+
 {% if site.keynote-mathjax %}
 <!-- Add support for Mathjax by Voleking-->
 <!-- If you want to see formulars well in post preview, Maybe you should add this.-->
