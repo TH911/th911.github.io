@@ -65,8 +65,8 @@ disqus_username: hux
 # Netease settings
 netease_comment: false
 
-#Cusdis settings
-cusdis_comment: true
+#Changyan settings
+changyan_comment: true
 
 # Analytics settings
 # Baidu Analytics
