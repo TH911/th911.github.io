@@ -55,3 +55,8 @@ layout: default
 <!-- add support for mathjax by voleking-->
 {% include mathjax_support.html %}
 {% endif %}
+
+{% if site.page-katex %}
+<!-- add support for katex-->
+  {% include katex_support.html %}
+{% endif %}
