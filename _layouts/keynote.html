@@ -149,29 +149,12 @@ layout: default
 </style>
 {% endif %}
 
+{% if site.keynote-mathjax %}
 <!-- add support for mathjax by voleking-->
-{% if keynote.mathjax %}
-  {% include mathjax_support.html %}
+{% include mathjax_support.html %}
 {% endif %}
 
-{% if site.keynote-mathjax %}
-<!-- Add support for Mathjax by Voleking-->
-<!-- If you want to see formulars well in post preview, Maybe you should add this.-->
-<!-- However, most of the time formulars may not appear in the post preview, you can delete it.-->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      displayMath: [ ['$$','$$'] ],
-      processEscapes: true,
-    }
-  });
-</script>
-<script type="text/javascript"
-  src="https://s4.zstatic.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+{% if site.keynote-katex %}
+<!-- add support for katex-->
+  {% include katex_support.html %}
 {% endif %}
