@@ -95,9 +95,7 @@ post-mathjax: false
 keynote-mathjax: false
 
 #KaTeX rendering
-page-katex: true
-post-katex: true
-keynote-katex: true
+katex: true
 
 # Friends
 friends:
