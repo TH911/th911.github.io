@@ -3,8 +3,12 @@
 
 {% include head.html %}
 
-<!-- add support for katex-->
-{% include katex_support.html %}
+{% if site.katex %}
+    <!-- add support for katex-->
+    {% include katex_support.html %}
+{% endif %}
+
+
 
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
