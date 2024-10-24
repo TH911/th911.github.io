@@ -1,3 +1,7 @@
+由[Hux Blog](https://huangxuan.me)驱动。
+
+***
+
 我，一个简单而复杂的人。
 
 喜欢玩Minecraft，**擅长红石、速通**。
