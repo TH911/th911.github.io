@@ -1,5 +1,9 @@
 由[Hux Blog](https://huangxuan.me)驱动。
 
+如果你想要联系我，可以[在GitHub上新建Issues](https://github.com/TH911/th911.github.io/issues/new)，也可以通过其他方式找到我。
+
+邮箱：3260483661@qq.com
+
 ***
 
 我，一个简单而复杂的人。
