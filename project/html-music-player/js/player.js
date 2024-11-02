@@ -68,7 +68,7 @@ Selected.prototype = {
             that.playNext(that);
         }
         this.audio.onerror = function(e) {
-            that.lyricContainer.textContent = '!fail to load the song :(';
+            that.lyricContainer.textContent = '歌曲加载失败 :(';
         };
 
         //enable keyboard control , spacebar to play and pause
@@ -188,7 +188,7 @@ Selected.prototype = {
             that.appendLyric(that.lyric);
         };
         request.onerror = request.onabort = function(e) {
-            that.lyricContainer.textContent = '!failed to load the lyric :(';
+            that.lyricContainer.textContent = '歌词加载失败 :(';
         }
         this.lyricContainer.textContent = 'loading lyric...';
         request.send();
