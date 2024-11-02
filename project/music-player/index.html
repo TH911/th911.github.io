@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/music.css" />
+		<link rel="icon" href="img/icon.jpg" />
+		<title>音乐播放器</title>
+	</head>
+	<body>
+		<!-- 音乐 -->
+		<audio src="audio/韩安旭 - 不在.mp3" preload=""></audio>
+		<!-- 背景板 -->
+		<div class="background">
+			<!-- 音乐区 -->
+			<div class="music-background">
+				<!-- 左侧图片 -->
+				<div class="img-back">
+					<img src="img/musicCover2.jpg" alt="韩安旭 - 不在" />
+				</div>
+				<!-- 右侧歌词 -->
+				<div class="lyrics-back">
+					<!-- 歌曲信息 -->
+					<div class="div-title">
+						<h1></h1>
+						<p style="margin-right: 100px">
+							专辑：
+							<span></span>
+						</p>
+						<p>
+							歌手：
+							<span></span>
+						</p>
+					</div>
+					<!-- 歌词信息 -->
+					<div class="lyrics-time">
+						<a href="#" class="goto"></a>
+						<a href="#" class="goto-time">00:00</a>
+					</div>
+					<div class="div-lyrics"></div>
+				</div>
+			</div>
+			<!-- 控制区 -->
+			<div class="control-back">
+				<!-- 进度条 -->
+				<div class="progress-bar">
+					<div class="progress-all"></div>
+					<div class="progress-now"></div>
+				</div>
+				<span class="time">00:00/00:00</span>
+				<!-- 控制按钮 -->
+				<div class="control">
+					<!-- 上一首、下一首、暂停播放 -->
+					<div class="control-btn">
+						<a href="#" class="up"></a>
+						<a href="#" class="play-pause" onclick="setPlay()"></a>
+						<a href="#" class="down"></a>
+					</div>
+					<!-- 播放模式、声音 -->
+					<div class="control-right">
+						<a href="#" class="mode"></a>
+						<a href="#" class="volume" onclick="setMuted()"></a>
+						<div class="volume-back">
+							<div class="volume-all"></div>
+							<div class="volume-now"></div>
+						</div>
+						<span class="volume-text">100</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/music.js"></script>
+	</body>
+</html>
