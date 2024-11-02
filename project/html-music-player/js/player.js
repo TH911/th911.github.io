@@ -98,7 +98,7 @@ Selected.prototype = {
     },
     initialList: function(ctx) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open('GET', './scripts/content.json', false);
+        xhttp.open('GET', './json/content.json', false);
         xhttp.onreadystatechange = function() {
             if (xhttp.status == 200 && xhttp.readyState == 4) {
                 var fragment = document.createDocumentFragment(),
@@ -122,7 +122,7 @@ Selected.prototype = {
     },
     play: function(songName) {
         var that = this;
-        this.audio.src = './content/songs/' + songName + '.mp3';
+        this.audio.src = '/music/' + songName + '.mp3';
         //reset the position of the lyric container
         this.lyricContainer.style.top = '130px';
         //empty the lyric
