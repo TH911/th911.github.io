@@ -2,28 +2,17 @@
 
 如果你想要联系我，可以[在GitHub上新建Issues](https://github.com/TH911/th911.github.io/issues/new)，也可以通过其他方式找到我。
 
-邮箱：3260483661@qq.com
+邮箱：
+
+* 3260483661@qq.com
+
+* nouthingforever@gmail.com
 
 ***
 
-我，一个简单而复杂的人。
+项目推荐
 
-喜欢玩Minecraft，**擅长红石、速通**。
-
-喜欢OI~~CSP-S比CSP-J分数还高~~，但***极其讨厌DP、记忆化搜索、高精度***。
-
-渴望被人爱，~~因此早恋？~~但现实总是那么地残酷。
-
-***
-
-我的各种账号：
-
-* [洛谷](https://www.luogu.com.cn/user/967959)
-* [Bilibili](https://space.bilibili.com/3493085480749654)
-* [GitHub](https://github.com/TH911)
-* [知乎](https://www.zhihu.com/people/45-46-14-76)
-
-等。
+* [unlock music](/project/unlock-music)
 
 ***
 
