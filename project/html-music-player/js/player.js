@@ -122,7 +122,7 @@ Selected.prototype = {
     },
     play: function(songName) {
         var that = this;
-        this.audio.src = './music/' + songName + '.mp3';
+        this.audio.src = '/music/' + songName + '.mp3';
         //reset the position of the lyric container
         this.lyricContainer.style.top = '130px';
         //empty the lyric
