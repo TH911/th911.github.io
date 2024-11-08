@@ -86,16 +86,11 @@ featured-condition-size: 1 # A tag will be featured if the size of it is more th
 chrome-tab-theme-color: "#000000"
 service-worker: true
 
-# MathJax rendering for layout:page (e.g. post preview)
-page-mathjax: false
-post-mathjax: false
-keynote-mathjax: false
-
 #KaTeX rendering
 katex: true
 
 # Friends
 friends:
   [
-    { title: "kanze", href: "https://www.luogu.com.cn/user/713606" },
+    { title: "kanze", href: "https://www.luogu.com.cn/user/713606" }
   ]
