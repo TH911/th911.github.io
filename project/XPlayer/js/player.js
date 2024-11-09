@@ -84,7 +84,7 @@ Selected.prototype = {
 
         //enable keyboard control , spacebar to play and pause
         window.addEventListener('keydown', function(e) {
-            if (e.code == ' ') {
+            if (e.key == ' ') {
                 if (that.audio.paused)that.audio.play();
                 else that.audio.pause();
             }else if(e.code == 'ArrowUp')that.playPrev(that);
