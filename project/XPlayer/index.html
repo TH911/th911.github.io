@@ -17,12 +17,22 @@
 
             <div id="songimg">
                 <img class="cover_img_css" id="cover_img" alt="loading...">
-                <!-- hide the cover of the song if the width of the screen is too small -->
+                <div id="songinfo">
+                    <div id="songinfo_name"></div>
+                    <div id="songinfo_artist"></div>
+                </div>
+                <!-- hide the cover of the song(and the info) if the width of the screen is too small -->
                 <script>
-                    var cover_img=document.getElementById("cover_img");
                     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
                     var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-                    if(screenWidth<=500||screenHeight<=300)cover_img.style.display="none";
+                    if(screenWidth<=500||screenHeight<=300){
+                        var cover_img=document.getElementById("cover_img");
+                        cover_img.style.display="none";
+                        var info_name = document.getElementById("songinfo_name");
+                        info_name.style.display="none";
+                        var info_artist = document.getElementById("songinfo_artist");
+                        info_artist.style.display="none";
+                    }
                 </script>
             </div>
             <div id="player">
@@ -40,12 +50,6 @@
             <div id="lyricWrapper">
                 <div id="lyricContainer">
                 </div>
-                <script>
-                    var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-                    var lrc=document.getElementById("lyricWrapper");
-                    lrc.height=screenHeight-100;
-                    alert(lrc.height);
-                </script>
             </div>
         </div>
         <script src="js/player.js"></script>

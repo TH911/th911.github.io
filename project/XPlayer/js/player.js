@@ -7,6 +7,10 @@
  * see the live site:http://wayou.github.io/selected/
  * songs used in this project are only for educational purpose
  */
+var info_name_arr = [];
+var info_artist_arr = [];
+songinfo_name = document.getElementById('songinfo_name');
+songinfo_artist = document.getElementById('songinfo_artist');
 window.onload = function() {
     new Selected().init();
 };
@@ -18,6 +22,7 @@ var Selected = function() {
     this.currentIndex = 0;
     this.lyric = null;
     this.lyricStyle = 0; //random num to specify the different class name for lyric
+    // this.info_artist_arr = [];
 };
 Selected.prototype = {
     constructor: Selected, //fix the prototype chain
@@ -33,7 +38,7 @@ Selected.prototype = {
         var songName = window.location.hash.substring(1);
         //then get the index of the song from all songs
         var indexOfHashSong = (function() {
-            /*By TH911:XPlayer use the number to flag each songs,instead of using words,so XPlayer may not use this.*/
+            /*By TH911:XPlayer use the number to flag each songs,instead of using words,so XPlayer needn't use this.*/
             /*var index = 0;
             Array.prototype.forEach.call(allSongs, function(v, i, a) {
                 if (v.children[0].getAttribute('data-name') == songName) {
@@ -71,7 +76,7 @@ Selected.prototype = {
             that.play(songName);
         }, false);
         this.audio.onended = function() {
-            that.playNext(that);
+            that.ending(that);
         }
         this.audio.onerror = function(e) {
             that.lyricContainer.textContent = '歌曲加载失败 :(';
@@ -79,12 +84,17 @@ Selected.prototype = {
 
         //enable keyboard control , spacebar to play and pause
         window.addEventListener('keydown', function(e) {
-            if (e.keyCode === 32) {
-                if (that.audio.paused) {
-                    that.audio.play();
-                } else {
-                    that.audio.pause();
-                }
+            if (e.code == ' ') {
+                if (that.audio.paused)that.audio.play();
+                else that.audio.pause();
+            }else if(e.code == 'ArrowUp')that.playPrev(that);
+            else if(e.code == 'ArrowDown')that.playNext(that);
+            else if(e.code == 'ArrowLeft'){
+                var Song = this.document.getElementById("audio");
+                Song.currentTime-=10;
+            }else if(e.code == 'ArrowRight'){
+                var Song = this.document.getElementById("audio");
+                Song.currentTime+=10;
             }
         }, false);
 
@@ -116,6 +126,8 @@ Selected.prototype = {
                     var li = document.createElement('li'),
                         a = document.createElement('a');
                     a.href = 'javascript:void(0)';
+                    info_name_arr.push(v.song_name);
+                    info_artist_arr.push(v.artist);
                     a.dataset.name = v.lrc_name;
                     a.textContent = v.song_name + ' - ' + v.artist;
                     li.appendChild(a);
@@ -130,8 +142,17 @@ Selected.prototype = {
         var that = this;
         this.audio.src = '/music/' + songName + '.mp3';
         this.cover_img.src = '/music/' + songName + '.png';
-        // this.cover_img.width = window.width/10;
-        //reset the position of the lyric container
+        songinfo_name.textContent = info_name_arr[songName-1];
+        songinfo_artist.textContent = "歌手：" + info_artist_arr[songName-1];
+
+        // Array.prototype.forEach.call(allSongs, function(v, i, a) {
+        //     if (v.children[0].getAttribute('data-info_name') == songName) {
+        //         index = i;
+        //         return false;
+        //     }
+        // });
+        
+
         this.lyricContainer.style.top = '130px';
         //empty the lyric
         this.lyric = null;
@@ -159,6 +180,16 @@ Selected.prototype = {
             };
         });
     },
+    ending: function(that) {
+        //order,reverse,random.
+        var player_mode;
+        if(localStorage.getItem("player_mode")){
+            player_mode=localStorage.getItem("player_mode");
+        }else localStorage.setItem("player_mode","order");
+        if(player_mode == "order")that.playNext(that);
+        else if(player_mode == "reverse")that.playPrev(that);
+        else window.location.href = "/project/XPlayer/";
+    },
     playNext: function(that) {
         var allSongs = this.playlist.children[0].children,
             nextItem;
@@ -175,7 +206,8 @@ Selected.prototype = {
         var songName = nextItem.getAttribute('data-name');
         window.location.hash = songName;
         that.play(songName);
-    },playPrev: function(that) {
+    },
+    playPrev: function(that) {
         var allSongs = this.playlist.children[0].children,
             prevItem;
         //reaches the first song of the playlist?
@@ -188,7 +220,7 @@ Selected.prototype = {
         };
         prevItem = allSongs[that.currentIndex].children[0];
         that.setClass(that.currentIndex);
-        var songName = nextItem.getAttribute('data-name');
+        var songName = prevItem.getAttribute('data-name');
         window.location.hash = songName;
         that.play(songName);
     },

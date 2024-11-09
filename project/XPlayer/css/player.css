@@ -102,7 +102,7 @@ a:hover {
     margin: 0;
 }
 #lyricWrapper {
-    height: 400px;
+    height: 500px;
     overflow: hidden;
     position: relative;
     margin-top: 20px;
@@ -137,6 +137,18 @@ a:hover {
     #player {
         display: none;
    }
+}
+
+/*for song info*/
+#songinfo_name{
+    font-size: 20px;
+    color: #fff
+}
+#songinfo_artist{
+    font-size: 15px;
+}
+#songinfo{
+    text-align:center;
 }
 
 /*custom scrollbar for webkit browsers*/
