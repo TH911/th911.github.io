@@ -1,0 +1,44 @@
+---
+layout: page
+title: "Project"
+description: "TH911 Blog子项目"
+header-img: "img/bg/1.jpg"
+header-mask: 0.3
+---
+<div class="zh post-container">
+    {% capture hosts %}{% include project.md %}{% endcapture %}
+    {{ hosts | markdownify }}
+</div>
+
+{% if site.changyan_comment %}
+<!--PC和WAP自适应版-->
+<div id="SOHUCS" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyxyjWUbK'; 
+var conf = 'prod_8368b2e5e24d86be52c2b4d82c5b9dc1'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 1000) {
+var head = document.getElementsByTagName('head')[0]||document.head||document.documentElement;
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.charset = 'utf-8';
+script.id = 'changyan_mobile_js';
+script.src = 'https://cy-cdn.kuaizhan.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf;
+head.appendChild(script);
+} else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://cy-cdn.kuaizhan.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+{% endif %}
+
+{% if site.disqus_username %}
+<!-- disqus 评论框 start -->
+<div class="comment">
+    <div id="disqus_thread" class="disqus-thread"></div>
+</div>
+<!-- disqus 评论框 end -->
+{% endif %}
+
+{% if site.netease_comment %}
+<!-- 网易云跟帖 评论框 start -->
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<!-- 网易云跟帖 评论框 end -->
+{% endif %}
