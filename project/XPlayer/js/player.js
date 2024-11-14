@@ -22,7 +22,6 @@ var Selected = function() {
     this.currentIndex = 0;
     this.lyric = null;
     this.lyricStyle = 0; //random num to specify the different class name for lyric
-    // this.info_artist_arr = [];
 };
 Selected.prototype = {
     constructor: Selected, //fix the prototype chain
@@ -145,15 +144,7 @@ Selected.prototype = {
         songinfo_audio.textContent = info_name_arr[songName-1] + " - " + info_artist_arr[songName-1];
         var audio_length_total = document.getElementsByClassName("audio-length-total");
         audio_length_total.textContent = this.audio.duration;
-
-        // Array.prototype.forEach.call(allSongs, function(v, i, a) {
-        //     if (v.children[0].getAttribute('data-info_name') == songName) {
-        //         index = i;
-        //         return false;
-        //     }
-        // });
         
-
         this.lyricContainer.style.top = '130px';
         //empty the lyric
         this.lyric = null;

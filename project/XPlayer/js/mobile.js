@@ -8,9 +8,15 @@ if(screenWidth<=1000){
     info_name.style.display="none";
     var info_artist = document.getElementById("songinfo_artist");
     info_artist.style.display="none";
+    
     //close the playlist for default
     var playlist=document.getElementById("playlist");
     playlist.style.display="none";
+    
+    //for the player's width
+    var player=document.getElementsByClassName("audio-wrapper");
+    player.style.width=500;
+    alert(500);
 }else{
     var playlist_button=document.getElementsById("playlist_button");
     playlist_button.style.display="none";
