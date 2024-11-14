@@ -82,12 +82,9 @@ Selected.prototype = {
             that.lyricContainer.textContent = '歌曲加载失败 :(';
         };
 
-        //enable keyboard control , spacebar to play and pause
+        //enable keyboard control , spacebar to change the song
         window.addEventListener('keydown', function(e) {
-            if (e.key == ' ') {
-                if (that.audio.paused)that.audio.play();
-                else that.audio.pause();
-            }else if(e.code == 'ArrowUp')that.playPrev(that);
+            if(e.code == 'ArrowUp')that.playPrev(that);
             else if(e.code == 'ArrowDown')that.playNext(that);
             else if(e.code == 'ArrowLeft'){
                 var Song = this.document.getElementById("audio");
@@ -143,7 +140,11 @@ Selected.prototype = {
         this.audio.src = '/music/' + songName + '.mp3';
         this.cover_img.src = '/music/' + songName + '.png';
         songinfo_name.textContent = info_name_arr[songName-1];
-        songinfo_artist.textContent = "歌手：" + info_artist_arr[songName-1];
+        songinfo_artist.textContent = "歌手: " + info_artist_arr[songName-1];
+        var songinfo_audio = document.getElementById("songinfo_audio");
+        songinfo_audio.textContent = info_name_arr[songName-1] + " - " + info_artist_arr[songName-1];
+        var audio_length_total = document.getElementsByClassName("audio-length-total");
+        audio_length_total.textContent = this.audio.duration;
 
         // Array.prototype.forEach.call(allSongs, function(v, i, a) {
         //     if (v.children[0].getAttribute('data-info_name') == songName) {
