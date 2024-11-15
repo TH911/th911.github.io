@@ -10,13 +10,11 @@
 
 ***
 
-项目推荐
-
-* [unlock music](/project/unlock-music)
+我讨厌 $\text{zjj2024/zjj2023/FastfastTle/junjie_zhao}$！
 
 ***
 
-安利一点好用的网站：
+放点网站：
 
 * **洛谷**
   1. [**犇犇黑历史**](https://benben.sbs/)

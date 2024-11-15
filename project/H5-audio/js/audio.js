@@ -10,8 +10,58 @@ document.addEventListener('DOMContentLoaded', function () {
         initAudioEvent(i);
     }
 
+    // 添加音频自动播放功能
+    autoPlayFirstAudio();
 
 }, false);
+
+/**
+ * 自动播放第一个音频
+ */
+function autoPlayFirstAudio() {
+    var audio = document.getElementsByTagName('audio')[0];
+    var audioPlayer = document.getElementById('audioPlayer0');
+
+    var playAudio = function () {
+        audio.play();
+        audioPlayer.src = './image/pause.png';
+    }
+
+    if (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) {
+        // 微信浏览器
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            playAudio();
+        } else {
+            // 监听客户端抛出事件"WeixinJSBridgeReady"
+            if (document.addEventListener) {
+                document.addEventListener("WeixinJSBridgeReady", playAudio, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("WeixinJSBridgeReady", playAudio);
+                document.attachEvent("onWeixinJSBridgeReady", playAudio);
+            }
+        }
+    } else {
+        // 非微信浏览器
+        audio.addEventListener('canplaythrough', function () {
+            var playPromise = audio.play();
+            if (playPromise) {
+                playPromise.then(() => {
+                    audioPlayer.src = './image/pause.png';
+                }).catch(error => {
+                    // Auto-play was prevented
+                    // Show paused UI.
+                    console.log(error.message);
+
+                    // 如果以上方法还是不能让音频自动播放，必须要在用户交互后触发，则只能退而求其次在用户第一次点击页面（即产生了交互）时开始播放
+                    if (audio.paused) {
+                        document.addEventListener("touchstart", playAudio, false);
+                        document.addEventListener('mousedown', playAudio, false);
+                    }
+                });
+            }
+        });
+    }
+}
 
 /**
  * 初始化音频控制事件
@@ -21,45 +71,43 @@ function initAudioEvent(index) {
     var audio = document.getElementsByTagName('audio')[index];
     var audioPlayer = document.getElementById('audioPlayer' + index);
 
-    audio.addEventListener('loadedmetadata', function() {
-        // Get how long the song is
-        const duration = audio.duration;
-        var len=document.getElementById("audio-length-total");
-        len.textContent = transTime(Math.ceil(duration));
-    });
-
-    // Update the progress bar
+    // 监听音频播放时间并更新进度条
     audio.addEventListener('timeupdate', function () {
         updateProgress(audio, index);
     }, false);
 
-    //Update the img
-    audio.addEventListener('pause', function() {
-        audioPlayer.src = './img/play.png';
-    }, false);
-    audio.addEventListener('play', function() {
-        audioPlayer.src = './img/pause.png';
-    }, false);
-    
-    // play/pause when click
-    audioPlayer.addEventListener('click', function () {
-        if (audio.paused)audio.play();
-        else audio.pause();
+    // 监听播放完成事件
+    audio.addEventListener('ended', function () {
+        audioEnded(index);
     }, false);
 
-    //enable keyboard control , spacebar to play and pause
-    window.addEventListener('keydown', function(e) {
-        if (e.key == ' ') {
-            if (audio.paused)audio.play();
-            else audio.pause();
+    // 点击播放/暂停图片时，控制音乐的播放与暂停
+    audioPlayer.addEventListener('click', function () {
+        // 改变播放/暂停图片
+        if (audio.paused) {
+            // 暂停其他正在播放的音频
+            var audios = document.getElementsByTagName('audio');
+            for (var i = 0; i < audios.length; i++) {
+                if (i != index && !audios[i].paused) {
+                    audios[i].pause();
+                    document.getElementById('audioPlayer' + i).src = './image/play.png';
+                }
+            }
+
+            // 开始播放当前点击的音频
+            audio.play();
+            audioPlayer.src = './image/pause.png';
+        } else {
+            audio.pause();
+            audioPlayer.src = './image/play.png';
         }
     }, false);
 
-    // change the time when click the progress bar
-    // PS：DON'T USE CLICK，or The drag progress point event below may trigger here, and at this point, the value of e.offsetX is very small, which can cause the progress bar to pop back to the beginning (unbearable!!)
+    // 点击进度条跳到指定点播放
+    // PS：此处不要用click，否则下面的拖动进度点事件有可能在此处触发，此时e.offsetX的值非常小，会导致进度条弹回开始处（简直不能忍！！）
     var progressBarBg = document.getElementById('progressBarBg' + index);
     progressBarBg.addEventListener('mousedown', function (event) {
-
+        // 只有音乐开始播放后才可以调节，已经播放过但暂停了的也可以
         if (!audio.paused || audio.currentTime != 0) {
             var pgsWidth = parseFloat(window.getComputedStyle(progressBarBg, null).width.replace('px', ''));
             var rate = event.offsetX / pgsWidth;
@@ -157,6 +205,23 @@ function updateProgress(audio, index) {
     document.getElementById('progressBar' + index).style.width = value * 100 + '%';
     document.getElementById('progressDot' + index).style.left = value * 100 + '%';
     document.getElementById('audioCurTime' + index).innerText = transTime(audio.currentTime);
+}
+
+/**
+ * 播放完成时把进度调回开始的位置
+ * @param {number} index 索引，表示第几个音频（从0开始）
+ */
+function audioEnded(index) {
+    document.getElementById('progressBar' + index).style.width = 0;
+    document.getElementById('progressDot' + index).style.left = 0;
+    document.getElementById('audioCurTime' + index).innerText = transTime(0);
+    document.getElementById('audioPlayer' + index).src = './image/play.png';
+
+    // 自动播放下一个音频
+    var audios = document.getElementsByTagName('audio');
+    var nextIndex = (index + 1) >= audios.length ? 0 : index + 1;
+    audios[nextIndex].play();
+    document.getElementById('audioPlayer' + nextIndex).src = './image/pause.png';
 }
 
 /**

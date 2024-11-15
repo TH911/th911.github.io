@@ -14,10 +14,11 @@ if(screenWidth<=1000){
     playlist.style.display="none";
     
     //for the player's width
-    var player=document.getElementsByClassName("audio-wrapper");
-    player.style.width=500;
-    alert(500);
+    var audio_player=document.getElementById("audio_player_div");
+    audio_player.width=300;
+    // alert(2);
 }else{
     var playlist_button=document.getElementsById("playlist_button");
     playlist_button.style.display="none";
 }
+audio_player.width=300;
