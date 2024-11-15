@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (var i = 0; i < audios.length; i++) {
         initAudioEvent(i);
     }
-
+    
 
 }, false);
 

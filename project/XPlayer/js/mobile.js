@@ -14,11 +14,11 @@ if(screenWidth<=1000){
     playlist.style.display="none";
     
     //for the player's width
-    var audio_player=document.getElementById("audio_player_div");
-    audio_player.width=300;
-    // alert(2);
+    // var audio_player=document.getElementsByClassName("audio-wrapper");
+    // audio_player.style. = screenWidth+'px';
+    // alert(screenWidth+'px');
+    
 }else{
-    var playlist_button=document.getElementsById("playlist_button");
+    var playlist_button=document.getElementById("playlist_button");
     playlist_button.style.display="none";
 }
-audio_player.width=300;
