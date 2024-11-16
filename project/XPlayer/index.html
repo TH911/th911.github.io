@@ -14,10 +14,8 @@
         <header>
             <h1> <a href="/2024/11/09/2/" target="_blank">XPlayer | 音乐电台</a></h1>
         </header>
-        <div id="playlist_button_div">
-            <button id="playlist_button" onclick="playlist_hide()">播放列表</button>
-        </div>
-        <script src="js/playlist_button.js"></script>
+        <!-- <button id="playlist_button" onclick="playlist_hide()">播放列表</button>
+        <script src="js/playlist_button.js"></script> -->
         <div class="wrapper">
             <div id="songimg">
                 <img class="cover_img_css" id="cover_img" alt="loading...">
@@ -26,7 +24,7 @@
                     <div id="songinfo_artist"></div>
                 </div>
             </div>
-            <!-- <div id="player"> -->
+            <div id="player">
                 <!-- instead of the default player because of the difference between the different browser -->
                 <div class="audio-wrapper">
                     <audio autoplay="autoplay" id="audio">歌曲加载失败，请检查网络连接或缓存。</audio>
@@ -47,14 +45,19 @@
                 </div>
                 
                 <script src="js/audio.js"></script>
-            <!-- </div> -->
-            <div id="playlist">
-                <ol>
-                </ol>
-                <div class="info">
-                    <div class="bg" id="bg_dark" title="use color for background"></div>
-                    <div class="bg" id="bg_pic" title="use image for background"></div>
-                    <small> view on <a target="_blank" href="/2024/10/27/1/">Blog</a></small>
+            </div>
+            <div id="playlist_with_button">
+                <button id="playlist_button" onclick="playlist_hide()">播放列表</button>
+                <script src="js/playlist_button.js"></script>
+                <br>
+                <div id="playlist">
+                    <ol>
+                    </ol>
+                    <div class="info">
+                        <div class="bg" id="bg_dark" title="use color for background"></div>
+                        <div class="bg" id="bg_pic" title="use image for background"></div>
+                        <small> view on <a target="_blank" href="/2024/10/27/1/">Blog</a></small>
+                    </div>
                 </div>
             </div>
             <div id="lyricWrapper">

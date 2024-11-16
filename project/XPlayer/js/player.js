@@ -158,7 +158,7 @@ Selected.prototype = {
         this.audio.addEventListener("timeupdate", function(e) {
             if (!that.lyric) return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
-                if (this.currentTime > that.lyric[i][0] - 0.20 /*preload the lyric by 0.20s*/ ) {
+                if (this.currentTime > that.lyric[i][0] - 0.50 /*preload the lyric by 0.50s*/ ) {
                     //single line display mode
                     // that.lyricContainer.textContent = that.lyric[i][1];
                     //scroll mode

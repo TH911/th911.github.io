@@ -13,11 +13,10 @@ if(screenWidth<=1000){
     var playlist=document.getElementById("playlist");
     playlist.style.display="none";
     
-    //for the player's width
-    // var audio_player=document.getElementsByClassName("audio-wrapper");
-    // audio_player.style. = screenWidth+'px';
-    // alert(screenWidth+'px');
-    
+    //for the player
+    var audio_player = document.getElementById("player");
+    audio_player.style.opacity = 1;
+    audio_player.style.bottom = '0px';
 }else{
     var playlist_button=document.getElementById("playlist_button");
     playlist_button.style.display="none";

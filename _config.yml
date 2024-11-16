@@ -89,6 +89,9 @@ service-worker: true
 #KaTeX rendering
 katex: true
 
+#Img Zoom
+imgzoom: true
+
 # Friends
 friends:
   [

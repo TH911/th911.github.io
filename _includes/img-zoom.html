@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-{% include head.html %}
-
-{% if site.katex %}
-    <!-- add support for katex-->
-    {% include katex_support.html %}
-{% endif %}
-
 <style>
     #imgzoom-div {
        display: none;
@@ -27,7 +17,10 @@
        margin: auto;
        margin-top: 5%;
     }
- </style>  
+ </style>
+  
+ <img src="D:\1234\123\th911.github.io\img\bg\1.jpg" alt="图像" onclick="imgzoom_show(this)">
+  
  <div id="imgzoom-div" onclick="imgzoom_hide()">
    <img id="imgzoom-img">
  </div>
@@ -47,35 +40,9 @@
  </script>
 
 <script>
-    // alert(1);
     var imgs = document.getElementsByTagName("img");
     for(var i=0;i<imgs.length;i++){
-        imgs[i].setAttribute("onclick","imgzoom_show(this)");
-        // alert(imgs[i].getAttribute("onclick"));
+        var tag=imgs[i].getAttribute("onclick");
+        imgs[i].setAttribute(tag + " imgzoom_show(this)");
     }
 </script>
-
-<!-- let the img zoom when click -->
-<!-- {% if site.imgzoom %} -->
- <!-- add support for img zoom -->
-<!-- {% include img-zoom.html %} -->
-<!-- {% endif %} -->
-
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-
-    {% include nav.html %}
-    {% include search.html %}
-
-    {{ content }}
-
-    {% include footer.html %}
-
-
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
-
-</body>
-
-</html>
