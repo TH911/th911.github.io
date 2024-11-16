@@ -8,53 +8,6 @@
     {% include katex_support.html %}
 {% endif %}
 
-<style>
-    #imgzoom-div {
-       display: none;
-       position: fixed;
-       z-index: 9999;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       background-color: rgba(0, 0, 0, 0.8);
-    }
-  
-    #imgzoom-img {
-       display: block;
-       max-width: 90%;
-       max-height: 90%;
-       margin: auto;
-       margin-top: 5%;
-    }
- </style>  
- <div id="imgzoom-div" onclick="imgzoom_hide()">
-   <img id="imgzoom-img">
- </div>
-  
- <script>
-    function imgzoom_show(image) {
-       var zoom = document.getElementById("imgzoom-div");
-       var zoomimg = document.getElementById("imgzoom-img");
-       zoom.style.display = "block";
-       zoomimg.src = image.src;
-    }
-  
-    function imgzoom_hide() {
-        var zoom = document.getElementById("imgzoom-div");
-        zoom.style.display = "none";
-    }
- </script>
-
-<script>
-    // alert(1);
-    var imgs = document.getElementsByTagName("img");
-    for(var i=0;i<imgs.length;i++){
-        imgs[i].setAttribute("onclick","imgzoom_show(this)");
-        // alert(imgs[i].getAttribute("onclick"));
-    }
-</script>
-
 <!-- let the img zoom when click -->
 <!-- {% if site.imgzoom %} -->
  <!-- add support for img zoom -->

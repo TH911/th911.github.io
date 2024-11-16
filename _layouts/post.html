@@ -5,6 +5,58 @@ layout: default
 <!-- Post Header -->
 {% include intro-header.html type='post' %}
 
+<style>
+#imgzoom-div {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#imgzoom-img {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    width: 700px;
+    height: auto;
+    margin: auto;
+    margin-top: 5%;
+}
+</style>  
+
+<div id="imgzoom-div" onclick="imgzoom_hide()">
+    <img id="imgzoom-img">
+</div>
+
+<script>
+    function imgzoom_show(image) {
+        var zoom = document.getElementById("imgzoom-div");
+        var zoomimg = document.getElementById("imgzoom-img");
+        zoom.style.display = "block";
+        zoomimg.src = image.src;
+    }
+
+    function imgzoom_hide() {
+        var zoom = document.getElementById("imgzoom-div");
+        zoom.style.display = "none";
+    }
+</script>
+
+<script>
+    var imgs = document.getElementsByTagName("img");
+    // alert(imgs.length);
+    for(var i=0;i<imgs.length;i++){
+        // alert(imgs[i].src);
+        imgs[i].onclick = "imgzoom_show(this)";
+        // alert(imgs[i].onclick);
+        // imgs[i].
+    }
+</script>
+
 <!-- Post Content -->
 <article>
     <div class="container">
@@ -45,6 +97,7 @@ layout: default
                 <hr style="visibility: hidden;">
                 
                 {% if site.changyan_comment %}
+                <!-- <img onclick="imgzoom_show(this)" src="https://cfyy.us.kg/img/2024/10/001.gif"> -->
                 <!--PC和WAP自适应版-->
                 <div id="SOHUCS" ></div> 
                 <script type="text/javascript"> 
