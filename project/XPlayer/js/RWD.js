@@ -8,6 +8,9 @@ function rwd(){
         var playlist_ol = document.getElementById("playlist_ol");
         var playlist=document.getElementById("playlist");
         var header = document.getElementById("header");
+        var lyricWrapper = document.getElementById("lyricWrapper");
+        lyricWrapper.style.height = (screenHeight - 130) + 'px';
+        
         // for mobile
         if(screenWidth<screenHeight||screenWidth<800){
             header.style.display = "none";

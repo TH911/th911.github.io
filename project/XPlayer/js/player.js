@@ -7,6 +7,26 @@
  * see the live site:http://wayou.github.io/selected/
  * songs used in this project are only for educational purpose
  */
+
+//the menu of fontfamily,fontsize,background-img,...
+$(document).ready(function() {
+    $('.menu-title').click(function() {
+        $(this).siblings('.menu-content').toggleClass('show');
+    });
+});
+
+//to change the opacity when mouse across the player
+function player_opacity(){
+    var player=document.getElementById("player");
+    if(player.style.opacity==1)player.style.opacity=0.6;
+    else player.style.opacity=1;
+}
+
+//change the playermode
+function playmode_change(mode){
+    localStorage.setItem("player_mode",mode);
+    console.log(localStorage.getItem("player_mode"));
+}
 window.onload = function() {
     new Selected().init();
 };
@@ -132,6 +152,18 @@ Selected.prototype = {
         var that = this;
         this.lyricContainer.textContent = 'loading song...'
         this.audio.src = '/music/' + songName + '.mp3';
+        
+        var songinfo_name = document.getElementById('songinfo_name');
+        songinfo_name.textContent = "loading";
+        var songinfo_artist = document.getElementById('songinfo_artist');
+        songinfo_artist.textContent = "歌手: loading...";
+        var songinfo_album = document.getElementById("songinfo_album");
+        songinfo_album.textContent = "专辑: loading";
+        var songinfo_audio = document.getElementById("songinfo_audio");
+        songinfo_audio.textContent = "loading";
+        // console.log(tag);
+        document.getElementById('cover_img').src = '';
+        
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
         // https://zhuanlan.zhihu.com/p/66320621
         // https://www.jianshu.com/p/b10118aeec9d
@@ -158,7 +190,6 @@ Selected.prototype = {
         this.lyricContainer.style.top = '130px';
         //empty the lyric
         this.lyric = null;
-        // this.lyricContainer.textContent = 'loading...';
         this.lyricStyle = Math.floor(Math.random() * 4);
         this.audio.addEventListener('canplay', function() {
             that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
@@ -230,7 +261,7 @@ Selected.prototype = {
         result.sort(function(a, b) {
             return a[0] - b[0];
         });
-		console.log(result);
+		// console.log(result);
         return result;
     },
     appendLyric: function(lyric) {

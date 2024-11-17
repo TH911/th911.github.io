@@ -110,7 +110,6 @@ a:hover {
     margin: 0;
 }
 #lyricWrapper {
-    height: 500px;
     overflow: hidden;
     position: relative;
     margin-top: 20px;
@@ -225,4 +224,29 @@ a:hover {
     margin: 0;
     opacity: 1;
     transition: 0s
+}
+
+/* for menu */
+.menu-item {
+    margin-bottom: 10px;
+}
+.menu-title {
+    cursor: pointer;
+}
+.menu-content {
+    display: none;
+}
+.menu-content.show {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#menu-playmode {
+    text-align: right;
+    position: relative;
+    right: 0;
 }
