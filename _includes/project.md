@@ -4,7 +4,7 @@
 
 比如将 `.mflac` 文件转化为 `.flac`。
 
-但新版QQ音乐更改了加密逻辑，因此若您想在QQ音乐上使用，请下载[旧版QQ音乐](https://cfyy.us.kg/file/2024/11/QQMusic_install.rar)
+但新版QQ音乐更改了加密逻辑，因此若您想在QQ音乐上使用，请下载[旧版QQ音乐](/file/2024/11/QQMusic_Setup.exe)。
 
 ## [XPlayer](/project/XPlayer)
 

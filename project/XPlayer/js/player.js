@@ -7,10 +7,6 @@
  * see the live site:http://wayou.github.io/selected/
  * songs used in this project are only for educational purpose
  */
-var info_name_arr = [];
-var info_artist_arr = [];
-songinfo_name = document.getElementById('songinfo_name');
-songinfo_artist = document.getElementById('songinfo_artist');
 window.onload = function() {
     new Selected().init();
 };
@@ -122,8 +118,6 @@ Selected.prototype = {
                     var li = document.createElement('li'),
                         a = document.createElement('a');
                     a.href = 'javascript:void(0)';
-                    info_name_arr.push(v.song_name);
-                    info_artist_arr.push(v.artist);
                     a.dataset.name = v.lrc_name;
                     a.textContent = v.song_name + ' - ' + v.artist;
                     li.appendChild(a);
@@ -136,19 +130,35 @@ Selected.prototype = {
     },
     play: function(songName) {
         var that = this;
+        this.lyricContainer.textContent = 'loading song...'
         this.audio.src = '/music/' + songName + '.mp3';
-        this.cover_img.src = '/music/' + songName + '.png';
-        songinfo_name.textContent = info_name_arr[songName-1];
-        songinfo_artist.textContent = "歌手: " + info_artist_arr[songName-1];
-        var songinfo_audio = document.getElementById("songinfo_audio");
-        songinfo_audio.textContent = info_name_arr[songName-1] + " - " + info_artist_arr[songName-1];
-        var audio_length_total = document.getElementsByClassName("audio-length-total");
-        audio_length_total.textContent = this.audio.duration;
+        //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
+        // https://zhuanlan.zhihu.com/p/66320621
+        // https://www.jianshu.com/p/b10118aeec9d
+        // get the information of the song(artist,album,lyric,...)by jsmediatags,insteading of use another file
+        jsmediatags.read(this.audio.src, {
+            onSuccess: function(tag) {
+                var songinfo_name = document.getElementById('songinfo_name');
+                songinfo_name.textContent = tag.tags.title;
+                var songinfo_artist = document.getElementById('songinfo_artist');
+                songinfo_artist.textContent = "歌手: " + tag.tags.artist;
+                var songinfo_album = document.getElementById("songinfo_album");
+                songinfo_album.textContent = "专辑: " + tag.tags.album;
+                var songinfo_audio = document.getElementById("songinfo_audio");
+                songinfo_audio.textContent = tag.tags.title + " - " + tag.tags.artist;
+                // console.log(tag);
+                document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
+            },
+            onError: function(error) {
+                console.log(':(', error.type, error.info);
+            }
+        });
+        
         
         this.lyricContainer.style.top = '130px';
         //empty the lyric
         this.lyric = null;
-        this.lyricContainer.textContent = 'loading...';
+        // this.lyricContainer.textContent = 'loading...';
         this.lyricStyle = Math.floor(Math.random() * 4);
         this.audio.addEventListener('canplay', function() {
             that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
@@ -171,57 +181,6 @@ Selected.prototype = {
                 };
             };
         });
-    },
-    ending: function(that) {
-        //order,reverse,random.
-        var player_mode;
-        if(localStorage.getItem("player_mode")){
-            player_mode=localStorage.getItem("player_mode");
-        }else localStorage.setItem("player_mode","order");
-        if(player_mode == "order")that.playNext(that);
-        else if(player_mode == "reverse")that.playPrev(that);
-        else window.location.href = "/project/XPlayer/";
-    },
-    playNext: function(that) {
-        var allSongs = this.playlist.children[0].children,
-            nextItem;
-        //reaches the last song of the playlist?
-        if (that.currentIndex === allSongs.length - 1) {
-            //play from start
-            that.currentIndex = 0;
-        } else {
-            //play next index
-            that.currentIndex += 1;
-        };
-        nextItem = allSongs[that.currentIndex].children[0];
-        that.setClass(that.currentIndex);
-        var songName = nextItem.getAttribute('data-name');
-        window.location.hash = songName;
-        that.play(songName);
-    },
-    playPrev: function(that) {
-        var allSongs = this.playlist.children[0].children,
-            prevItem;
-        //reaches the first song of the playlist?
-        if (that.currentIndex === 0) {
-            //play from end
-            that.currentIndex = allSongs.length - 1;
-        } else {
-            //play prev index
-            that.currentIndex -= 1;
-        };
-        prevItem = allSongs[that.currentIndex].children[0];
-        that.setClass(that.currentIndex);
-        var songName = prevItem.getAttribute('data-name');
-        window.location.hash = songName;
-        that.play(songName);
-    },
-    setClass: function(index) {
-        var allSongs = this.playlist.children[0].children;
-        for (var i = allSongs.length - 1; i >= 0; i--) {
-            allSongs[i].className = '';
-        };
-        allSongs[index].className = 'current-song';
     },
     getLyric: function(url) {
         var that = this,
@@ -287,6 +246,57 @@ Selected.prototype = {
             fragment.appendChild(line);
         });
         lyricContainer.appendChild(fragment);
+    },
+    ending: function(that) {
+        //order,reverse,random.
+        var player_mode;
+        if(localStorage.getItem("player_mode")){
+            player_mode=localStorage.getItem("player_mode");
+        }else localStorage.setItem("player_mode","order");
+        if(player_mode == "order")that.playNext(that);
+        else if(player_mode == "reverse")that.playPrev(that);
+        else window.location.href = "/project/XPlayer/";
+    },
+    playNext: function(that) {
+        var allSongs = this.playlist.children[0].children,
+            nextItem;
+        //reaches the last song of the playlist?
+        if (that.currentIndex === allSongs.length - 1) {
+            //play from start
+            that.currentIndex = 0;
+        } else {
+            //play next index
+            that.currentIndex += 1;
+        };
+        nextItem = allSongs[that.currentIndex].children[0];
+        that.setClass(that.currentIndex);
+        var songName = nextItem.getAttribute('data-name');
+        window.location.hash = songName;
+        that.play(songName);
+    },
+    playPrev: function(that) {
+        var allSongs = this.playlist.children[0].children,
+            prevItem;
+        //reaches the first song of the playlist?
+        if (that.currentIndex === 0) {
+            //play from end
+            that.currentIndex = allSongs.length - 1;
+        } else {
+            //play prev index
+            that.currentIndex -= 1;
+        };
+        prevItem = allSongs[that.currentIndex].children[0];
+        that.setClass(that.currentIndex);
+        var songName = prevItem.getAttribute('data-name');
+        window.location.hash = songName;
+        that.play(songName);
+    },
+    setClass: function(index) {
+        var allSongs = this.playlist.children[0].children;
+        for (var i = allSongs.length - 1; i >= 0; i--) {
+            allSongs[i].className = '';
+        };
+        allSongs[index].className = 'current-song';
     },
     getOffset: function(text) {
         //Returns offset in miliseconds.

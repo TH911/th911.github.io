@@ -11,17 +11,16 @@
         <link rel="stylesheet" href="css/audio.css">
     </head>
     <body>
-        <header>
+        <header id="header">
             <h1> <a href="/2024/11/09/2/" target="_blank">XPlayer | 音乐电台</a></h1>
         </header>
-        <!-- <button id="playlist_button" onclick="playlist_hide()">播放列表</button>
-        <script src="js/playlist_button.js"></script> -->
         <div class="wrapper">
             <div id="songimg">
-                <img class="cover_img_css" id="cover_img" alt="loading...">
+                <img id="cover_img" alt="loading...">
                 <div id="songinfo">
                     <div id="songinfo_name"></div>
                     <div id="songinfo_artist"></div>
+                    <div id="songinfo_album"></div>
                 </div>
             </div>
             <div id="player">
@@ -51,7 +50,7 @@
                 <script src="js/playlist_button.js"></script>
                 <br>
                 <div id="playlist">
-                    <ol>
+                    <ol id="playlist_ol">
                     </ol>
                     <div class="info">
                         <div class="bg" id="bg_dark" title="use color for background"></div>
@@ -66,7 +65,10 @@
             </div>
         </div>
         <!-- <script src="js/jquery.min.js"></script> -->
-        <script src="js/mobile.js"></script>
+        <!-- Responsive Design -->
+        <script src="js/RWD.js"></script>
         <script src="js/player.js"></script>
+        <!-- support for jsmediatags https://github.com/aadsm/jsmediatags -->
+        <script src="js/jsmediatags.min.js"></script>
     </body>
 </html>
