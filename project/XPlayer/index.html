@@ -64,17 +64,25 @@
                 </div>
             </div>
         </div>
-    <div id="menu-playmode" class="menu-item">
-        <div class="menu-title">切歌顺序</div>
-        <div class="menu-content">
-            <p>
-            <span onclick="playmode_change('order')">顺序播放</span>
-            <span onclick="playmode_change('reverse')">倒序播放</span>
-            <span onclick="playmode_change('random')">随机播放</span>
-            </p>
+        <div id="menu-playmode" class="menu-item">
+            <div class="menu-title">切歌顺序</div>
+            <div class="menu-content">
+                <p>
+                <span id="menu_order" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('order')">顺序播放</span>
+                <span id="menu_reverse" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('reverse')">倒序播放</span>
+                <span id="menu_random" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('random')">随机播放</span>
+                </p>
+            </div>
         </div>
-      
-      </div>
+        <!-- <div id="menu-fontFamily" class="menu-item">
+            <div class="menu-title">字体</div>
+            <div class="menu-content">
+                <p>
+                <span id="menu_order" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="fontFamily_change('songti')">宋体</span>
+                </p>
+            </div>
+        </div> -->
+
         <script src="js/jquery.min.js"></script>
         <!-- Responsive Design -->
         <script src="js/RWD.js"></script>

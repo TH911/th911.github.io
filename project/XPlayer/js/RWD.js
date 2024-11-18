@@ -53,6 +53,8 @@ function rwd(){
             songinfo_artist.style.fontSize = Math.floor(Math.floor(screenWidth*0.24)/20) + 'px';
             var songinfo_album = document.getElementById("songinfo_album");
             songinfo_album.style.fontSize = Math.floor(Math.floor(screenWidth*0.24)/20) + 'px';
+
+            songimg.style.top = Math.floor((screenHeight - Math.floor(screenWidth*0.24) - Math.floor(Math.floor(screenWidth*0.24)/15) - Math.floor(Math.floor(screenWidth*0.24)/20) - Math.floor(Math.floor(screenWidth*0.24)/20))/2) + 'px';
         }
 }
 rwd();

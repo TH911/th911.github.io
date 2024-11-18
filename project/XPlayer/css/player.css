@@ -79,7 +79,10 @@ a:hover {
 #songimg {
     margin: auto;
     padding: 70px 70px 70px 70px;
-    position: absolute;
+    display: block;
+    position: fixed;
+    width: 100px;
+    height: auto;
     right: 0;
     z-index: 999;
 }
@@ -109,6 +112,7 @@ a:hover {
     overflow: auto;
     margin: 0;
 }
+
 #lyricWrapper {
     overflow: hidden;
     position: relative;
@@ -117,10 +121,16 @@ a:hover {
 }
 
 /* http://stackoverflow.com/questions/13426875/text-border-using-css-border-around-text */
+
+/* @font-face {
+    font-family: "songti";
+    src: url("../font/songti.ttf") format("ttf");
+  } */
 #lyricContainer {
     position: relative;
     top: 130px;
     text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000; 
+    /* font-family: "songti"; */
 }
 
 /*the highlight color of the current lyric line*/
@@ -246,6 +256,12 @@ a:hover {
 }
 
 #menu-playmode {
+    text-align: right;
+    position: relative;
+    right: 0;
+}
+
+#menu-fontFamily {
     text-align: right;
     position: relative;
     right: 0;

@@ -15,6 +15,19 @@ $(document).ready(function() {
     });
 });
 
+function menu_color_change(that,mode){
+    if(mode == 2)that.style.color = "#bbb";
+    else that.style.color = "#fff";
+    if(localStorage.getItem("player_mode") == that.id.substring(5))that.style.color="#fff";
+}
+
+function fontFamily_change(font){
+    if(font=="songti"){
+        var lyricWrapper = document.getElementById("lyricWrapper");
+        lyricWrapper.style.fontFamily = "songti";
+    }
+}
+
 //to change the opacity when mouse across the player
 function player_opacity(){
     var player=document.getElementById("player");
@@ -24,14 +37,18 @@ function player_opacity(){
 
 //change the playermode
 function playmode_change(mode){
+    var mode2=localStorage.getItem("player_mode");
+    if(mode2!=null)document.getElementById("menu_" + localStorage.getItem("player_mode")).style.color = "#bbb";
     localStorage.setItem("player_mode",mode);
-    console.log(localStorage.getItem("player_mode"));
+    document.getElementById("menu_" + mode).style.color = "#fff";
 }
 window.onload = function() {
+    //for the color of the menu
+    var mode=localStorage.getItem("player_mode");
+    document.getElementById("menu_"+mode).style.color = "#fff";
     new Selected().init();
 };
 var Selected = function() {
-    this.cover_img = document.getElementById('cover_img');
     this.audio = document.getElementById('audio');
     this.lyricContainer = document.getElementById('lyricContainer');
     this.playlist = document.getElementById('playlist');
@@ -42,6 +59,7 @@ var Selected = function() {
 Selected.prototype = {
     constructor: Selected, //fix the prototype chain
     init: function() {
+        
         //get all songs and add to the playlist
         this.initialList(this);
 
@@ -152,17 +170,9 @@ Selected.prototype = {
         var that = this;
         this.lyricContainer.textContent = 'loading song...'
         this.audio.src = '/music/' + songName + '.mp3';
-        
-        var songinfo_name = document.getElementById('songinfo_name');
-        songinfo_name.textContent = "loading";
-        var songinfo_artist = document.getElementById('songinfo_artist');
-        songinfo_artist.textContent = "歌手: loading...";
-        var songinfo_album = document.getElementById("songinfo_album");
-        songinfo_album.textContent = "专辑: loading";
-        var songinfo_audio = document.getElementById("songinfo_audio");
-        songinfo_audio.textContent = "loading";
-        // console.log(tag);
-        document.getElementById('cover_img').src = '';
+
+        document.getElementById("songimg").style.display="none";
+        songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
         
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
         // https://zhuanlan.zhihu.com/p/66320621
@@ -170,16 +180,19 @@ Selected.prototype = {
         // get the information of the song(artist,album,lyric,...)by jsmediatags,insteading of use another file
         jsmediatags.read(this.audio.src, {
             onSuccess: function(tag) {
-                var songinfo_name = document.getElementById('songinfo_name');
-                songinfo_name.textContent = tag.tags.title;
-                var songinfo_artist = document.getElementById('songinfo_artist');
-                songinfo_artist.textContent = "歌手: " + tag.tags.artist;
-                var songinfo_album = document.getElementById("songinfo_album");
-                songinfo_album.textContent = "专辑: " + tag.tags.album;
-                var songinfo_audio = document.getElementById("songinfo_audio");
-                songinfo_audio.textContent = tag.tags.title + " - " + tag.tags.artist;
-                // console.log(tag);
-                document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
+                var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                if(screenWidth<screenHeight||screenWidth<800);
+                else{
+                    var songinfo_name = document.getElementById('songinfo_name');
+                    songinfo_name.textContent = tag.tags.title;
+                    var songinfo_artist = document.getElementById('songinfo_artist');
+                    songinfo_artist.textContent = "歌手: " + tag.tags.artist;
+                    var songinfo_album = document.getElementById("songinfo_album");
+                    songinfo_album.textContent = "专辑: " + tag.tags.album;
+                    document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
+                    document.getElementById("songimg").style.display="block";
+                }
             },
             onError: function(error) {
                 console.log(':(', error.type, error.info);
@@ -261,7 +274,7 @@ Selected.prototype = {
         result.sort(function(a, b) {
             return a[0] - b[0];
         });
-		// console.log(result);
+        console.log(result);
         return result;
     },
     appendLyric: function(lyric) {
@@ -342,9 +355,8 @@ Selected.prototype = {
             // Convert it to Int.
             offset = parseInt(offset_str);
         } catch (err) {
-            //alert("offset error: "+err.message);
+            // alert("offset error: "+err.message);
             offset = 0;
-        }
-        return offset;
+        }return offset;
     }
 };
