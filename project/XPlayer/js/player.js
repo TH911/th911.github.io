@@ -45,7 +45,7 @@ function playmode_change(mode){
 window.onload = function() {
     //for the color of the menu
     var mode=localStorage.getItem("player_mode");
-    document.getElementById("menu_"+mode).style.color = "#fff";
+    // document.getElementById("menu_"+mode).style.color = "#fff";
     new Selected().init();
 };
 var Selected = function() {
