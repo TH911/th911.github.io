@@ -203,6 +203,23 @@ Selected.prototype = {
                     songinfo_album.textContent = "专辑: " + tag.tags.album;
                     document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                     document.getElementById("songimg").style.display="block";
+                    if ('mediaSession' in navigator) {
+                        alert(2);
+                        navigator.mediaSession.metadata = new MediaMetadata({
+                          title: songinfo_name.textContent,
+                          artist: songinfo_artist.textContent,
+                          album: songinfo_album.textContent,
+                          artwork: [
+                            { src: document.getElementById('cover_img').src}
+                          ]
+                        });
+                        // navigator.mediaSession.setActionHandler('play', function() {});
+                        // navigator.mediaSession.setActionHandler('pause', function() {});
+                        // navigator.mediaSession.setActionHandler('seekbackward', function() {});
+                        // navigator.mediaSession.setActionHandler('seekforward', function() {});
+                        // navigator.mediaSession.setActionHandler('previoustrack', function() {});
+                        // navigator.mediaSession.setActionHandler('nexttrack', function() {});
+                      }
                 }
             },
             onError: function(error) {
