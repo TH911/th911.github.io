@@ -204,6 +204,7 @@ Selected.prototype = {
                     document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                     document.getElementById("songimg").style.display="block";
                     alert(1);
+                    // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
                     if ('mediaSession' in navigator) {
                         alert(2);
                         navigator.mediaSession.metadata = new MediaMetadata({
@@ -211,11 +212,11 @@ Selected.prototype = {
                           artist: songinfo_artist.textContent,
                           album: songinfo_album.textContent,
                           artwork: [
-                            { src: document.getElementById('cover_img').src}
+                            { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
                           ]
                         });
-                        // navigator.mediaSession.setActionHandler('play', function() {});
-                        // navigator.mediaSession.setActionHandler('pause', function() {});
+                        // navigator.mediaSession.setActionHandler('play', that.play());
+                        // navigator.mediaSession.setActionHandler('pause', );
                         // navigator.mediaSession.setActionHandler('seekbackward', function() {});
                         // navigator.mediaSession.setActionHandler('seekforward', function() {});
                         // navigator.mediaSession.setActionHandler('previoustrack', function() {});
