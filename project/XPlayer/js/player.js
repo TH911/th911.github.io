@@ -173,7 +173,9 @@ Selected.prototype = {
 
         document.getElementById("songimg").style.display="none";
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
-        
+        document.getElementById("audio").title = "zjj2024 is sb.";
+        document.title = songinfo_audio.textContent + " | XPlayer";
+
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
         // https://zhuanlan.zhihu.com/p/66320621
         // https://www.jianshu.com/p/b10118aeec9d
