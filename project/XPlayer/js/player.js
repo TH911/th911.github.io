@@ -205,13 +205,17 @@ Selected.prototype = {
                     alert(2);
                     navigator.mediaSession.metadata = new MediaMetadata({
                         title: songinfo_name.textContent,
+                        
                         // artist: songinfo_artist.textContent,
                         // album: songinfo_album.textContent,
                         artwork: [
                         { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
                         ]
                     });
-                    }
+                }
+                var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                if(screenWidth<screenHeight||screenWidth<800)document.getElementById("songimg").style.display="none";
             },
             onError: function(error) {
                 console.log(':(', error.type, error.info);
@@ -232,6 +236,7 @@ Selected.prototype = {
             if (!that.lyric) return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
                 if (this.currentTime > that.lyric[i][0] - 0.50 /*preload the lyric by 0.50s*/ ) {
+                    i--;
                     //single line display mode
                     // that.lyricContainer.textContent = that.lyric[i][1];
                     //scroll mode
@@ -243,6 +248,8 @@ Selected.prototype = {
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
                     //for IOS.
                     document.getElementById("audio").title = line.textContent;
+                    // alert(document.getElementById("audio").title);
+                    break;
                 };
             };
         });
