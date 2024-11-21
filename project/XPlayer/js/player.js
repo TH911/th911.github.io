@@ -236,21 +236,25 @@ Selected.prototype = {
             if (!that.lyric) return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
                 if (this.currentTime > that.lyric[i][0] - 0.50 /*preload the lyric by 0.50s*/ ) {
-                    i--;
                     //single line display mode
                     // that.lyricContainer.textContent = that.lyric[i][1];
                     //scroll mode
-                    var line = document.getElementById('line-' + i),
-                        prevLine = document.getElementById('line-' + (i > 0 ? i - 1 : i));
-                    prevLine.className = '';
+                    var line = document.getElementById('line-' + i);
+                    if(i>0){
+                        var prevLine = document.getElementById('line-' + (i-1));
+                        if(that.lyric[i][0]!=that.lyric[i-1][0]){
+                            prevLine.className='';
+                            if(i>=2)document.getElementById('line-' + (i-2)).className='';
+                        }
+                    }
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
                     //for IOS.
-                    document.getElementById("audio").title = line.textContent;
+                    if(i==0||that.lyric[i-1][0]!=that.lyric[i][0])document.getElementById("audio").title = that.lyric[i][1];
+                    else document.getElementById("audio").title = that.lyric[i-1][1];
                     // alert(document.getElementById("audio").title);
-                    break;
-                };
+                }
             };
         });
     },
