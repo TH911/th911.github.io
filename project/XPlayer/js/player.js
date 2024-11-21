@@ -8,6 +8,12 @@
  * songs used in this project are only for educational purpose
  */
 
+//hack IOS
+function isIOS() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /iPhone|iPad|iPod/i.test(userAgent);
+}
+
 //the menu of fontfamily,fontsize,background-img,...
 $(document).ready(function() {
     $('.menu-title').click(function() {
@@ -45,7 +51,10 @@ function playmode_change(mode){
 window.onload = function() {
     //for the color of the menu
     var mode=localStorage.getItem("player_mode");
-    // document.getElementById("menu_"+mode).style.color = "#fff";
+    if(mode == null){
+        localStorage.setItem("player_mode","order");
+        mode="order";
+    }document.getElementById("menu_"+mode).style.color = "#fff";
     new Selected().init();
 };
 var Selected = function() {
@@ -173,7 +182,7 @@ Selected.prototype = {
 
         document.getElementById("songimg").style.display="none";
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
-        document.getElementById("audio").title = "zjj2024 is sb.";
+        if(isIOS())document.getElementById("audio").title = songinfo_audio.textContent;
         document.title = songinfo_audio.textContent + " | XPlayer";
 
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
@@ -224,6 +233,8 @@ Selected.prototype = {
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
+                    //for IOS.
+                    if(isIOS())document.getElementById("audio").title = line.textContent;
                 };
             };
         });
