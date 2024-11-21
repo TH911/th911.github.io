@@ -203,6 +203,7 @@ Selected.prototype = {
                     songinfo_album.textContent = "专辑: " + tag.tags.album;
                     document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                     document.getElementById("songimg").style.display="block";
+                    alert(1);
                     if ('mediaSession' in navigator) {
                         alert(2);
                         navigator.mediaSession.metadata = new MediaMetadata({
