@@ -191,38 +191,33 @@ Selected.prototype = {
         // get the information of the song(artist,album,lyric,...)by jsmediatags,insteading of use another file
         jsmediatags.read(this.audio.src, {
             onSuccess: function(tag) {
-                var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-                if(screenWidth<screenHeight||screenWidth<800);
-                else{
-                    var songinfo_name = document.getElementById('songinfo_name');
-                    songinfo_name.textContent = tag.tags.title;
-                    var songinfo_artist = document.getElementById('songinfo_artist');
-                    songinfo_artist.textContent = "歌手: " + tag.tags.artist;
-                    var songinfo_album = document.getElementById("songinfo_album");
-                    songinfo_album.textContent = "专辑: " + tag.tags.album;
-                    document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
-                    document.getElementById("songimg").style.display="block";
-                    alert(1);
-                    // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
-                    if ('mediaSession' in navigator) {
-                        alert(2);
-                        navigator.mediaSession.metadata = new MediaMetadata({
-                          title: songinfo_name.textContent,
-                          artist: songinfo_artist.textContent,
-                          album: songinfo_album.textContent,
-                          artwork: [
-                            { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
-                          ]
-                        });
-                        // navigator.mediaSession.setActionHandler('play', that.play());
-                        // navigator.mediaSession.setActionHandler('pause', );
-                        // navigator.mediaSession.setActionHandler('seekbackward', function() {});
-                        // navigator.mediaSession.setActionHandler('seekforward', function() {});
-                        // navigator.mediaSession.setActionHandler('previoustrack', function() {});
-                        // navigator.mediaSession.setActionHandler('nexttrack', function() {});
-                      }
-                }
+                var songinfo_name = document.getElementById('songinfo_name');
+                songinfo_name.textContent = tag.tags.title;
+                var songinfo_artist = document.getElementById('songinfo_artist');
+                songinfo_artist.textContent = "歌手: " + tag.tags.artist;
+                var songinfo_album = document.getElementById("songinfo_album");
+                songinfo_album.textContent = "专辑: " + tag.tags.album;
+                document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
+                document.getElementById("songimg").style.display="block";
+                alert(1);
+                // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
+                if ('mediaSession' in navigator) {
+                    alert(2);
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: songinfo_name.textContent,
+                        artist: songinfo_artist.textContent,
+                        album: songinfo_album.textContent,
+                        artwork: [
+                        { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
+                        ]
+                    });
+                    // navigator.mediaSession.setActionHandler('play', that.play());
+                    // navigator.mediaSession.setActionHandler('pause', );
+                    // navigator.mediaSession.setActionHandler('seekbackward', function() {});
+                    // navigator.mediaSession.setActionHandler('seekforward', function() {});
+                    // navigator.mediaSession.setActionHandler('previoustrack', function() {});
+                    // navigator.mediaSession.setActionHandler('nexttrack', function() {});
+                    }
             },
             onError: function(error) {
                 console.log(':(', error.type, error.info);
