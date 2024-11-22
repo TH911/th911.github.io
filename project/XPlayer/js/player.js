@@ -199,18 +199,28 @@ Selected.prototype = {
                 songinfo_album.textContent = "专辑: " + tag.tags.album;
                 document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                 document.getElementById("songimg").style.display="block";
-                alert(1);
                 // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
                 if ('mediaSession' in navigator) {
-                    alert(2);
+                    // alert(2);
                     navigator.mediaSession.metadata = new MediaMetadata({
                         title: songinfo_name.textContent,
-                        
-                        // artist: songinfo_artist.textContent,
+                        artist: songinfo_artist.textContent,
                         // album: songinfo_album.textContent,
                         artwork: [
                         { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
                         ]
+                    });
+                    navigator.mediaSession.setActionHandler("seekbackward", function () {
+                        that.currentTime-=10;
+                    });
+                    navigator.mediaSession.setActionHandler("seekforward", function () {
+                        that.currentTime+=10;
+                    });
+                    navigator.mediaSession.setActionHandler("previoustrack", function () {
+                        that.playPrev(that);
+                    });
+                    navigator.mediaSession.setActionHandler("nexttrack", function () {
+                        that.playNext(that);
                     });
                 }
                 var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -222,20 +232,22 @@ Selected.prototype = {
             }
         });
         
-        
+        document.getElementsByClassName("")
+
         this.lyricContainer.style.top = '130px';
         //empty the lyric
         this.lyric = null;
         this.lyricStyle = Math.floor(Math.random() * 4);
         this.audio.addEventListener('canplay', function() {
             that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
-            this.play();
+            this.play(0);
         });
         //sync the lyric
         this.audio.addEventListener("timeupdate", function(e) {
             if (!that.lyric) return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
-                if (this.currentTime > that.lyric[i][0] - 0.50 /*preload the lyric by 0.50s*/ ) {
+                if (this.currentTime <= that.lyric[i][0] - 0.50 /*preload the lyric by 0.50s*/ ) {
+                    i--;
                     //single line display mode
                     // that.lyricContainer.textContent = that.lyric[i][1];
                     //scroll mode
@@ -250,10 +262,55 @@ Selected.prototype = {
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
-                    //for IOS.
-                    if(i==0||that.lyric[i-1][0]!=that.lyric[i][0])document.getElementById("audio").title = that.lyric[i][1];
-                    else document.getElementById("audio").title = that.lyric[i-1][1];
+                    //for mediaSessionAPI.
+                    if ('mediaSession' in navigator) {
+                        if(i==0||that.lyric[i-1][0]!=that.lyric[i][0]){
+                            navigator.mediaSession.metadata = new MediaMetadata({
+                                title: songinfo_name.textContent,
+                                artist: that.lyric[i][1],
+                                // album: songinfo_album.textContent,
+                                artwork: [
+                                { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
+                                ]
+                            });
+                            navigator.mediaSession.setActionHandler("seekbackward", function () {
+                                that.currentTime-=10;
+                            });
+                            navigator.mediaSession.setActionHandler("seekforward", function () {
+                                that.currentTime+=10;
+                            });
+                            navigator.mediaSession.setActionHandler("previoustrack", function () {
+                                that.playPrev(that);
+                            });
+                            navigator.mediaSession.setActionHandler("nexttrack", function () {
+                                that.playNext(that);
+                            });
+                        }
+                        else{
+                            navigator.mediaSession.metadata = new MediaMetadata({
+                                title: songinfo_name.textContent,
+                                artist: that.lyric[i-1][1],
+                                // album: songinfo_album.textContent,
+                                artwork: [
+                                { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
+                                ]
+                            });
+                            navigator.mediaSession.setActionHandler("seekbackward", function () {
+                                that.currentTime-=10;
+                            });
+                            navigator.mediaSession.setActionHandler("seekforward", function () {
+                                that.currentTime+=10;
+                            });
+                            navigator.mediaSession.setActionHandler("previoustrack", function () {
+                                that.playPrev(that);
+                            });
+                            navigator.mediaSession.setActionHandler("nexttrack", function () {
+                                that.playNext(that);
+                            });
+                        }
+                    }
                     // alert(document.getElementById("audio").title);
+                    break;
                 }
             };
         });
