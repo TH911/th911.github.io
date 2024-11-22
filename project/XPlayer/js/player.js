@@ -48,6 +48,12 @@ function playmode_change(mode){
     localStorage.setItem("player_mode",mode);
     document.getElementById("menu_" + mode).style.color = "#fff";
 }
+
+//mediaSessionAPI
+function mediaSessionAPI(that){
+
+}
+
 window.onload = function() {
     //for the color of the menu
     var mode=localStorage.getItem("player_mode");
@@ -222,6 +228,14 @@ Selected.prototype = {
                     navigator.mediaSession.setActionHandler("nexttrack", function () {
                         that.playNext(that);
                     });
+                    navigator.mediaSession.setActionHandler("play", function () {
+                        var audio = document.getElementById("audio");
+                        audio.play();
+                    });
+                    navigator.mediaSession.setActionHandler("pause", function () {
+                        var audio = document.getElementById("audio");
+                        audio.pause();
+                    });
                 }
                 var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
                 var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -284,6 +298,14 @@ Selected.prototype = {
                             navigator.mediaSession.setActionHandler("nexttrack", function () {
                                 that.playNext(that);
                             });
+                            navigator.mediaSession.setActionHandler("play", function () {
+                                var audio = document.getElementById("audio");
+                                audio.play();
+                            });
+                            navigator.mediaSession.setActionHandler("pause", function () {
+                                var audio = document.getElementById("audio");
+                                audio.pause();
+                            });
                         }
                         else{
                             navigator.mediaSession.metadata = new MediaMetadata({
@@ -305,6 +327,14 @@ Selected.prototype = {
                             });
                             navigator.mediaSession.setActionHandler("nexttrack", function () {
                                 that.playNext(that);
+                            });
+                            navigator.mediaSession.setActionHandler("play", function () {
+                                var audio = document.getElementById("audio");
+                                audio.play();
+                            });
+                            navigator.mediaSession.setActionHandler("pause", function () {
+                                var audio = document.getElementById("audio");
+                                audio.pause();
                             });
                         }
                     }
