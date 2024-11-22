@@ -252,16 +252,15 @@ Selected.prototype = {
                     // that.lyricContainer.textContent = that.lyric[i][1];
                     //scroll mode
                     var line = document.getElementById('line-' + i);
-                    if(i>0){
-                        var prevLine = document.getElementById('line-' + (i-1));
-                        if(that.lyric[i][0]!=that.lyric[i-1][0]){
-                            prevLine.className='';
-                            if(i>=2)document.getElementById('line-' + (i-2)).className='';
-                        }
-                    }
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
+
+                    if(i>0){
+                        var prevline = document.getElementById('line-' + (i-1));
+                        if(that.lyric[i][0]==that.lyric[i-1][0])prevline.className=line.className;
+                    }
+
                     //for mediaSessionAPI.
                     if ('mediaSession' in navigator) {
                         if(i==0||that.lyric[i-1][0]!=that.lyric[i][0]){
@@ -311,6 +310,9 @@ Selected.prototype = {
                     }
                     // alert(document.getElementById("audio").title);
                     break;
+                }else{
+                    var line = document.getElementById('line-' + i);
+                    line.className='';
                 }
             };
         });
