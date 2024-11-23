@@ -49,10 +49,6 @@ function playmode_change(mode){
     document.getElementById("menu_" + mode).style.color = "#fff";
 }
 
-//mediaSessionAPI
-function mediaSessionAPI(that){
-
-}
 
 window.onload = function() {
     //for the color of the menu
@@ -71,6 +67,7 @@ var Selected = function() {
     this.lyric = null;
     this.lyricStyle = 0; //random num to specify the different class name for lyric
 };
+
 Selected.prototype = {
     constructor: Selected, //fix the prototype chain
     init: function() {
@@ -186,6 +183,8 @@ Selected.prototype = {
         this.lyricContainer.textContent = 'loading song...'
         this.audio.src = '/music/' + songName + '.mp3';
 
+        this.audio.play();
+
         document.getElementById("songimg").style.display="none";
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
         if(isIOS())document.getElementById("audio").title = songinfo_audio.textContent;
@@ -207,20 +206,20 @@ Selected.prototype = {
                 document.getElementById("songimg").style.display="block";
                 // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
                 if ('mediaSession' in navigator) {
-                    // alert(2);
                     navigator.mediaSession.metadata = new MediaMetadata({
                         title: songinfo_name.textContent,
                         artist: songinfo_artist.textContent,
-                        // album: songinfo_album.textContent,
                         artwork: [
                         { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
                         ]
                     });
                     navigator.mediaSession.setActionHandler("seekbackward", function () {
-                        that.currentTime-=10;
+                        var audio = document.getElementById("audio");
+                        audio.currentTime-=10;
                     });
                     navigator.mediaSession.setActionHandler("seekforward", function () {
-                        that.currentTime+=10;
+                        var audio = document.getElementById("audio");
+                        audio.currentTime+=10;
                     });
                     navigator.mediaSession.setActionHandler("previoustrack", function () {
                         that.playPrev(that);
@@ -280,17 +279,19 @@ Selected.prototype = {
                         if(i==0||that.lyric[i-1][0]!=that.lyric[i][0]){
                             navigator.mediaSession.metadata = new MediaMetadata({
                                 title: songinfo_name.textContent,
-                                artist: that.lyric[i][1],
+                                artist: (that.lyric[i][1].length>0?that.lyric[i][1]:' '),
                                 // album: songinfo_album.textContent,
                                 artwork: [
                                 { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
                                 ]
                             });
                             navigator.mediaSession.setActionHandler("seekbackward", function () {
-                                that.currentTime-=10;
+                                var audio = document.getElementById("audio");
+                                audio.currentTime-=10;
                             });
                             navigator.mediaSession.setActionHandler("seekforward", function () {
-                                that.currentTime+=10;
+                                var audio = document.getElementById("audio");
+                                audio.currentTime+=10;
                             });
                             navigator.mediaSession.setActionHandler("previoustrack", function () {
                                 that.playPrev(that);
@@ -310,17 +311,19 @@ Selected.prototype = {
                         else{
                             navigator.mediaSession.metadata = new MediaMetadata({
                                 title: songinfo_name.textContent,
-                                artist: that.lyric[i-1][1],
+                                artist: (that.lyric[i-1][1].length>0?that.lyric[i-1][1]:' '),
                                 // album: songinfo_album.textContent,
                                 artwork: [
                                 { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
                                 ]
                             });
                             navigator.mediaSession.setActionHandler("seekbackward", function () {
-                                that.currentTime-=10;
+                                var audio = document.getElementById("audio");
+                                audio.currentTime-=10;
                             });
                             navigator.mediaSession.setActionHandler("seekforward", function () {
-                                that.currentTime+=10;
+                                var audio = document.getElementById("audio");
+                                audio.currentTime+=10;
                             });
                             navigator.mediaSession.setActionHandler("previoustrack", function () {
                                 that.playPrev(that);

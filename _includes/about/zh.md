@@ -10,7 +10,7 @@
 
 ***
 
-我讨厌 $\text{zjj2024/zjj2023/FastfastTle/junjie_zhao}$！
+我讨厌 $\text{zjj2024,zjj2023,FastfastTle,junjie}$_$\text{zhao}$！
 
 ***
 
