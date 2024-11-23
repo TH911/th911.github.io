@@ -24,7 +24,8 @@ $(document).ready(function() {
 function menu_color_change(that,mode){
     if(mode == 2)that.style.color = "#bbb";
     else that.style.color = "#fff";
-    if(localStorage.getItem("player_mode") == that.id.substring(5))that.style.color="#fff";
+    if(localStorage.getItem("player_mode") == that.id.substring(5))that.style.color = "#fff";
+    if(localStorage.getItem("player_font") == that.id.substring(10))that.style.color = "#fff";
 }
 
 function fontFamily_change(font){
@@ -49,17 +50,12 @@ function playmode_change(mode){
     document.getElementById("menu_" + mode).style.color = "#fff";
 }
 
-function font_switch(font){
-    if(font=="default")return "微软雅黑";
-    if(font=="songti")return "宋体";
-    if(font=="kaiti")return "楷体";
-}
-
 function font_change(font){
     var font2 = localStorage.getItem("player_font");
-    if(font2!=null)document.getElementById("menu_font_" + localStorage.getItem("player_font")).style.color = "#bbb";
+    if(font2!=null)document.getElementById("menu_font_" + font2).style.color = "#bbb";
     localStorage.setItem("player_font",font);
-    document.getElementById("lyricWrapper").style.fontFamily = font_switch(font);
+    document.getElementById("menu_font_" + font).style.color = "#fff";
+    document.getElementById("lyricWrapper").style.fontFamily = font;
 }
 
 window.onload = function() {
@@ -73,10 +69,10 @@ window.onload = function() {
     //for the font of lyrics
     var font = localStorage.getItem("player_font");
     if(font == null){
-        localStorage.setItem("player_font","default");
-        font = "default";
+        localStorage.setItem("player_font","fordefault");
+        font = "fordefault";
     }document.getElementById("menu_font_" + font).style.color = "#fff";
-    document.getElementById("lyricWrapper").style.fontFamily = font_switch(font);
+    document.getElementById("lyricWrapper").style.fontFamily = font;
 
     new Selected().init();
 };
@@ -289,6 +285,7 @@ Selected.prototype = {
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
+
 
                     if(i>0){
                         var prevline = document.getElementById('line-' + (i-1));

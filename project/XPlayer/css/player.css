@@ -113,6 +113,37 @@ a:hover {
     margin: 0;
 }
 
+@font-face {
+    font-family: "fordefault";
+    src: url("../fonts/default.woff2") format('woff2'),
+    url("../fonts/default.woff") format('woff'),
+    url("../fonts/default.ttc") format('ttc');
+}
+@font-face {
+    font-family: "kaiti";
+    src: url("../fonts/kaiti.woff2") format('woff2'),
+    url("../fonts/kaiti.woff") format('woff'),
+    url("../fonts/kaiti.ttf") format('ttf');
+}
+@font-face {
+    font-family: "songti";
+    src: url("../fonts/songti.woff2") format('woff2'),
+    url("../fonts/songti.woff") format('woff'),
+    url("../fonts/songti.ttc") format('ttc');
+}
+@font-face {
+    font-family: "huawenxingkai";
+    src: url("../fonts/huawenxingkai.woff2") format('woff2'),
+    url("../fonts/huawenxingkai.woff") format('woff'),
+    url("../fonts/huawenxingkai.ttf") format('ttf');
+}
+@font-face {
+    font-family: "youyuan";
+    src: url("../fonts/youyuan.woff2") format('woff2'),
+    url("../fonts/youyuan.woff") format('woff'),
+    url("../fonts/youyuan.ttf") format('ttf');
+}
+
 #lyricWrapper {
     overflow: hidden;
     position: relative;
