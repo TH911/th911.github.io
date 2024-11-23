@@ -10,9 +10,16 @@ function rwd(){
         var header = document.getElementById("header");
         var lyricWrapper = document.getElementById("lyricWrapper");
         lyricWrapper.style.height = (screenHeight - 130) + 'px';
-        
+        var controls = document.getElementById("controls");
+
         // for mobile
         if(screenWidth<screenHeight||screenWidth<800){
+            //hide "controls"
+            // controls.style.display = "none";
+            controls.style.position = "fixed";
+            controls.style.top = "0px";
+            controls.style.height = "100px";
+
             header.style.display = "none";
             playlist_button.style.display = "block";
             // hide the cover of the song(and the info) if the width of the screen is too small
@@ -32,6 +39,9 @@ function rwd(){
             audio_player.style.opacity = 1;
             audio_player.style.bottom = '0px';
         }else{
+            controls.style.position = "relative";
+            controls.style.height = "77px";
+
             header.style.display = "block";
             songimg.style.display = "block";
             playlist.style.display = "block";

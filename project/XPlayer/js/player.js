@@ -49,14 +49,35 @@ function playmode_change(mode){
     document.getElementById("menu_" + mode).style.color = "#fff";
 }
 
+function font_switch(font){
+    if(font=="default")return "微软雅黑";
+    if(font=="songti")return "宋体";
+    if(font=="kaiti")return "楷体";
+}
+
+function font_change(font){
+    var font2 = localStorage.getItem("player_font");
+    if(font2!=null)document.getElementById("menu_font_" + localStorage.getItem("player_font")).style.color = "#bbb";
+    localStorage.setItem("player_font",font);
+    document.getElementById("lyricWrapper").style.fontFamily = font_switch(font);
+}
 
 window.onload = function() {
     //for the color of the menu
-    var mode=localStorage.getItem("player_mode");
+    var mode = localStorage.getItem("player_mode");
     if(mode == null){
         localStorage.setItem("player_mode","order");
-        mode="order";
+        mode = "order";
     }document.getElementById("menu_"+mode).style.color = "#fff";
+
+    //for the font of lyrics
+    var font = localStorage.getItem("player_font");
+    if(font == null){
+        localStorage.setItem("player_font","default");
+        font = "default";
+    }document.getElementById("menu_font_" + font).style.color = "#fff";
+    document.getElementById("lyricWrapper").style.fontFamily = font_switch(font);
+
     new Selected().init();
 };
 var Selected = function() {
@@ -341,7 +362,10 @@ Selected.prototype = {
                             });
                         }
                     }
-                    // alert(document.getElementById("audio").title);
+                    for(var j = i+1 ; j<l ; j++){
+                        var line = document.getElementById('line-' + j);
+                        line.className='';
+                    }
                     break;
                 }else{
                     var line = document.getElementById('line-' + i);
@@ -423,7 +447,11 @@ Selected.prototype = {
         }else localStorage.setItem("player_mode","order");
         if(player_mode == "order")that.playNext(that);
         else if(player_mode == "reverse")that.playPrev(that);
-        else window.location.href = "/project/XPlayer/";
+        else if(player_mode == "random")window.location.href = "/project/XPlayer/";
+        else if(player_mode == "loop")that.playAgain(that);
+    },
+    playAgain: function(that) {
+        that.play(window.location.hash.substring(1));
     },
     playNext: function(that) {
         var allSongs = this.playlist.children[0].children,

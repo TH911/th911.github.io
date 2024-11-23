@@ -12,7 +12,7 @@ html, body {
     margin: 0;
     padding: 0;
     color: #999;
-    font-family: 'Microsoft Yahei','微软雅黑',arial;
+    font-family: 'Microsoft Yahei','微软雅黑';
 }
 html {
     background-color: #1b2426;
@@ -122,15 +122,10 @@ a:hover {
 
 /* http://stackoverflow.com/questions/13426875/text-border-using-css-border-around-text */
 
-/* @font-face {
-    font-family: "songti";
-    src: url("../font/songti.ttf") format("ttf");
-  } */
 #lyricContainer {
     position: relative;
     top: 130px;
     text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000; 
-    /* font-family: "songti"; */
 }
 
 /*the highlight color of the current lyric line*/
@@ -255,7 +250,19 @@ a:hover {
     100% { opacity: 1; }
 }
 
+#controls {
+    position: relative;
+    overflow: hidden;
+    right: 0;
+    height: 77px;
+}
+
 #menu-playmode {
+    text-align: right;
+    position: relative;
+    right: 0;
+}
+#menu-font {
     text-align: right;
     position: relative;
     right: 0;
