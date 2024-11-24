@@ -1,4 +1,4 @@
-function rwd(){
+function rwd(flag_playlist){
         var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         // this.alert(screenWidth + 'x' + screenHeight);
@@ -18,7 +18,9 @@ function rwd(){
             // controls.style.display = "none";
             controls.style.position = "fixed";
             controls.style.top = "0px";
-            controls.style.height = "100px";
+            controls.style.height = "200px";
+            //for br
+            document.getElementById("menu_font_br").style.display = "block";
 
             header.style.display = "none";
             playlist_button.style.display = "block";
@@ -26,11 +28,11 @@ function rwd(){
             songimg.style.display = "none";
             
             //close the playlist for default
-            playlist.style.display = "none";
+            if(flag_playlist)playlist.style.display = "none";
             //the height of the playlist
             
             playlist.style.width = Math.floor(screenWidth*0.8)+'px';
-            playlist.style.height = (screenHeight - 80) + 'px';
+            playlist.style.height = (screenHeight - 140) + 'px';
             playlist_ol.style.height = playlist.style.height;
             playlist.style.backgroundColor = "#1b2426";
     
@@ -41,6 +43,8 @@ function rwd(){
         }else{
             controls.style.position = "relative";
             controls.style.height = "77px";
+            //for br
+            document.getElementById("menu_font_br").style.display = "none";
 
             header.style.display = "block";
             songimg.style.display = "block";
@@ -67,7 +71,7 @@ function rwd(){
             songimg.style.top = Math.floor((screenHeight - Math.floor(screenWidth*0.24) - Math.floor(Math.floor(screenWidth*0.24)/15) - Math.floor(Math.floor(screenWidth*0.24)/20) - Math.floor(Math.floor(screenWidth*0.24)/20))/2) + 'px';
         }
 }
-rwd();
+rwd(true);
 window.addEventListener('resize', function(){
-    rwd();
+    rwd(true);
 });

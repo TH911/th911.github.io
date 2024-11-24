@@ -143,6 +143,12 @@ a:hover {
     url("../fonts/youyuan.woff") format('woff'),
     url("../fonts/youyuan.ttf") format('ttf');
 }
+@font-face {
+    font-family: "fangzhengshuti";
+    src: url("../fonts/fangzhengshuti.woff2") format('woff2'),
+    url("../fonts/fangzhengshuti.woff") format('woff'),
+    url("../fonts/fangzhengshuti.ttf") format('ttf');
+}
 
 #lyricWrapper {
     overflow: hidden;
@@ -170,7 +176,10 @@ a:hover {
     color: #adff2f;
 }
 .current-line-3 {
-    color: #c617e8;
+    color: #d731f8;
+}
+.current-song-played, .current-song-played a {
+    color: #1493dd;
 }
 .current-song, .current-song a {
     color: #A6E22D;
@@ -195,6 +204,10 @@ a:hover {
     right: 0;
     margin: auto;
     text-align:center;
+}
+
+#playlist{
+    color: #999;
 }
 
 /*custom scrollbar for webkit browsers*/

@@ -22,17 +22,10 @@ $(document).ready(function() {
 });
 
 function menu_color_change(that,mode){
-    if(mode == 2)that.style.color = "#bbb";
+    if(mode == 2)that.style.color = "#999";
     else that.style.color = "#fff";
     if(localStorage.getItem("player_mode") == that.id.substring(5))that.style.color = "#fff";
     if(localStorage.getItem("player_font") == that.id.substring(10))that.style.color = "#fff";
-}
-
-function fontFamily_change(font){
-    if(font=="songti"){
-        var lyricWrapper = document.getElementById("lyricWrapper");
-        lyricWrapper.style.fontFamily = "songti";
-    }
 }
 
 //to change the opacity when mouse across the player
@@ -45,17 +38,65 @@ function player_opacity(){
 //change the playermode
 function playmode_change(mode){
     var mode2=localStorage.getItem("player_mode");
-    if(mode2!=null)document.getElementById("menu_" + localStorage.getItem("player_mode")).style.color = "#bbb";
+    if(mode2!=null)document.getElementById("menu_" + localStorage.getItem("player_mode")).style.color = "#999";
     localStorage.setItem("player_mode",mode);
     document.getElementById("menu_" + mode).style.color = "#fff";
 }
 
 function font_change(font){
     var font2 = localStorage.getItem("player_font");
-    if(font2!=null)document.getElementById("menu_font_" + font2).style.color = "#bbb";
+    if(font2!=null)document.getElementById("menu_font_" + font2).style.color = "#999";
     localStorage.setItem("player_font",font);
     document.getElementById("menu_font_" + font).style.color = "#fff";
-    document.getElementById("lyricWrapper").style.fontFamily = font;
+    var lyricWrapper = document.getElementById("lyricWrapper");
+    lyricWrapper.style.fontFamily = font;
+    switch(font){
+        case "fordefault":
+            lyricWrapper.style.fontSize = "16px";
+            break;
+        case "youyuan":
+            lyricWrapper.style.fontSize = "16px";
+            break;
+        default :
+            lyricWrapper.style.fontSize = "18px";
+            break;
+    }
+}
+
+// https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
+function mediaSessionAPI(that,name,lyric){
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: name,
+            artist: lyric,
+            artwork: [
+            { src: document.getElementById('cover_img').src }
+            ]
+        });
+        navigator.mediaSession.setActionHandler("seekbackward", function () {
+            var audio = document.getElementById("audio");
+            audio.currentTime-=10;
+        });
+        navigator.mediaSession.setActionHandler("seekforward", function () {
+            var audio = document.getElementById("audio");
+            audio.currentTime+=10;
+        });
+        navigator.mediaSession.setActionHandler("previoustrack", function () {
+            that.playPrev(that);
+        });
+        navigator.mediaSession.setActionHandler("nexttrack", function () {
+            that.playNext(that);
+        });
+        navigator.mediaSession.setActionHandler("play", function () {
+            var audio = document.getElementById("audio");
+            audio.play();
+        });
+        navigator.mediaSession.setActionHandler("pause", function () {
+            var audio = document.getElementById("audio");
+            audio.pause();
+        });
+        return true;
+    }else return false;
 }
 
 window.onload = function() {
@@ -64,15 +105,14 @@ window.onload = function() {
     if(mode == null){
         localStorage.setItem("player_mode","order");
         mode = "order";
-    }document.getElementById("menu_"+mode).style.color = "#fff";
+    }playmode_change(mode);
 
     //for the font of lyrics
     var font = localStorage.getItem("player_font");
     if(font == null){
         localStorage.setItem("player_font","fordefault");
         font = "fordefault";
-    }document.getElementById("menu_font_" + font).style.color = "#fff";
-    document.getElementById("lyricWrapper").style.fontFamily = font;
+    }font_change(font);
 
     new Selected().init();
 };
@@ -113,16 +153,15 @@ Selected.prototype = {
             return 0;
         })();
 
-        this.currentIndex = indexOfHashSong || Math.floor(Math.random() * allSongs.length);
+        this.currentIndex = indexOfHashSong || Math.floor(Math.random() * allSongs.length)+1;
         //Because the index of the first song is zero,minus 1.
         this.currentIndex=this.currentIndex-1;
 
         currentSong = allSongs[this.currentIndex];
         randomSong = currentSong.children[0].getAttribute('data-name');
-
+        
         //set the song name to the hash of the url
         window.location.hash = window.location.hash || randomSong;
-
 
         //handle playlist
         this.playlist.addEventListener('click', function(e) {
@@ -131,8 +170,9 @@ Selected.prototype = {
             };
             var allSongs = that.playlist.children[0].children,
                 selectedIndex = Array.prototype.indexOf.call(allSongs, e.target.parentNode);
+            var tmp = that.currentIndex;
             that.currentIndex = selectedIndex;
-            that.setClass(selectedIndex);
+            that.setClass(tmp,selectedIndex);
             var songName = e.target.getAttribute('data-name');
             window.location.hash = songName;
             that.play(songName);
@@ -160,7 +200,7 @@ Selected.prototype = {
         //initialize the background setting
         document.getElementById('bg_dark').addEventListener('click', function() {
             document.getElementsByTagName('html')[0].className = 'colorBg';
-       });
+        });
         document.getElementById('bg_pic').addEventListener('click', function() {
             document.getElementsByTagName('html')[0].className = 'imageBg';
         });
@@ -201,10 +241,10 @@ Selected.prototype = {
         this.audio.src = '/music/' + songName + '.mp3';
 
         this.audio.play();
+        this.audio.playbackRate = 1;
 
         document.getElementById("songimg").style.display="none";
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
-        if(isIOS())document.getElementById("audio").title = songinfo_audio.textContent;
         document.title = songinfo_audio.textContent + " | XPlayer";
 
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
@@ -221,48 +261,16 @@ Selected.prototype = {
                 songinfo_album.textContent = "专辑: " + tag.tags.album;
                 document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                 document.getElementById("songimg").style.display="block";
-                // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
-                if ('mediaSession' in navigator) {
-                    navigator.mediaSession.metadata = new MediaMetadata({
-                        title: songinfo_name.textContent,
-                        artist: songinfo_artist.textContent,
-                        artwork: [
-                        { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
-                        ]
-                    });
-                    navigator.mediaSession.setActionHandler("seekbackward", function () {
-                        var audio = document.getElementById("audio");
-                        audio.currentTime-=10;
-                    });
-                    navigator.mediaSession.setActionHandler("seekforward", function () {
-                        var audio = document.getElementById("audio");
-                        audio.currentTime+=10;
-                    });
-                    navigator.mediaSession.setActionHandler("previoustrack", function () {
-                        that.playPrev(that);
-                    });
-                    navigator.mediaSession.setActionHandler("nexttrack", function () {
-                        that.playNext(that);
-                    });
-                    navigator.mediaSession.setActionHandler("play", function () {
-                        var audio = document.getElementById("audio");
-                        audio.play();
-                    });
-                    navigator.mediaSession.setActionHandler("pause", function () {
-                        var audio = document.getElementById("audio");
-                        audio.pause();
-                    });
-                }
-                var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-                if(screenWidth<screenHeight||screenWidth<800)document.getElementById("songimg").style.display="none";
+                
+                //for MediaSession API.
+                mediaSessionAPI(that,tag.tags.title,"此歌曲为没有填词的纯音乐，请您欣赏");
+                
+                rwd(false);
             },
             onError: function(error) {
                 console.log(':(', error.type, error.info);
             }
         });
-        
-        document.getElementsByClassName("")
 
         this.lyricContainer.style.top = '130px';
         //empty the lyric
@@ -276,8 +284,9 @@ Selected.prototype = {
         this.audio.addEventListener("timeupdate", function(e) {
             if (!that.lyric) return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
-                if (this.currentTime <= that.lyric[i][0] - 0.50 /*preload the lyric by 0.50s*/ ) {
-                    i--;
+                //preload the lyric by 0.50s || end
+                if (this.currentTime <= that.lyric[i][0] - 0.50 || i==l-1){
+                    if(i>0)i--;
                     //single line display mode
                     // that.lyricContainer.textContent = that.lyric[i][1];
                     //scroll mode
@@ -292,78 +301,18 @@ Selected.prototype = {
                         if(that.lyric[i][0]==that.lyric[i-1][0])prevline.className=line.className;
                     }
 
-                    //for mediaSessionAPI.
-                    if ('mediaSession' in navigator) {
-                        if(i==0||that.lyric[i-1][0]!=that.lyric[i][0]){
-                            navigator.mediaSession.metadata = new MediaMetadata({
-                                title: songinfo_name.textContent,
-                                artist: (that.lyric[i][1].length>0?that.lyric[i][1]:' '),
-                                // album: songinfo_album.textContent,
-                                artwork: [
-                                { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
-                                ]
-                            });
-                            navigator.mediaSession.setActionHandler("seekbackward", function () {
-                                var audio = document.getElementById("audio");
-                                audio.currentTime-=10;
-                            });
-                            navigator.mediaSession.setActionHandler("seekforward", function () {
-                                var audio = document.getElementById("audio");
-                                audio.currentTime+=10;
-                            });
-                            navigator.mediaSession.setActionHandler("previoustrack", function () {
-                                that.playPrev(that);
-                            });
-                            navigator.mediaSession.setActionHandler("nexttrack", function () {
-                                that.playNext(that);
-                            });
-                            navigator.mediaSession.setActionHandler("play", function () {
-                                var audio = document.getElementById("audio");
-                                audio.play();
-                            });
-                            navigator.mediaSession.setActionHandler("pause", function () {
-                                var audio = document.getElementById("audio");
-                                audio.pause();
-                            });
-                        }
-                        else{
-                            navigator.mediaSession.metadata = new MediaMetadata({
-                                title: songinfo_name.textContent,
-                                artist: (that.lyric[i-1][1].length>0?that.lyric[i-1][1]:' '),
-                                // album: songinfo_album.textContent,
-                                artwork: [
-                                { src: document.getElementById('cover_img').src, sizes: document.getElementById("songimg").style.width.split('px')[0] + 'x' + document.getElementById("songimg").style.width.split('px')[0] }
-                                ]
-                            });
-                            navigator.mediaSession.setActionHandler("seekbackward", function () {
-                                var audio = document.getElementById("audio");
-                                audio.currentTime-=10;
-                            });
-                            navigator.mediaSession.setActionHandler("seekforward", function () {
-                                var audio = document.getElementById("audio");
-                                audio.currentTime+=10;
-                            });
-                            navigator.mediaSession.setActionHandler("previoustrack", function () {
-                                that.playPrev(that);
-                            });
-                            navigator.mediaSession.setActionHandler("nexttrack", function () {
-                                that.playNext(that);
-                            });
-                            navigator.mediaSession.setActionHandler("play", function () {
-                                var audio = document.getElementById("audio");
-                                audio.play();
-                            });
-                            navigator.mediaSession.setActionHandler("pause", function () {
-                                var audio = document.getElementById("audio");
-                                audio.pause();
-                            });
-                        }
-                    }
+                    var lyric_for_API;
+                    if(i==0||that.lyric[i-1][0]!=that.lyric[i][0])lyric_for_API = that.lyric[i][1];
+                    else lyric_for_API = that.lyric[i-1][1];
+                    if(lyric_for_API.length == 0)lyric_for_API = " ";
+
+                    mediaSessionAPI(that,songinfo_name.textContent,lyric_for_API);
+
+
                     for(var j = i+1 ; j<l ; j++){
                         var line = document.getElementById('line-' + j);
                         line.className='';
-                    }
-                    break;
+                    }break;
                 }else{
                     var line = document.getElementById('line-' + i);
                     line.className='';
@@ -404,7 +353,7 @@ Selected.prototype = {
             lines = lines.slice(1);
         };
         //remove the last empty item
-        lines[lines.length - 1].length === 0 && lines.pop();
+        if(lines[lines.length - 1].length == 0)lines.pop();
         //display all content on the page
         lines.forEach(function(v, i, a) {
             var time = v.match(pattern),
@@ -437,15 +386,37 @@ Selected.prototype = {
         lyricContainer.appendChild(fragment);
     },
     ending: function(that) {
-        //order,reverse,random.
-        var player_mode;
-        if(localStorage.getItem("player_mode")){
-            player_mode=localStorage.getItem("player_mode");
-        }else localStorage.setItem("player_mode","order");
-        if(player_mode == "order")that.playNext(that);
-        else if(player_mode == "reverse")that.playPrev(that);
-        else if(player_mode == "random")window.location.href = "/project/XPlayer/";
-        else if(player_mode == "loop")that.playAgain(that);
+        //order,reverse,random,loop.
+        var player_mode = "order";
+        if(localStorage.getItem("player_mode")!=null)player_mode=localStorage.getItem("player_mode");
+        else localStorage.setItem("player_mode",player_mode);
+        switch(player_mode){
+            case "order":
+                that.playNext(that);
+                break;
+            case "reverse":
+                that.playPrev(that);
+                break;
+            case "random":
+                that.playRandom(that);
+                break;
+            case "loop":
+                that.playAgain(that);
+                break;
+        }
+    },
+    playRandom: function(that){
+        var allSongs = this.playlist.children[0].children,
+            randomItem;
+        var tmp = that.currentIndex;
+        do{
+            that.currentIndex = Math.floor(Math.random() * this.playlist.children[0].children.length);
+        } while(allSongs[that.currentIndex].className == 'current-song-played' || allSongs[that.currentIndex].className == 'current-song');
+        randomItem = allSongs[that.currentIndex].children[0];
+        that.setClass(tmp,that.currentIndex);
+        var songName = randomItem.getAttribute('data-name');
+        window.location.hash = songName;
+        that.play(songName);
     },
     playAgain: function(that) {
         that.play(window.location.hash.substring(1));
@@ -453,6 +424,7 @@ Selected.prototype = {
     playNext: function(that) {
         var allSongs = this.playlist.children[0].children,
             nextItem;
+        var tmp = that.currentIndex;
         //reaches the last song of the playlist?
         if (that.currentIndex === allSongs.length - 1) {
             //play from start
@@ -462,7 +434,7 @@ Selected.prototype = {
             that.currentIndex += 1;
         };
         nextItem = allSongs[that.currentIndex].children[0];
-        that.setClass(that.currentIndex);
+        that.setClass(tmp,that.currentIndex);
         var songName = nextItem.getAttribute('data-name');
         window.location.hash = songName;
         that.play(songName);
@@ -470,7 +442,8 @@ Selected.prototype = {
     playPrev: function(that) {
         var allSongs = this.playlist.children[0].children,
             prevItem;
-        //reaches the first song of the playlist?
+        var tmp = that.currentIndex;
+            //reaches the first song of the playlist?
         if (that.currentIndex === 0) {
             //play from end
             that.currentIndex = allSongs.length - 1;
@@ -479,17 +452,16 @@ Selected.prototype = {
             that.currentIndex -= 1;
         };
         prevItem = allSongs[that.currentIndex].children[0];
-        that.setClass(that.currentIndex);
+        that.setClass(tmp,that.currentIndex);
         var songName = prevItem.getAttribute('data-name');
         window.location.hash = songName;
         that.play(songName);
     },
-    setClass: function(index) {
+    setClass: function(old_index,new_index) {
+        console.log(old_index + " to " + new_index);
         var allSongs = this.playlist.children[0].children;
-        for (var i = allSongs.length - 1; i >= 0; i--) {
-            allSongs[i].className = '';
-        };
-        allSongs[index].className = 'current-song';
+        allSongs[old_index].className = 'current-song-played';
+        allSongs[new_index].className = 'current-song';
     },
     getOffset: function(text) {
         //Returns offset in miliseconds.
