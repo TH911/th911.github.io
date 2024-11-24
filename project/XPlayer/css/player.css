@@ -245,7 +245,8 @@ a:hover {
     left: 0;
     right: 0;
     z-index: 9999;
-    background-color: #ffffff;
+    background-color: #fff;
+    color: #000;
     border-radius: 5px;
 	
     -webkit-transition-duration: 0.8s; /* Safari */

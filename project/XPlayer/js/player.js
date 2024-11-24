@@ -282,33 +282,32 @@ Selected.prototype = {
         });
         //sync the lyric
         this.audio.addEventListener("timeupdate", function(e) {
-            if (!that.lyric) return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
                 //preload the lyric by 0.50s || end
-                if (this.currentTime <= that.lyric[i][0] - 0.50 || i==l-1){
-                    if(i>0)i--;
-                    //single line display mode
-                    // that.lyricContainer.textContent = that.lyric[i][1];
-                    //scroll mode
+                if (this.currentTime <= that.lyric[i][0] - 0.50 || i == l-1){
+                    if(i > 0 && i != l - 1 ) i--;
+                    
                     var line = document.getElementById('line-' + i);
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
                     that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
 
-
+                    //handle which song has 2 languages
                     if(i>0){
                         var prevline = document.getElementById('line-' + (i-1));
                         if(that.lyric[i][0]==that.lyric[i-1][0])prevline.className=line.className;
                     }
 
+                    //for the lyric to MediaSession
                     var lyric_for_API;
                     if(i==0||that.lyric[i-1][0]!=that.lyric[i][0])lyric_for_API = that.lyric[i][1];
                     else lyric_for_API = that.lyric[i-1][1];
                     if(lyric_for_API.length == 0)lyric_for_API = " ";
 
+                    //sync MediaSession API
                     mediaSessionAPI(that,songinfo_name.textContent,lyric_for_API);
 
-
+                    //del the color of which lyric after this.
                     for(var j = i+1 ; j<l ; j++){
                         var line = document.getElementById('line-' + j);
                         line.className='';
@@ -368,7 +367,6 @@ Selected.prototype = {
         result.sort(function(a, b) {
             return a[0] - b[0];
         });
-        console.log(result);
         return result;
     },
     appendLyric: function(lyric) {
@@ -405,15 +403,28 @@ Selected.prototype = {
                 break;
         }
     },
+    all_played: function(that){
+        var allSongs = that.playlist.children[0].children;
+        for(var i = 0 ; i<allSongs.length ; i++ ){
+            if(allSongs[i].className != 'current-song-played' && allSongs[i].className != 'current-song'){
+                return false;
+            }
+        }
+        return true;
+    },
     playRandom: function(that){
         var allSongs = this.playlist.children[0].children,
             randomItem;
         var tmp = that.currentIndex;
+        var flag = that.all_played(that);
+        if(flag){
+            for(var i = 0 ; i < allSongs.length ; i++)allSongs[i].className = '';
+        }
         do{
             that.currentIndex = Math.floor(Math.random() * this.playlist.children[0].children.length);
         } while(allSongs[that.currentIndex].className == 'current-song-played' || allSongs[that.currentIndex].className == 'current-song');
         randomItem = allSongs[that.currentIndex].children[0];
-        that.setClass(tmp,that.currentIndex);
+        that.setClass((flag ? -1 : tmp),that.currentIndex);
         var songName = randomItem.getAttribute('data-name');
         window.location.hash = songName;
         that.play(songName);
@@ -458,9 +469,8 @@ Selected.prototype = {
         that.play(songName);
     },
     setClass: function(old_index,new_index) {
-        console.log(old_index + " to " + new_index);
         var allSongs = this.playlist.children[0].children;
-        allSongs[old_index].className = 'current-song-played';
+        if(old_index!=-1)allSongs[old_index].className = 'current-song-played';
         allSongs[new_index].className = 'current-song';
     },
     getOffset: function(text) {
