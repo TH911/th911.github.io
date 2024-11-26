@@ -272,7 +272,13 @@ Selected.prototype = {
             }
         });
 
-        this.lyricContainer.style.top = '130px';
+        var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        var to_top = Math.floor((screenHeight-100)*0.4);
+        window.addEventListener("resize", function(){
+            var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            to_top = Math.floor((screenHeight-100)*0.4);
+        });
+        this.lyricContainer.style.top = to_top;
         //empty the lyric
         this.lyric = null;
         this.lyricStyle = Math.floor(Math.random() * 4);
@@ -280,6 +286,7 @@ Selected.prototype = {
             that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
             this.play(0);
         });
+        var last=-1;
         //sync the lyric
         this.audio.addEventListener("timeupdate", function(e) {
             for (var i = 0, l = that.lyric.length; i < l; i++) {
@@ -290,8 +297,15 @@ Selected.prototype = {
                     var line = document.getElementById('line-' + i);
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
-                    that.lyricContainer.style.top = 130 - line.offsetTop + 'px';
-
+                    // line.scrollIntoView(behavior="smooth");
+                    // that.lyricContainer.style.top = to_top - line.offsetTop + 'px';
+                    
+                    if(i!=last){
+                        last=i;
+                        document.getElementById("lyricWrapper").scrollTop = (line.offsetTop - to_top);
+                        console.log((line.offsetTop - to_top));
+                    }
+                    
                     //handle which song has 2 languages
                     if(i>0){
                         var prevline = document.getElementById('line-' + (i-1));
