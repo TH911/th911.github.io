@@ -370,8 +370,7 @@ Selected.prototype = {
         return result;
     },
     appendLyric: function(lyric) {
-        var that = this,
-            lyricContainer = this.lyricContainer,
+        var lyricContainer = this.lyricContainer,
             fragment = document.createDocumentFragment();
         //clear the lyric container first
         this.lyricContainer.innerHTML = '';
@@ -379,6 +378,9 @@ Selected.prototype = {
             var line = document.createElement('p');
             line.id = 'line-' + i;
             line.textContent = v[1];
+            line.addEventListener("click", function(){
+                document.getElementById("audio").currentTime = v[0];
+            });
             fragment.appendChild(line);
         });
         lyricContainer.appendChild(fragment);

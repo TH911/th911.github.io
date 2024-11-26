@@ -151,10 +151,16 @@ a:hover {
 }
 
 #lyricWrapper {
-    overflow: hidden;
+    overflow: scroll;
     position: relative;
     margin-top: 20px;
     color: #fff;
+}
+
+/*hide scrollbar of lyricWrapper*/
+#lyricWrapper::-webkit-scrollbar
+{
+    display: none;
 }
 
 /* http://stackoverflow.com/questions/13426875/text-border-using-css-border-around-text */

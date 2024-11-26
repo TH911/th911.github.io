@@ -69,6 +69,7 @@
 	background-color: #F5F5F5;
 }
 ::-webkit-scrollbar{
+  height: 5px;
 	width: 5px;
   border-radius: 15px;
 	background-color: #F5F5F5;
