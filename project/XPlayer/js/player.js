@@ -273,12 +273,7 @@ Selected.prototype = {
         });
 
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        var to_top = Math.floor((screenHeight-100)*0.4);
-        window.addEventListener("resize", function(){
-            var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-            to_top = Math.floor((screenHeight-100)*0.4);
-        });
-        this.lyricContainer.style.top = to_top;
+        this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
         //empty the lyric
         this.lyric = null;
         this.lyricStyle = Math.floor(Math.random() * 4);
@@ -296,20 +291,21 @@ Selected.prototype = {
                     
                     var line = document.getElementById('line-' + i);
                     //randomize the color of the current line of the lyric
-                    line.className = 'current-line-' + that.lyricStyle;
+                    if(line!=null)line.className = 'current-line-' + that.lyricStyle;
                     // line.scrollIntoView(behavior="smooth");
                     // that.lyricContainer.style.top = to_top - line.offsetTop + 'px';
                     
                     if(i!=last){
                         last=i;
-                        document.getElementById("lyricWrapper").scrollTop = (line.offsetTop - to_top);
-                        console.log((line.offsetTop - to_top));
+                        document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
                     }
                     
                     //handle which song has 2 languages
                     if(i>0){
-                        var prevline = document.getElementById('line-' + (i-1));
+                        if(line!=null){
+                            var prevline = document.getElementById('line-' + (i-1));
                         if(that.lyric[i][0]==that.lyric[i-1][0])prevline.className=line.className;
+                        }
                     }
 
                     //for the lyric to MediaSession
@@ -324,11 +320,11 @@ Selected.prototype = {
                     //del the color of which lyric after this.
                     for(var j = i+1 ; j<l ; j++){
                         var line = document.getElementById('line-' + j);
-                        line.className='';
+                        if(line!=null)line.className='';
                     }break;
                 }else{
                     var line = document.getElementById('line-' + i);
-                    line.className='';
+                    if(line!=null)line.className='';
                 }
             };
         });
