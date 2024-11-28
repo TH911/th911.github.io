@@ -98,7 +98,7 @@ function mediaSessionAPI(that,name,lyric){
         return true;
     }else return false;
 }
-
+var PLAYER;
 window.onload = function() {
     //for the color of the menu
     var mode = localStorage.getItem("player_mode");
@@ -114,7 +114,8 @@ window.onload = function() {
         font = "fordefault";
     }font_change(font);
 
-    new Selected().init();
+    PLAYER = new Selected();
+    PLAYER.init();
 };
 var Selected = function() {
     this.audio = document.getElementById('audio');
@@ -247,6 +248,8 @@ Selected.prototype = {
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
         document.title = songinfo_audio.textContent + " | XPlayer";
 
+        document.getElementById("cover_img").src = "./img/loading.gif";
+
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
         // https://zhuanlan.zhihu.com/p/66320621
         // https://www.jianshu.com/p/b10118aeec9d
@@ -284,6 +287,7 @@ Selected.prototype = {
         var last=-1;
         //sync the lyric
         this.audio.addEventListener("timeupdate", function(e) {
+            if(!that.lyric)return;
             for (var i = 0, l = that.lyric.length; i < l; i++) {
                 //preload the lyric by 0.50s || end
                 if (this.currentTime <= that.lyric[i][0] - 0.50 || i == l-1){
@@ -424,6 +428,16 @@ Selected.prototype = {
             }
         }
         return true;
+    },
+    playNum: function(that,index){
+        var allSongs = this.playlist.children[0].children;
+        var tmp = that.currentIndex;
+        that.currentIndex = index;
+        that.setClass(tmp,that.currentIndex);
+        var Item = allSongs[that.currentIndex].children[0];
+        var songName = Item.getAttribute('data-name');
+        window.location.hash = songName;
+        that.play(songName);
     },
     playRandom: function(that){
         var allSongs = this.playlist.children[0].children,

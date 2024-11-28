@@ -1,0 +1,38 @@
+/* 样式用于定位和美化搜索框及结果列表 */
+#search-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    z-index: 1000;
+}
+
+#search-box {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#search-results {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#search-results li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#search-results li:hover {
+    background-color: #f1f1f1;
+}

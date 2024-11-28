@@ -9,12 +9,19 @@
         <title>XPlayer</title>
         <link rel="stylesheet" href="css/player.css">
         <link rel="stylesheet" href="css/audio.css">
+        <link rel="stylesheet" href="css/search.css">
     </head>
     <body>
         <header id="header">
             <h3> <a href="/2024/11/09/2/" target="_blank">XPlayer | 音乐电台</a></h3>
         </header>
         <div class="wrapper">
+            <button id="button_search-container" onclick="search_hide()">搜索歌曲</button>
+            <div id="search-container">
+                <input type="text" id="search-box" placeholder="搜索歌曲..." autocomplete="off">
+                <ul id="search-results"></ul>
+            </div>
+            <script src="js/search.js"></script>
             <div id="songimg">
                 <img id="cover_img" alt="loading...">
                 <div id="songinfo">
