@@ -390,6 +390,7 @@ Selected.prototype = {
             line.textContent = v[1];
             line.addEventListener("click", function(){
                 document.getElementById("audio").currentTime = v[0];
+                document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
             });
             fragment.appendChild(line);
         });
