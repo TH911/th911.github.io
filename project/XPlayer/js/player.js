@@ -62,6 +62,16 @@ function font_change(font){
             break;
     }
 }
+function hide_font(){
+    var font_menu = document.getElementById("menu-font");
+    if(font_menu.style.display == "none")font_menu.style.display = "block";
+    else font_menu.style.display = "none";
+}
+function hide_playmode(){
+    var playmode_menu = document.getElementById("menu-playmode");
+    if(playmode_menu.style.display == "none")playmode_menu.style.display = "block";
+    else playmode_menu.style.display = "none";
+}
 
 // https://stackoverflow.com/questions/44418606/how-do-i-set-a-thumbnail-when-playing-audio-in-ios-safari
 function mediaSessionAPI(that,name,lyric){
@@ -75,11 +85,11 @@ function mediaSessionAPI(that,name,lyric){
         });
         navigator.mediaSession.setActionHandler("seekbackward", function () {
             var audio = document.getElementById("audio");
-            audio.currentTime-=10;
+            audio.currentTime-=Math.min(10,audio.currentTime);
         });
         navigator.mediaSession.setActionHandler("seekforward", function () {
             var audio = document.getElementById("audio");
-            audio.currentTime+=10;
+            audio.currentTime+=Math.min(10,audio.duration-audio.currentTime);
         });
         navigator.mediaSession.setActionHandler("previoustrack", function () {
             that.playPrev(that);
@@ -229,6 +239,7 @@ Selected.prototype = {
                     a.dataset.name = v.lrc_name;
                     a.textContent = v.song_name + ' - ' + v.artist;
                     li.appendChild(a);
+                    li.id = "playlist-" + i;
                     fragment.appendChild(li);
                 });
                 ol.appendChild(fragment);
@@ -244,11 +255,20 @@ Selected.prototype = {
         this.audio.play();
         this.audio.playbackRate = 1;
 
+        //scroll to which is playing
+        var playlist_ol = document.getElementById("playlist_ol");
+        var now = document.getElementById("playlist-" + PLAYER.currentIndex);
+        var playlist_height = playlist.style.height.split('px')[0];
+        playlist_ol.scrollTop = Math.max(0,now.offsetTop - Math.floor(parseInt(playlist_height)/2));
+
         document.getElementById("songimg").style.display="none";
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
         document.title = songinfo_audio.textContent + " | XPlayer";
 
         document.getElementById("cover_img").src = "./img/loading.gif";
+
+        var audio_name = songinfo_audio.textContent.split(' - ')[0];
+        mediaSessionAPI(that,audio_name,' ');
 
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
         // https://zhuanlan.zhihu.com/p/66320621
@@ -265,9 +285,11 @@ Selected.prototype = {
                 document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                 document.getElementById("songimg").style.display="block";
                 
+                console.log("jsmediatags loaded.");
                 //for MediaSession API.
                 mediaSessionAPI(that,tag.tags.title,"此歌曲为没有填词的纯音乐，请您欣赏");
-                
+                console.log("MediaSessionAPI loaded.")
+
                 rwd(false);
             },
             onError: function(error) {

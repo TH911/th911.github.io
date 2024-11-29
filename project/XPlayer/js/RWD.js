@@ -20,11 +20,10 @@ function rwd(flag_playlist){
             controls.style.position = "fixed";
             controls.style.top = "0px";
             controls.style.height = "200px";
-            //for br
-            document.getElementById("menu_font_br").style.display = "block";
 
             header.style.display = "none";
             playlist_button.style.display = "block";
+            playlist_button.style.width = Math.floor(screenWidth*0.4) + 'px';
             // hide the cover of the song(and the info) if the width of the screen is too small
             songimg.style.display = "none";
             
@@ -47,12 +46,11 @@ function rwd(flag_playlist){
             search_container.style.right = "auto";
             search_container.style.left = 0;
             search_container.style.top = "60px";
-            document.getElementById("button_search-container").style.display = "block";
+            if(playlist.style.display != "block") document.getElementById("button_search-container").style.display = "block";
+            document.getElementById("button_search-container").style.width = playlist_button.style.width;
         }else{
             controls.style.position = "relative";
             controls.style.height = "77px";
-            //for br
-            document.getElementById("menu_font_br").style.display = "none";
 
             header.style.display = "block";
             songimg.style.display = "block";

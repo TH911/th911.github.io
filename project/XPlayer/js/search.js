@@ -40,14 +40,20 @@ searchBox.addEventListener('input', (event) => {
 searchResults.addEventListener('click', (event) => {
     const clickedItem = event.target;
     if (clickedItem.tagName.toLowerCase() === 'li') {
-        PLAYER.playNum(PLAYER,parseInt(clickedItem.id.substring(13))-1);
         document.getElementById("search-box").value = "";
         document.getElementById("search-results").innerHTML = "";
+        search_hide();
+        PLAYER.playNum(PLAYER,parseInt(clickedItem.id.substring(13))-1);
     }
 });
 
 function search_hide(){
     var search_container = document.getElementById("search-container");
-    if(search_container.style.display == "none")search_container.style.display = "block";
-    else search_container.style.display = "none";
+    if(search_container.style.display == "none"){
+        search_container.style.display = "block";
+        document.getElementById("controls").style.display = "none";
+    }else{
+        search_container.style.display = "none";
+        document.getElementById("controls").style.display = "block";
+    }
 }

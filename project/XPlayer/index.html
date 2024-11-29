@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="css/search.css">
     </head>
     <body>
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script>
+
         <header id="header">
             <h3> <a href="/2024/11/09/2/" target="_blank">XPlayer | 音乐电台</a></h3>
         </header>
@@ -73,24 +76,25 @@
         </div>
         <div id="controls">
             <span id="menu-playmode" class="menu-item">
-                <div class="menu-title">切歌顺序</div>
+                <div class="menu-title" onclick="hide_font()">切歌顺序</div>
                 <div class="menu-content">
                     <p>
                     <span id="menu_order" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('order')">顺序播放</span>
                     <span id="menu_reverse" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('reverse')">倒序播放</span>
+                    <br>
                     <span id="menu_random" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('random')">随机播放</span>
                     <span id="menu_loop" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('loop')">单曲循环</span>
                     </p>
                 </div>
             </span>
             <span id="menu-font" class="menu-item">
-                <div class="menu-title">字体</div>
+                <div class="menu-title" onclick="hide_playmode()">字体</div>
                 <div class="menu-content">
                     <p>
                     <span id="menu_font_fordefault" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('fordefault')">默认</span>
                     <span id="menu_font_fangzhengshuti" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('fangzhengshuti')">方正舒体</span>
                     <span id="menu_font_kaiti" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('kaiti')">楷体</span>
-                    <br id = "menu_font_br">
+                    <br>
                     <span id="menu_font_songti" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('songti')">宋体</span>
                     <span id="menu_font_huawenxingkai" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('huawenxingkai')">华文行楷</span>
                     <span id="menu_font_youyuan" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('youyuan')">幼圆</span>
@@ -99,7 +103,6 @@
             </span>
         </div>
 
-        <script src="js/jquery.min.js"></script>
         <!-- Responsive Design -->
         <script src="js/RWD.js"></script>
         <script src="js/player.js"></script>

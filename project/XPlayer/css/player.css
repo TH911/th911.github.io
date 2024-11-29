@@ -255,7 +255,8 @@ a:hover {
     background-color: #fff;
     color: #000;
     border-radius: 5px;
-	
+    border: 2px solid #000;
+    
     -webkit-transition-duration: 0.8s; /* Safari */
     transition-duration: 0.8s;
     text-decoration: none;
