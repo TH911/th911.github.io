@@ -29,9 +29,9 @@ function menu_color_change(that,mode){
 }
 
 //to change the opacity when mouse across the player
-function player_opacity(){
+function player_opacity(mode){
     var player=document.getElementById("player");
-    if(player.style.opacity==1)player.style.opacity=0.6;
+    if(mode==1)player.style.opacity=0.6;
     else player.style.opacity=1;
 }
 

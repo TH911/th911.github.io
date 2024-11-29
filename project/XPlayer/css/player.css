@@ -304,7 +304,8 @@ a:hover {
 }
 
 #controls {
-    position: relative;
+    /* position: relative;
+    z-index: 1000; */
     overflow: hidden;
     right: 0;
     height: 77px;
@@ -325,4 +326,8 @@ a:hover {
     text-align: right;
     position: relative;
     right: 0;
+}
+
+.menu-title {
+    width: auto;
 }
