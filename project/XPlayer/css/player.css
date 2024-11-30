@@ -172,8 +172,20 @@ a:hover {
     text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000; 
 }
 
+@keyframes lyric_sync_letter {
+    0% {
+        background-size:0 100%;
+    }
+    100% {
+        background-size:100% 100%;
+    }
+}
 /*the highlight color of the current lyric line*/
 .current-line-0 {
+    /* background:#fff -webkit-linear-gradient(left, #FAFA17, #FAFA17) no-repeat 0 0; */
+    /* -webkit-text-fill-color:transparent;
+    -webkit-background-clip:text; */
+    /* animation: lyric_sync_letter 2s linear; */
     color: #FAFA17;
 }
 .current-line-1 {
@@ -191,6 +203,8 @@ a:hover {
 .current-song, .current-song a {
     color: #A6E22D;
 }
+/* for the lyric to sync with word by time inline */
+
 
 /*for song info*/
 #songinfo_name{

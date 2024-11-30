@@ -8,11 +8,10 @@
  * songs used in this project are only for educational purpose
  */
 
-//hack IOS
-function isIOS() {
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    return /iPhone|iPad|iPod/i.test(userAgent);
-}
+document.addEventListener('keydown', function(event) {
+    //prevent default spacebar behavior (for spacebar to control play/pause)
+    if(event.key === ' ')event.preventDefault();
+})
 
 //the menu of fontfamily,fontsize,background-img,...
 $(document).ready(function() {
@@ -108,6 +107,7 @@ function mediaSessionAPI(that,name,lyric){
         return true;
     }else return false;
 }
+
 var PLAYER;
 window.onload = function() {
     //for the color of the menu
@@ -253,7 +253,6 @@ Selected.prototype = {
         this.audio.src = '/music/' + songName + '.mp3';
 
         this.audio.play();
-        this.audio.playbackRate = 1;
 
         //scroll to which is playing
         var playlist_ol = document.getElementById("playlist_ol");
@@ -301,7 +300,7 @@ Selected.prototype = {
         this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
         //empty the lyric
         this.lyric = null;
-        this.lyricStyle = Math.floor(Math.random() * 4);
+        this.lyricStyle = Math.floor(Math.random() * 0);
         this.audio.addEventListener('canplay', function() {
             that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
             this.play(0);
@@ -317,10 +316,9 @@ Selected.prototype = {
                     
                     var line = document.getElementById('line-' + i);
                     //randomize the color of the current line of the lyric
-                    if(line!=null)line.className = 'current-line-' + that.lyricStyle;
-                    // line.scrollIntoView(behavior="smooth");
-                    // that.lyricContainer.style.top = to_top - line.offsetTop + 'px';
-                    
+                    line.className = 'current-line-' + that.lyricStyle;
+                    line.style.fontSize = parseInt(document.getElementById("lyricWrapper").style.fontSize.split('px')[0]) + 2 + 'px';
+
                     if(i!=last){
                         last=i;
                         document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
@@ -328,9 +326,13 @@ Selected.prototype = {
                     
                     //handle which song has 2 languages
                     if(i>0){
-                        if(line!=null){
-                            var prevline = document.getElementById('line-' + (i-1));
-                        if(that.lyric[i][0]==that.lyric[i-1][0])prevline.className=line.className;
+                        var prevline = document.getElementById('line-' + (i-1));
+                        if(that.lyric[i][0]==that.lyric[i-1][0]){
+                            prevline.className = line.className;
+                            prevline.style.fontSize = line.style.fontSize;
+                            line.style.backgroundSize = '0 0';
+                            line.className='';
+                            line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
                         }
                     }
 
@@ -346,11 +348,15 @@ Selected.prototype = {
                     //del the color of which lyric after this.
                     for(var j = i+1 ; j<l ; j++){
                         var line = document.getElementById('line-' + j);
-                        if(line!=null)line.className='';
+                        line.style.backgroundSize = '0 0';
+                        line.className='';
+                        line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
                     }break;
                 }else{
                     var line = document.getElementById('line-' + i);
-                    if(line!=null)line.className='';
+                    line.style.backgroundSize = '0 0';
+                    line.className = '';
+                    line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
                 }
             };
         });
@@ -414,6 +420,11 @@ Selected.prototype = {
             var line = document.createElement('p');
             line.id = 'line-' + i;
             line.textContent = v[1];
+            // for(var j = 0;j < v[1].length;j++){
+            //     var letter = document.createElement('span');
+            //     letter.textContent = v[1][j];
+            //     line.appendChild(letter);
+            // }
             line.addEventListener("click", function(){
                 document.getElementById("audio").currentTime = v[0];
                 document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
