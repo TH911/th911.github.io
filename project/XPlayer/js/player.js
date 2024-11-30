@@ -309,10 +309,10 @@ Selected.prototype = {
         //sync the lyric
         this.audio.addEventListener("timeupdate", function(e) {
             if(!that.lyric)return;
-            for (var i = 0, l = that.lyric.length; i < l; i++) {
+            for (var i = 0, l = that.lyric.length; i <= l; i++) {
                 //preload the lyric by 0.50s || end
-                if (this.currentTime <= that.lyric[i][0] - 0.50 || i == l-1){
-                    if(i > 0 && i != l - 1 ) i--;
+                if (i == l || this.currentTime <= that.lyric[i][0] - 0.50){
+                    if(i > 0) i--;
                     
                     var line = document.getElementById('line-' + i);
                     //randomize the color of the current line of the lyric
