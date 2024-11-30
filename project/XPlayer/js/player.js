@@ -300,7 +300,7 @@ Selected.prototype = {
         this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
         //empty the lyric
         this.lyric = null;
-        this.lyricStyle = Math.floor(Math.random() * 0);
+        this.lyricStyle = Math.floor(Math.random() * 4);
         this.audio.addEventListener('canplay', function() {
             that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
             this.play(0);
@@ -317,8 +317,8 @@ Selected.prototype = {
                     var line = document.getElementById('line-' + i);
                     //randomize the color of the current line of the lyric
                     line.className = 'current-line-' + that.lyricStyle;
-                    line.style.fontSize = parseInt(document.getElementById("lyricWrapper").style.fontSize.split('px')[0]) + 2 + 'px';
-
+                    line.style.fontSize = parseInt(document.getElementById("lyricWrapper").style.fontSize.split('px')[0]) + 5 + 'px';
+                    if(i+1 < l)line.style.animationDuration = that.lyric[i+1][0] - that.lyric[i][0] + 's';
                     if(i!=last){
                         last=i;
                         document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
@@ -326,13 +326,12 @@ Selected.prototype = {
                     
                     //handle which song has 2 languages
                     if(i>0){
-                        var prevline = document.getElementById('line-' + (i-1));
                         if(that.lyric[i][0]==that.lyric[i-1][0]){
-                            prevline.className = line.className;
-                            prevline.style.fontSize = line.style.fontSize;
-                            line.style.backgroundSize = '0 0';
                             line.className='';
                             line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
+                            line = document.getElementById('line-' + (i-1));
+                            line.className = 'current-line-' + that.lyricStyle;
+                            line.style.fontSize = parseInt(document.getElementById("lyricWrapper").style.fontSize.split('px')[0]) + 2 + 'px';
                         }
                     }
 
@@ -348,13 +347,11 @@ Selected.prototype = {
                     //del the color of which lyric after this.
                     for(var j = i+1 ; j<l ; j++){
                         var line = document.getElementById('line-' + j);
-                        line.style.backgroundSize = '0 0';
                         line.className='';
                         line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
                     }break;
                 }else{
                     var line = document.getElementById('line-' + i);
-                    line.style.backgroundSize = '0 0';
                     line.className = '';
                     line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
                 }
@@ -417,9 +414,11 @@ Selected.prototype = {
         //clear the lyric container first
         this.lyricContainer.innerHTML = '';
         lyric.forEach(function(v, i, a) {
-            var line = document.createElement('p');
+            var line_p = document.createElement('p');
+            var line = document.createElement('span');
             line.id = 'line-' + i;
             line.textContent = v[1];
+            line.style.backgroundClip = "text";
             // for(var j = 0;j < v[1].length;j++){
             //     var letter = document.createElement('span');
             //     letter.textContent = v[1][j];
@@ -429,7 +428,8 @@ Selected.prototype = {
                 document.getElementById("audio").currentTime = v[0];
                 document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
             });
-            fragment.appendChild(line);
+            line_p.appendChild(line);
+            fragment.appendChild(line_p);
         });
         lyricContainer.appendChild(fragment);
     },
