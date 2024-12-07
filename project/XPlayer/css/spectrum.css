@@ -1,0 +1,12 @@
+#spectrum {
+    position: fixed;
+    bottom: 83px;
+    text-align: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+#spectrum-cvs {
+    height: 80px;
+    width: 95%;
+}

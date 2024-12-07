@@ -42,7 +42,7 @@ searchResults.addEventListener('click', (event) => {
     if (clickedItem.tagName.toLowerCase() === 'li') {
         document.getElementById("search-box").value = "";
         document.getElementById("search-results").innerHTML = "";
-        search_hide();
+        rwd();
         PLAYER.playNum(PLAYER,parseInt(clickedItem.id.substring(13))-1);
     }
 });

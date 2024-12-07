@@ -134,6 +134,9 @@ var Selected = function() {
     this.currentIndex = 0;
     this.lyric = null;
     this.lyricStyle = 0; //random num to specify the different class name for lyric
+    this.audio_name = [];
+    this.audio_artist = [];
+    this.audio_album = [];
 };
 
 Selected.prototype = {
@@ -192,8 +195,22 @@ Selected.prototype = {
             that.ending(that);
         }
         this.audio.onerror = function(e) {
-            that.lyricContainer.textContent = '歌曲加载失败 :(';
+            that.lyricContainer.textContent = '歌曲加载失败,请检查网络或清空缓存并重试';
         };
+
+        //when play/pause,solve the lyric's animation of color
+        this.audio.addEventListener('play', function(){
+            var lines = document.getElementsByClassName('current-line-' + that.lyricStyle);
+            for(var i = 0; i < lines.length;i++){
+                lines[i].style.animationPlayState = "running";
+            }
+        });
+        this.audio.addEventListener('pause', function(){
+            var lines = document.getElementsByClassName('current-line-' + that.lyricStyle);
+            for(var i = 0; i < lines.length;i++){
+                lines[i].style.animationPlayState = "paused";
+            }
+        });
 
         //enable keyboard control , spacebar to change the song
         window.addEventListener('keydown', function(e) {
@@ -223,6 +240,7 @@ Selected.prototype = {
         this.play(randomSong);
     },
     initialList: function(ctx) {
+        var that = this;
         var xhttp = new XMLHttpRequest();
         xhttp.open('GET', './json/content.json', false);
         xhttp.onreadystatechange = function() {
@@ -238,6 +256,9 @@ Selected.prototype = {
                     a.href = 'javascript:void(0)';
                     a.dataset.name = v.lrc_name;
                     a.textContent = v.song_name + ' - ' + v.artist;
+                    that.audio_name[v.lrc_name] = v.songName;
+                    that.audio_artist[v.lrc_name] = v.artist;
+                    that.audio_album[v.lrc_name] = v.album;
                     li.appendChild(a);
                     li.id = "playlist-" + i;
                     fragment.appendChild(li);
@@ -260,15 +281,20 @@ Selected.prototype = {
         var playlist_height = playlist.style.height.split('px')[0];
         playlist_ol.scrollTop = Math.max(0,now.offsetTop - Math.floor(parseInt(playlist_height)/2));
 
-        document.getElementById("songimg").style.display="none";
         songinfo_audio.textContent = this.playlist.getElementsByTagName("li")[songName-1].textContent;
         document.title = songinfo_audio.textContent + " | XPlayer";
 
-        document.getElementById("cover_img").src = "./img/loading.gif";
+        document.getElementById("cover_img").src = "/music/" + songName + '.webp';
 
-        var audio_name = songinfo_audio.textContent.split(' - ')[0];
-        mediaSessionAPI(that,audio_name,' ');
+        document.getElementById('songinfo_name').textContent = this.audio_name[songName];
+        document.getElementById('songinfo_artist').textContent = "歌手: " + this.audio_artist[songName];
+        document.getElementById('songinfo_album').textContent = "专辑: " + this.audio_album[songName];
 
+
+        mediaSessionAPI(this,this.audio_name[songName],' ');
+
+        //XPlayer used jsmediatags in the past,but it's too slow,so I give it up.
+        /*
         //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
         // https://zhuanlan.zhihu.com/p/66320621
         // https://www.jianshu.com/p/b10118aeec9d
@@ -281,7 +307,6 @@ Selected.prototype = {
                 songinfo_artist.textContent = "歌手: " + tag.tags.artist;
                 var songinfo_album = document.getElementById("songinfo_album");
                 songinfo_album.textContent = "专辑: " + tag.tags.album;
-                document.getElementById('cover_img').src = URL.createObjectURL(new Blob([new Uint8Array(tag.tags.picture.data).buffer]));
                 document.getElementById("songimg").style.display="block";
                 
                 console.log("jsmediatags loaded.");
@@ -295,6 +320,7 @@ Selected.prototype = {
                 console.log(':(', error.type, error.info);
             }
         });
+        */
 
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
@@ -310,50 +336,56 @@ Selected.prototype = {
         this.audio.addEventListener("timeupdate", function(e) {
             if(!that.lyric)return;
             for (var i = 0, l = that.lyric.length; i <= l; i++) {
-                //preload the lyric by 0.50s || end
-                if (i == l || this.currentTime <= that.lyric[i][0] - 0.50){
-                    if(i > 0) i--;
-                    
-                    var line = document.getElementById('line-' + i);
-                    //randomize the color of the current line of the lyric
-                    line.className = 'current-line-' + that.lyricStyle;
-                    line.style.fontSize = parseInt(document.getElementById("lyricWrapper").style.fontSize.split('px')[0]) + 5 + 'px';
-                    if(i+1 < l)line.style.animationDuration = that.lyric[i+1][0] - that.lyric[i][0] + 's';
-                    if(i!=last){
-                        last=i;
-                        document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
-                    }
-                    
-                    //handle which song has 2 languages
-                    if(i>0){
-                        if(that.lyric[i][0]==that.lyric[i-1][0]){
-                            line.className='';
-                            line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
-                            line = document.getElementById('line-' + (i-1));
-                            line.className = 'current-line-' + that.lyricStyle;
-                            line.style.fontSize = parseInt(document.getElementById("lyricWrapper").style.fontSize.split('px')[0]) + 2 + 'px';
+                try{
+                    //preload the lyric by 0.50s || end
+                    if (i == l || this.currentTime <= that.lyric[i][0] - 0.50){
+                        if(i > 0) i--;
+                        
+                        //handle which song has 2 languages
+                        if(i>0){
+                            if(that.lyric[i][0] == that.lyric[i-1][0])i--;
                         }
+
+                        var line = document.getElementById('line-' + i);
+                        //randomize the color of the current line of the lyric
+                        line.className = 'current-line-' + that.lyricStyle;
+
+                        if(i+1 < l){
+                            if(that.lyric[i][0] != that.lyric[i+1][0]){
+                                line.style.animationDuration = that.lyric[i+1][0] - that.lyric[i][0] - 0.2 + 's';
+                            }else if(i+2 < l){
+                                line.style.animationDuration = that.lyric[i+2][0] - that.lyric[i][0] - 0.2 + 's';
+                            }
+                        }
+                        if(i!=last){
+                            last=i;
+                            document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
+                        }
+
+                        //for the lyric to MediaSession
+                        var lyric_for_API;
+                        if(i==0||that.lyric[i-1][0]!=that.lyric[i][0])lyric_for_API = that.lyric[i][1];
+                        else lyric_for_API = that.lyric[i-1][1];
+                        if(lyric_for_API.length == 0)lyric_for_API = " ";
+
+                        //sync MediaSession API
+                        mediaSessionAPI(that,that.audio_name[songName],lyric_for_API);
+
+                        //del the color of which lyric after this.
+                        for(var j = i+1 ; j<l ; j++){
+                            var line = document.getElementById('line-' + j);
+                            line.className='';
+                        }break;
+                    }else{
+                        var line = document.getElementById('line-' + i);
+                        line.className = '';
                     }
-
-                    //for the lyric to MediaSession
-                    var lyric_for_API;
-                    if(i==0||that.lyric[i-1][0]!=that.lyric[i][0])lyric_for_API = that.lyric[i][1];
-                    else lyric_for_API = that.lyric[i-1][1];
-                    if(lyric_for_API.length == 0)lyric_for_API = " ";
-
-                    //sync MediaSession API
-                    mediaSessionAPI(that,songinfo_name.textContent,lyric_for_API);
-
-                    //del the color of which lyric after this.
-                    for(var j = i+1 ; j<l ; j++){
-                        var line = document.getElementById('line-' + j);
-                        line.className='';
-                        line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
-                    }break;
-                }else{
-                    var line = document.getElementById('line-' + i);
-                    line.className = '';
-                    line.style.fontSize = document.getElementById("lyricWrapper").style.fontSize;
+                }
+                catch {
+                    alert("error!");
+                    window.stop();
+                    console.log("i="+i);
+                    console.log("l=" + l);
                 }
             };
         });
@@ -371,7 +403,7 @@ Selected.prototype = {
             that.appendLyric(that.lyric);
         };
         request.onerror = request.onabort = function(e) {
-            that.lyricContainer.textContent = '歌词加载失败 :(';
+            that.lyricContainer.textContent = '歌词加载失败,请检查网络或清空缓存并重试';
         }
         this.lyricContainer.textContent = 'loading lyric...';
         request.send();
@@ -425,8 +457,10 @@ Selected.prototype = {
             //     line.appendChild(letter);
             // }
             line.addEventListener("click", function(){
-                document.getElementById("audio").currentTime = v[0];
                 document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
+                console.log("zjj2024:" + line.offsetTop);
+                console.log("scrollTop:" + document.getElementById("lyricWrapper").scrollTop);
+                document.getElementById("audio").currentTime = v[0];
             });
             line_p.appendChild(line);
             fragment.appendChild(line_p);

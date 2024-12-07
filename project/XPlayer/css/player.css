@@ -74,10 +74,11 @@ a:hover {
     padding: 5px;
     position: absolute;
     left: 0;
-    z-index: 999;
+    z-index: 9999;
     background-color:#32323280;
 }
 #songimg {
+    text-align: center;
     margin: auto;
     padding: 70px 70px 70px 70px;
     display: block;
@@ -152,6 +153,10 @@ a:hover {
 }
 
 #lyricWrapper {
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
     overflow: scroll;
     position: relative;
     margin-top: 20px;
@@ -187,6 +192,7 @@ a:hover {
     color: transparent;
     text-shadow: none;
     font-weight: bolder;
+    font-size: 1.4em;
     animation: lyric_sync_letter 2s linear;
 }
 .current-line-1 {
@@ -195,6 +201,7 @@ a:hover {
     color: transparent;
     text-shadow: none;
     font-weight: bolder;
+    font-size: 1.4em;
     animation: lyric_sync_letter 2s linear;
 }
 .current-line-2 {
@@ -203,6 +210,7 @@ a:hover {
     color: transparent;
     text-shadow: none;
     font-weight: bolder;
+    font-size: 1.4em;
     animation: lyric_sync_letter 2s linear;
 }
 .current-line-3 {
@@ -211,6 +219,7 @@ a:hover {
     color: transparent;
     text-shadow: none;
     font-weight: bolder;
+    font-size: 1.4em;
     animation: lyric_sync_letter 2s linear;
 }
 .current-song-played, .current-song-played a {
@@ -219,7 +228,6 @@ a:hover {
 .current-song, .current-song a {
     color: #A6E22D;
 }
-/* for the lyric to sync with word by time inline */
 
 
 /*for song info*/
@@ -236,9 +244,7 @@ a:hover {
     color: #bbb;
 }
 #songinfo{
-    position: absolute;
-    left: 0;
-    right: 0;
+    position: relative;
     margin: auto;
     text-align:center;
 }
@@ -334,8 +340,8 @@ a:hover {
 }
 
 #controls {
-    /* position: relative;
-    z-index: 1000; */
+    position: relative;
+    z-index: 999;
     overflow: hidden;
     right: 0;
     height: 77px;

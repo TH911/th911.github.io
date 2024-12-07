@@ -1,7 +1,6 @@
 function rwd(flag_playlist){
         var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        // this.alert(screenWidth + 'x' + screenHeight);
         var playlist_button=document.getElementById("playlist_button");
         var songimg = document.getElementById("songimg");
         var audio_player = document.getElementById("player");
@@ -12,6 +11,7 @@ function rwd(flag_playlist){
         lyricWrapper.style.height = (screenHeight - 130) + 'px';
         var controls = document.getElementById("controls");
         var search_container = document.getElementById("search-container");
+        var spectrum = document.getElementById("spectrum");
 
         // for mobile
         if(screenWidth<screenHeight||screenWidth<800){
@@ -48,6 +48,8 @@ function rwd(flag_playlist){
             search_container.style.top = "60px";
             if(playlist.style.display != "block") document.getElementById("button_search-container").style.display = "block";
             document.getElementById("button_search-container").style.width = playlist_button.style.width;
+
+            lyricWrapper.style.width = "90%";
         }else{
             controls.style.position = "relative";
             controls.style.height = "77px";
@@ -83,7 +85,10 @@ function rwd(flag_playlist){
             search_container.style.top = "20px";
 
             document.getElementById("button_search-container").style.display = "none";
+
+            lyricWrapper.style.width = "50%";
         }
+        spectrum.style.width = lyricWrapper.style.width;
 }
 rwd(true);
 window.addEventListener('resize', function(){

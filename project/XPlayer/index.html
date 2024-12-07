@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/player.css">
         <link rel="stylesheet" href="css/audio.css">
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/spectrum.css">
     </head>
     <body>
         <!-- jQuery -->
@@ -32,6 +33,9 @@
                     <div id="songinfo_artist"></div>
                     <div id="songinfo_album"></div>
                 </div>
+            </div>
+            <div id = "spectrum">
+                <canvas id="spectrum-cvs"></canvas>
             </div>
             <div onmouseover = "player_opacity(0)" onmouseout="player_opacity(1)" id="player">
                 <!-- instead of the default player because of the difference between the different browser -->
@@ -75,8 +79,8 @@
             </div>
         </div>
         <div id="controls">
-            <span id="menu-playmode" class="menu-item">
-                <div class="menu-title" onclick="hide_font()">切歌顺序</div>
+            <div id="menu-playmode" class="menu-item">
+                <span class="menu-title" onclick="hide_font()">切歌顺序</span>
                 <div class="menu-content">
                     <p>
                     <span id="menu_order" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('order')">顺序播放</span>
@@ -86,10 +90,11 @@
                     <span id="menu_loop" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="playmode_change('loop')">单曲循环</span>
                     </p>
                 </div>
-            </span>
-            <span id="menu-font" class="menu-item">
-                <div class="menu-title" onclick="hide_playmode()">字体</div>
-                <div class="menu-content">
+            </div>
+            <div id="menu-font" class="menu-item">
+                <span class="menu-title" onclick="hide_playmode()">字体</span>
+                <br>
+                <span class="menu-content">
                     <p>
                     <span id="menu_font_fordefault" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('fordefault')">默认</span>
                     <span id="menu_font_fangzhengshuti" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('fangzhengshuti')">方正舒体</span>
@@ -99,8 +104,8 @@
                     <span id="menu_font_huawenxingkai" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('huawenxingkai')">华文行楷</span>
                     <span id="menu_font_youyuan" onmouseover="menu_color_change(this,1)" onmouseout="menu_color_change(this,2)" onclick="font_change('youyuan')">幼圆</span>
                     </p>
-                </div>
-            </span>
+                </span>
+            </div>
         </div>
 
         <!-- Responsive Design -->
@@ -108,5 +113,7 @@
         <script src="js/player.js"></script>
         <!-- support for jsmediatags https://github.com/aadsm/jsmediatags -->
         <script src="js/jsmediatags.min.js"></script>
+        <!-- spectrum -->
+        <script src="js/spectrum.js"></script>
     </body>
 </html>

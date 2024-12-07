@@ -14,6 +14,17 @@ dropArea.addEventListener('dragleave', function () {
     dropArea.style.backgroundColor = '';  // 恢复背景色
 });
 
+function solve(json){
+    var json2 = "";
+    for(var i = 0;i < json.length;i++){
+        if(json[i] == '\r' || json[i] == '\n'){
+            continue;
+        }
+        json2 = json2 + json[i];
+    }
+    return json2;
+}
+
 // 处理文件拖拽到页面上
 dropArea.addEventListener('drop', function (event) {
     event.preventDefault();
@@ -25,7 +36,7 @@ dropArea.addEventListener('drop', function (event) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            const dataUrl = e.target.result;
+            const dataUrl = solve(e.target.result);
             dataUrlTextArea.value = dataUrl;  // 在文本框显示 Data URL
             try{
                 navigator.clipboard.writeText(dataUrl);
