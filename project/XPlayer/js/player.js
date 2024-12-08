@@ -455,8 +455,6 @@ Selected.prototype = {
             // }
             line.addEventListener("click", function(){
                 document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
-                console.log("zjj2024:" + line.offsetTop);
-                console.log("scrollTop:" + document.getElementById("lyricWrapper").scrollTop);
                 document.getElementById("audio").currentTime = v[0];
             });
             line_p.appendChild(line);

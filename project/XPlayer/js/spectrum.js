@@ -61,7 +61,11 @@ function drawRoundedRect(x, y, width, height, radius) {
     ctx.stroke(); // 绘制边框
 }
 
-initAudio();
+try{
+    initAudio();
+}catch{
+    
+}
 
 document.getElementById("audio").addEventListener('pause', function(){
     document.getElementById("spectrum-cvs").clearRect(0, 0, cvs.width, cvs.height);
