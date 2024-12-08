@@ -382,10 +382,7 @@ Selected.prototype = {
                     }
                 }
                 catch {
-                    alert("error!");
-                    window.stop();
-                    console.log("i="+i);
-                    console.log("l=" + l);
+                    break;
                 }
             };
         });
