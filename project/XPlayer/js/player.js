@@ -293,35 +293,6 @@ Selected.prototype = {
 
         mediaSessionAPI(this,this.audio_name[songName],' ');
 
-        //XPlayer used jsmediatags in the past,but it's too slow,so I give it up.
-        /*
-        //from: https://www.zhangxinxu.com/wordpress/2023/11/js-mp3-media-tags-metadata/
-        // https://zhuanlan.zhihu.com/p/66320621
-        // https://www.jianshu.com/p/b10118aeec9d
-        // get the information of the song(artist,album,lyric,...)by jsmediatags,insteading of use another file
-        jsmediatags.read(this.audio.src, {
-            onSuccess: function(tag) {
-                var songinfo_name = document.getElementById('songinfo_name');
-                songinfo_name.textContent = tag.tags.title;
-                var songinfo_artist = document.getElementById('songinfo_artist');
-                songinfo_artist.textContent = "歌手: " + tag.tags.artist;
-                var songinfo_album = document.getElementById("songinfo_album");
-                songinfo_album.textContent = "专辑: " + tag.tags.album;
-                document.getElementById("songimg").style.display="block";
-                
-                console.log("jsmediatags loaded.");
-                //for MediaSession API.
-                mediaSessionAPI(that,tag.tags.title,"此歌曲为没有填词的纯音乐，请您欣赏");
-                console.log("MediaSessionAPI loaded.")
-
-                rwd(false);
-            },
-            onError: function(error) {
-                console.log(':(', error.type, error.info);
-            }
-        });
-        */
-
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
         //empty the lyric
