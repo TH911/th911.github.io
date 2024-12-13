@@ -5,7 +5,7 @@ header-img: img/bg/1.jpg
 email: 3260483661@qq.com
 description: "这里是 @TH911 的个人博客，与你一起发现更大的世界 | 要做一个优秀的 OIER"
 keyword: "TH911, TSM, CFY, cfy, th911"
-url: "https://cfyy.us.kg" # your host, for absolute URL
+url: "https://th911.us.kg" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.

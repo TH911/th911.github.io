@@ -337,8 +337,8 @@ Selected.prototype = {
             if(!that.lyric)return;
             for (var i = 0, l = that.lyric.length; i <= l; i++) {
                 try{
-                    //preload the lyric by 0.50s || end
-                    if (i == l || this.currentTime <= that.lyric[i][0] - 0.50){
+                    //preload the lyric by 0.10s || end
+                    if (i == l || this.currentTime <= that.lyric[i][0] - 0.10){
                         if(i > 0) i--;
                         
                         //handle which song has 2 languages
