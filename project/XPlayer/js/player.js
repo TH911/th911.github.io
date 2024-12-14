@@ -269,9 +269,10 @@ Selected.prototype = {
         xhttp.send();
     },
     play: function(songName) {
+        
         var that = this;
-        this.lyricContainer.textContent = 'loading song...'
-        this.audio.src = '/music/' + songName + '.mp3';
+        this.lyricContainer.textContent = 'loading song...';
+        this.audio.src = /*'https://th911.us.kg' + */ '/music/' + songName + '.mp3';
 
         this.audio.play();
 
@@ -298,9 +299,18 @@ Selected.prototype = {
         //empty the lyric
         this.lyric = null;
         this.lyricStyle = Math.floor(Math.random() * 4);
+
+        sessionStorage.setItem("flag_canplay","true");
+
         this.audio.addEventListener('canplay', function() {
-            that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
-            this.play(0);
+            var flag_canplay = sessionStorage.getItem("flag_canplay");
+            console.log("flag_canplay = " + flag_canplay);
+            if(flag_canplay == null || flag_canplay == "true"){
+                console.log("audio canplay.");
+                sessionStorage.setItem("flag_canplay","true");
+                that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
+                that.audio.play();
+            }else sessionStorage.setItem("flag_canplay","true");
         });
         var last=-1;
         //sync the lyric
@@ -415,6 +425,7 @@ Selected.prototype = {
             fragment = document.createDocumentFragment();
         //clear the lyric container first
         this.lyricContainer.innerHTML = '';
+        var that = this;
         lyric.forEach(function(v, i, a) {
             var line_p = document.createElement('p');
             var line = document.createElement('span');
@@ -427,8 +438,10 @@ Selected.prototype = {
             //     line.appendChild(letter);
             // }
             line.addEventListener("click", function(){
+                sessionStorage.setItem("flag_canplay","false");
+                that.audio.currentTime = v[0];
                 document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
-                document.getElementById("audio").currentTime = v[0];
+                console.log("that.audio.currentTime="+that.audio.currentTime);
             });
             line_p.appendChild(line);
             fragment.appendChild(line_p);

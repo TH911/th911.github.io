@@ -63,6 +63,7 @@ function initAudioEvent(index) {
         if (!audio.paused || audio.currentTime != 0) {
             var pgsWidth = parseFloat(window.getComputedStyle(progressBarBg, null).width.replace('px', ''));
             var rate = event.offsetX / pgsWidth;
+            sessionStorage.setItem("flag_canplay","false");
             audio.currentTime = audio.duration * rate;
             updateProgress(audio, index);
         }
@@ -137,6 +138,7 @@ function dragProgressDotEvent(audio, index) {
             var progressBarBg = document.getElementById('progressBarBg' + index);
             var pgsWidth = parseFloat(window.getComputedStyle(progressBarBg, null).width.replace('px', ''));
             var rate = (position.oriOffestLeft + length) / pgsWidth;
+            sessionStorage.setItem("flag_canplay","false");
             audio.currentTime = audio.duration * rate;
             updateProgress(audio, index);
         }
