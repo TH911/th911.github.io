@@ -327,6 +327,8 @@ Selected.prototype = {
                             }else if(i+2 < l){
                                 line.style.animationDuration = that.lyric[i+2][0] - that.lyric[i][0] - 0.2 + 's';
                             }
+                            //If you want this color a line once
+                            //line.style.animationDuration = "0s";
                         }
                         if(i!=last){
                             last=i;
