@@ -256,7 +256,7 @@ Selected.prototype = {
                     a.href = 'javascript:void(0)';
                     a.dataset.name = v.lrc_name;
                     a.textContent = v.song_name + ' - ' + v.artist;
-                    that.audio_name[v.lrc_name] = v.songName;
+                    that.audio_name[v.lrc_name] = v.song_name;
                     that.audio_artist[v.lrc_name] = v.artist;
                     that.audio_album[v.lrc_name] = v.album;
                     li.appendChild(a);
@@ -272,7 +272,7 @@ Selected.prototype = {
         
         var that = this;
         this.lyricContainer.textContent = 'loading song...';
-        this.audio.src = /*'https://th911.us.kg' + */ '/music/' + songName + '.mp3';
+        this.audio.src = 'https://th911.us.kg' + '/music/' + songName + '.mp3';
 
         this.audio.play();
 
@@ -292,7 +292,8 @@ Selected.prototype = {
         document.getElementById('songinfo_album').textContent = "专辑: " + this.audio_album[songName];
 
 
-        mediaSessionAPI(this,this.audio_name[songName],' ');
+        var audio_Name = this.audio_name[songName];
+        mediaSessionAPI(this,audio_Name,' ');
 
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
@@ -304,9 +305,9 @@ Selected.prototype = {
 
         this.audio.addEventListener('canplay', function() {
             var flag_canplay = sessionStorage.getItem("flag_canplay");
-            console.log("flag_canplay = " + flag_canplay);
+            // console.log("flag_canplay = " + flag_canplay);
             if(flag_canplay == null || flag_canplay == "true"){
-                console.log("audio canplay.");
+                // console.log("audio canplay.");
                 sessionStorage.setItem("flag_canplay","true");
                 that.getLyric(that.audio.src.replace('.mp3', '.lrc'));
                 that.audio.play();
@@ -441,7 +442,7 @@ Selected.prototype = {
                 sessionStorage.setItem("flag_canplay","false");
                 that.audio.currentTime = v[0];
                 document.getElementById("lyricWrapper").scrollTop = line.offsetTop;
-                console.log("that.audio.currentTime="+that.audio.currentTime);
+                // console.log("that.audio.currentTime="+that.audio.currentTime);
             });
             line_p.appendChild(line);
             fragment.appendChild(line_p);
