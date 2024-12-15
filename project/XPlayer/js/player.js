@@ -292,8 +292,8 @@ Selected.prototype = {
         document.getElementById('songinfo_album').textContent = "专辑: " + this.audio_album[songName];
 
 
-        var audio_Name = this.audio_name[songName];
-        mediaSessionAPI(this,audio_Name,' ');
+        sessionStorage.setItem("audio_name",this.audio_name[songName]);
+        mediaSessionAPI(this,sessionStorage.getItem("audio_name"),' ');
 
         var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         this.lyricContainer.style.top = Math.floor((screenHeight-100)*0.4);
@@ -318,7 +318,7 @@ Selected.prototype = {
         this.audio.addEventListener("timeupdate", function(e) {
             if(!that.lyric)return;
             for (var i = 0, l = that.lyric.length; i <= l; i++) {
-                try{
+                // try{
                     //preload the lyric by 0.10s || end
                     if (i == l || this.currentTime <= that.lyric[i][0] - 0.10){
                         if(i > 0) i--;
@@ -353,7 +353,7 @@ Selected.prototype = {
                         if(lyric_for_API.length == 0)lyric_for_API = " ";
 
                         //sync MediaSession API
-                        mediaSessionAPI(that,that.audio_name[songName],lyric_for_API);
+                        mediaSessionAPI(that,sessionStorage.getItem("audio_name"),lyric_for_API);
 
                         //del the color of which lyric after this.
                         for(var j = i+1 ; j<l ; j++){
@@ -361,13 +361,17 @@ Selected.prototype = {
                             line.className='';
                         }break;
                     }else{
-                        var line = document.getElementById('line-' + i);
+                        try{
+                            var line = document.getElementById('line-' + i);
                         line.className = '';
+                        }catch{
+                            console.log("error on #" + i);
+                        }
                     }
-                }
-                catch {
-                    break;
-                }
+                // }
+                // catch {
+                    // break;
+                // }
             };
         });
     },
