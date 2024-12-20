@@ -1,15 +1,15 @@
 {
   "name": "TH911 Blog",
   "short_name": "TH911 Blog",
-  "description": "About an engineer & designer who loves web.",
+  "description": "A simple blog.",
   "icons": [{
-    "src": "icons/128.jpg",
+    "src": "icons/128.png",
     "sizes": "128x128",
-    "type": "image/jpg"
+    "type": "image/png"
   }, {
-    "src": "icons/512.jpg",
+    "src": "icons/512.png",
     "sizes": "512x512",
-    "type": "image/jpg"
+    "type": "image/png"
   }],
   "background_color": "#fff",
   "theme_color": "#000",
