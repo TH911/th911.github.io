@@ -188,39 +188,43 @@ a:hover {
 /*the highlight color of the current lyric line*/
 .current-line-0 {
     width: auto;
-    background:#fff -webkit-linear-gradient(left, #FAFA17, #FAFA17) no-repeat 0 0;
-    color: transparent;
+    /* background:#fff -webkit-linear-gradient(left, #FAFA17, #FAFA17) no-repeat 0 0; */
+    /* color: transparent; */
+    color: #FAFA17;
     text-shadow: none;
     font-weight: bolder;
     font-size: 1.4em;
-    animation: lyric_sync_letter 2s linear;
+    /* animation: lyric_sync_letter 2s linear; */
 }
 .current-line-1 {
     width: auto;
-    background:#fff -webkit-linear-gradient(left, #ff1493, #ff1493) no-repeat 0 0;
-    color: transparent;
+    /* background:#fff -webkit-linear-gradient(left, #ff1493, #ff1493) no-repeat 0 0; */
+    /* color: transparent; */
+    color: #ff1493;
     text-shadow: none;
     font-weight: bolder;
     font-size: 1.4em;
-    animation: lyric_sync_letter 2s linear;
+    /* animation: lyric_sync_letter 2s linear; */
 }
 .current-line-2 {
     width: auto;
-    background:#fff -webkit-linear-gradient(left, #adff2f, #adff2f) no-repeat 0 0;
-    color: transparent;
+    /* background:#fff -webkit-linear-gradient(left, #adff2f, #adff2f) no-repeat 0 0; */
+    /* color: transparent; */
+    color: #adff2f;
     text-shadow: none;
     font-weight: bolder;
     font-size: 1.4em;
-    animation: lyric_sync_letter 2s linear;
+    /* animation: lyric_sync_letter 2s linear; */
 }
 .current-line-3 {
     width: auto;
-    background:#fff -webkit-linear-gradient(left, #d731f8, #d731f8) no-repeat 0 0;
-    color: transparent;
+    /* background:#fff -webkit-linear-gradient(left, #d731f8, #d731f8) no-repeat 0 0; */
+    /* color: transparent; */
+    color: #d731f8;
     text-shadow: none;
     font-weight: bolder;
     font-size: 1.4em;
-    animation: lyric_sync_letter 2s linear;
+    /* animation: lyric_sync_letter 2s linear; */
 }
 .current-song-played, .current-song-played a {
     color: #1493dd;

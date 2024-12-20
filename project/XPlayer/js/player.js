@@ -202,13 +202,13 @@ Selected.prototype = {
         this.audio.addEventListener('play', function(){
             var lines = document.getElementsByClassName('current-line-' + that.lyricStyle);
             for(var i = 0; i < lines.length;i++){
-                lines[i].style.animationPlayState = "running";
+                // lines[i].style.animationPlayState = "running";
             }
         });
         this.audio.addEventListener('pause', function(){
             var lines = document.getElementsByClassName('current-line-' + that.lyricStyle);
             for(var i = 0; i < lines.length;i++){
-                lines[i].style.animationPlayState = "paused";
+                // lines[i].style.animationPlayState = "paused";
             }
         });
 
@@ -272,7 +272,7 @@ Selected.prototype = {
         
         var that = this;
         this.lyricContainer.textContent = 'loading song...';
-        this.audio.src = 'https://th911.us.kg' + '/music/' + songName + '.mp3';
+        this.audio.src = '/music/' + songName + '.mp3';
 
         this.audio.play();
 
@@ -334,9 +334,9 @@ Selected.prototype = {
 
                         if(i+1 < l){
                             if(that.lyric[i][0] != that.lyric[i+1][0]){
-                                line.style.animationDuration = that.lyric[i+1][0] - that.lyric[i][0] - 0.2 + 's';
+                                // line.style.animationDuration = that.lyric[i+1][0] - that.lyric[i][0] - 0.2 + 's';
                             }else if(i+2 < l){
-                                line.style.animationDuration = that.lyric[i+2][0] - that.lyric[i][0] - 0.2 + 's';
+                                // line.style.animationDuration = that.lyric[i+2][0] - that.lyric[i][0] - 0.2 + 's';
                             }
                             //If you want this color a line once
                             //line.style.animationDuration = "0s";
