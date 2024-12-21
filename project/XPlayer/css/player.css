@@ -191,7 +191,7 @@ a:hover {
     /* background:#fff -webkit-linear-gradient(left, #FAFA17, #FAFA17) no-repeat 0 0; */
     /* color: transparent; */
     color: #FAFA17;
-    text-shadow: none;
+    /* text-shadow: none; */
     font-weight: bolder;
     font-size: 1.4em;
     /* animation: lyric_sync_letter 2s linear; */
@@ -201,7 +201,7 @@ a:hover {
     /* background:#fff -webkit-linear-gradient(left, #ff1493, #ff1493) no-repeat 0 0; */
     /* color: transparent; */
     color: #ff1493;
-    text-shadow: none;
+    /* text-shadow: none; */
     font-weight: bolder;
     font-size: 1.4em;
     /* animation: lyric_sync_letter 2s linear; */
@@ -211,7 +211,7 @@ a:hover {
     /* background:#fff -webkit-linear-gradient(left, #adff2f, #adff2f) no-repeat 0 0; */
     /* color: transparent; */
     color: #adff2f;
-    text-shadow: none;
+    /* text-shadow: none; */
     font-weight: bolder;
     font-size: 1.4em;
     /* animation: lyric_sync_letter 2s linear; */
@@ -221,7 +221,7 @@ a:hover {
     /* background:#fff -webkit-linear-gradient(left, #d731f8, #d731f8) no-repeat 0 0; */
     /* color: transparent; */
     color: #d731f8;
-    text-shadow: none;
+    /* text-shadow: none; */
     font-weight: bolder;
     font-size: 1.4em;
     /* animation: lyric_sync_letter 2s linear; */

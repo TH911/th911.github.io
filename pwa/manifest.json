@@ -13,8 +13,8 @@
   }],
   "background_color": "#fff",
   "theme_color": "#000",
-  "start_url": "/",
+  "start_url": "https://th911.us.kg/",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/"
+  "scope": "https://th911.us.kg/"
 }
