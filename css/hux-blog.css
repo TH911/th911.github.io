@@ -59,7 +59,7 @@
   width: 195px;
 }
 .side-catalog.fixed {
-  overflow: scroll;
+  overflow: auto;
   position: fixed;
   top: -21px;
 }
