@@ -12,6 +12,10 @@
 
 一个简单易用的、可离线的将文件转化为 `data:` 形式的网页工具。
 
+### [OI-Wiki](/OI-Wiki)
+
+一个从 [OI-Wiki](https://github.com/OI-wiki/OI-wiki/) Fork 后自行部署的备份。
+
 ### [Unlock Music](/unlock-music)
 
 解锁各大平台歌曲的加密保护。
