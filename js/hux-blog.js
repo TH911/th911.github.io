@@ -82,3 +82,36 @@ jQuery(document).ready(function($) {
             });
     }
 });
+
+function showNotification(Title,Body,func,Icon='/favicon.ico') {
+    //can't support Notification API
+    if (!("Notification" in window)) {
+        console.log("This browser does not support desktop notification");
+        return false;
+    }
+    if (Notification.permission === "granted") {
+        var notification = new Notification(Title, {
+            body: Body,
+            icon: Icon
+        });
+        notification.onclick = func;
+        return true;
+    }
+    // get permission
+    if (Notification.permission === "default") {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === "granted"){
+                var notification = new Notification(Title, {
+                    body: Body,
+                    icon: Icon
+                });
+                notification.onclick = func;
+                return true;
+            }
+        });
+    }
+}
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     showNotification("test?","test!");
+// });
