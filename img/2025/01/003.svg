@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<svg 
+     version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events"
+     width="6.59790997882658cm"
+     height="6.966737244723719cm"
+     viewBox="0 0 482 508"
+     >
+<title>
+
+</title>
+<g stroke-dashoffset="0.0000" stroke-linejoin="miter" stroke-dasharray="none" stroke-width="1.0000" stroke-linecap="square" stroke-miterlimit="10.000">
+<g id="misc">
+</g><!-- misc -->
+<g id="layer0">
+<clipPath id="clip863b5735-bd84-493b-8e68-7d733955ece0">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip1)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 481.59 240.54 C 481.59 370.92 375.90 476.62 245.51 476.62 C 115.13 476.62 9.4357 370.92 9.4357 240.54 C 9.4357 110.16 115.13 4.4629 245.51 4.4629 C 375.90 4.4629 481.59 110.16 481.59 240.54 z"/>
+<title>圆 圆O</title>
+<desc>圆 圆O: 圆心为 O 且经过 X 的圆</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip1 -->
+<clipPath id="clipd3a7a27a-fe18-4406-854c-a9bf9584fd8d">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip2)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 22.578 318.21 L 249.89 476.58"/>
+<title>线段 f</title>
+<desc>线段 f: 线段AB</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip2 -->
+<clipPath id="clipdfba3e3e-6b74-43b9-8166-e6367479df59">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip3)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 249.89 476.58 L 440.10 374.22"/>
+<title>线段 g</title>
+<desc>线段 g: 线段BC</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip3 -->
+<clipPath id="clip9365ab2b-960d-4635-b946-cff49539bcd5">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip4)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 245.51 240.54 L 136.23 397.40"/>
+<title>线段 j</title>
+<desc>线段 j: 线段OP</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip4 -->
+<clipPath id="clip06308605-a324-4fc5-9b27-0e6223cd24cf">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip5)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 245.51 240.54 L 344.99 425.40"/>
+<title>线段 k</title>
+<desc>线段 k: 线段OQ</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip5 -->
+<clipPath id="clip9b065654-c708-4a7d-942a-01280d36f905">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip6)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 22.578 318.21 L 245.51 240.54"/>
+<title>线段 l</title>
+<desc>线段 l: 线段AO</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip6 -->
+<clipPath id="clipec06f05e-03bb-4c44-bfac-d2c951e24441">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip7)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 245.51 240.54 L 249.89 476.58"/>
+<title>线段 m</title>
+<desc>线段 m: 线段OB</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip7 -->
+<clipPath id="clip066ef605-45c2-4a34-9e67-2a945faf68a2">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip8)">
+<g stroke-opacity=".69804" stroke-linejoin="round" stroke-width="2.5000" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 245.51 240.54 L 440.10 374.22"/>
+<title>线段 n</title>
+<desc>线段 n: 线段OC</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip8 -->
+<clipPath id="clip6cdcbe4b-603a-49e8-a4ef-0073cd47cb68">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip9)">
+<g fill="#4d4dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 250.51 240.54 C 250.51 243.30 248.28 245.54 245.51 245.54 C 242.75 245.54 240.51 243.30 240.51 240.54 C 240.51 237.78 242.75 235.54 245.51 235.54 C 248.28 235.54 250.51 237.78 250.51 240.54 z"/>
+<title>点 O</title>
+<desc>O = (1.42, 2.34)</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip9 -->
+<clipPath id="clip079987ca-555d-4196-b066-0cef83fce687">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip10)">
+<g stroke-opacity="1.0000" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 250.51 240.54 C 250.51 243.30 248.28 245.54 245.51 245.54 C 242.75 245.54 240.51 243.30 240.51 240.54 C 240.51 237.78 242.75 235.54 245.51 235.54 C 248.28 235.54 250.51 237.78 250.51 240.54 z"/>
+<title>点 O</title>
+<desc>O = (1.42, 2.34)</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip10 -->
+<clipPath id="clip35b2b424-ef61-4640-ab9d-7a1361a5626d">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip11)">
+<g fill="#4d4dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 250.78 225.42 Q 250.78 222.56 252.31 220.95 Q 253.84 219.34 256.27 219.34 Q 257.84 219.34 259.11 220.11 Q 260.39 220.86 261.06 222.22 Q 261.73 223.56 261.73 225.28 Q 261.73 227.03 261.03 228.41 Q 260.33 229.78 259.03 230.50 Q 257.75 231.20 256.25 231.20 Q 254.64 231.20 253.36 230.42 Q 252.09 229.62 251.44 228.28 Q 250.78 226.92 250.78 225.42 z M 252.34 225.44 Q 252.34 227.52 253.45 228.70 Q 254.56 229.89 256.25 229.89 Q 257.95 229.89 259.06 228.69 Q 260.17 227.48 260.17 225.28 Q 260.17 223.88 259.69 222.84 Q 259.22 221.80 258.31 221.22 Q 257.41 220.64 256.27 220.64 Q 254.66 220.64 253.50 221.75 Q 252.34 222.86 252.34 225.44 z"/>
+<title>点 O</title>
+<desc>O = (1.42, 2.34)</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip11 -->
+<clipPath id="clip383c0801-e0b2-4ad6-81b4-342719d9c76f">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip12)">
+<g fill="#7d7dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 27.578 318.21 C 27.578 320.97 25.339 323.21 22.578 323.21 C 19.816 323.21 17.578 320.97 17.578 318.21 C 17.578 315.45 19.816 313.21 22.578 313.21 C 25.339 313.21 27.578 315.45 27.578 318.21 z"/>
+<title>点 A</title>
+<desc>点 A: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip12 -->
+<clipPath id="clip5e6072f6-2627-4415-9020-fc244cd71c3c">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip13)">
+<g stroke-opacity="1.0000" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 27.578 318.21 C 27.578 320.97 25.339 323.21 22.578 323.21 C 19.816 323.21 17.578 320.97 17.578 318.21 C 17.578 315.45 19.816 313.21 22.578 313.21 C 25.339 313.21 27.578 315.45 27.578 318.21 z"/>
+<title>点 A</title>
+<desc>点 A: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip13 -->
+<clipPath id="clipc6020fb6-f8f2-4758-b3ac-c2152f3ce9f5">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip14)">
+<g fill="#7d7dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 26.969 308.00 L 31.375 296.55 L 33.016 296.55 L 37.703 308.00 L 35.969 308.00 L 34.641 304.53 L 29.844 304.53 L 28.594 308.00 L 26.969 308.00 z M 30.281 303.30 L 34.172 303.30 L 32.969 300.12 Q 32.422 298.67 32.156 297.75 Q 31.938 298.84 31.547 299.94 L 30.281 303.30 z"/>
+<title>点 A</title>
+<desc>点 A: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip14 -->
+<clipPath id="clip9a2417b1-0eb2-423d-bb55-57a975b0bc16">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip15)">
+<g fill="#7d7dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 254.89 476.58 C 254.89 479.34 252.65 481.58 249.89 481.58 C 247.12 481.58 244.89 479.34 244.89 476.58 C 244.89 473.82 247.12 471.58 249.89 471.58 C 252.65 471.58 254.89 473.82 254.89 476.58 z"/>
+<title>点 B</title>
+<desc>点 B: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip15 -->
+<clipPath id="clip24aac599-dc7e-4748-a66d-7947ca009d8e">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip16)">
+<g stroke-opacity="1.0000" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 254.89 476.58 C 254.89 479.34 252.65 481.58 249.89 481.58 C 247.12 481.58 244.89 479.34 244.89 476.58 C 244.89 473.82 247.12 471.58 249.89 471.58 C 252.65 471.58 254.89 473.82 254.89 476.58 z"/>
+<title>点 B</title>
+<desc>点 B: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip16 -->
+<clipPath id="clip407535ff-9b2c-4884-8e0e-1abbb3d3cb8a">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip17)">
+<g fill="#7d7dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 255.17 467.00 L 255.17 455.55 L 259.47 455.55 Q 260.78 455.55 261.58 455.89 Q 262.38 456.23 262.81 456.97 Q 263.27 457.69 263.27 458.47 Q 263.27 459.20 262.86 459.86 Q 262.47 460.50 261.67 460.91 Q 262.70 461.20 263.27 461.94 Q 263.83 462.67 263.83 463.67 Q 263.83 464.48 263.48 465.17 Q 263.14 465.86 262.64 466.23 Q 262.14 466.61 261.39 466.81 Q 260.64 467.00 259.55 467.00 L 255.17 467.00 z M 256.69 460.36 L 259.17 460.36 Q 260.17 460.36 260.61 460.22 Q 261.19 460.05 261.48 459.66 Q 261.78 459.25 261.78 458.66 Q 261.78 458.08 261.50 457.66 Q 261.23 457.22 260.72 457.06 Q 260.22 456.89 258.98 456.89 L 256.69 456.89 L 256.69 460.36 z M 256.69 465.64 L 259.55 465.64 Q 260.28 465.64 260.58 465.59 Q 261.09 465.50 261.44 465.28 Q 261.80 465.06 262.02 464.64 Q 262.25 464.22 262.25 463.67 Q 262.25 463.03 261.92 462.56 Q 261.59 462.09 261.02 461.91 Q 260.44 461.70 259.34 461.70 L 256.69 461.70 L 256.69 465.64 z"/>
+<title>点 B</title>
+<desc>点 B: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip17 -->
+<clipPath id="clip877d1714-25ca-41ab-abad-e1c998e17842">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip18)">
+<g fill="#7d7dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 445.10 374.22 C 445.10 376.99 442.86 379.22 440.10 379.22 C 437.34 379.22 435.10 376.99 435.10 374.22 C 435.10 371.46 437.34 369.22 440.10 369.22 C 442.86 369.22 445.10 371.46 445.10 374.22 z"/>
+<title>点 C</title>
+<desc>点 C: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip18 -->
+<clipPath id="clipc25e6460-e3da-411e-b5d3-a0a2ad4aaebc">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip19)">
+<g stroke-opacity="1.0000" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 445.10 374.22 C 445.10 376.99 442.86 379.22 440.10 379.22 C 437.34 379.22 435.10 376.99 435.10 374.22 C 435.10 371.46 437.34 369.22 440.10 369.22 C 442.86 369.22 445.10 371.46 445.10 374.22 z"/>
+<title>点 C</title>
+<desc>点 C: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip19 -->
+<clipPath id="clipeaa4f6da-a881-4a97-a240-f511814d863e">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip20)">
+<g fill="#7d7dff" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 453.41 359.98 L 454.92 360.36 Q 454.45 362.23 453.20 363.22 Q 451.97 364.20 450.19 364.20 Q 448.33 364.20 447.17 363.45 Q 446.02 362.69 445.41 361.27 Q 444.80 359.83 444.80 358.19 Q 444.80 356.39 445.48 355.06 Q 446.17 353.73 447.42 353.05 Q 448.69 352.34 450.20 352.34 Q 451.92 352.34 453.09 353.22 Q 454.27 354.09 454.73 355.69 L 453.23 356.03 Q 452.84 354.78 452.08 354.22 Q 451.33 353.64 450.17 353.64 Q 448.86 353.64 447.97 354.28 Q 447.08 354.91 446.72 355.98 Q 446.36 357.05 446.36 358.17 Q 446.36 359.64 446.78 360.73 Q 447.22 361.81 448.11 362.36 Q 449.02 362.89 450.06 362.89 Q 451.33 362.89 452.20 362.16 Q 453.09 361.42 453.41 359.98 z"/>
+<title>点 C</title>
+<desc>点 C: 圆O 上的点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip20 -->
+<clipPath id="clipf386fb49-61e2-4e36-b878-477aa9bc16ba">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip21)">
+<g fill="#444444" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 140.23 397.40 C 140.23 399.60 138.44 401.40 136.23 401.40 C 134.02 401.40 132.23 399.60 132.23 397.40 C 132.23 395.19 134.02 393.40 136.23 393.40 C 138.44 393.40 140.23 395.19 140.23 397.40 z"/>
+<title>点 P</title>
+<desc>点 P: h 与 f 的交点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip21 -->
+<clipPath id="clipd2938827-4ce3-4d39-8c3f-6f5b31b1a3f5">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip22)">
+<g stroke-opacity="1.0000" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 140.23 397.40 C 140.23 399.60 138.44 401.40 136.23 401.40 C 134.02 401.40 132.23 399.60 132.23 397.40 C 132.23 395.19 134.02 393.40 136.23 393.40 C 138.44 393.40 140.23 395.19 140.23 397.40 z"/>
+<title>点 P</title>
+<desc>点 P: h 与 f 的交点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip22 -->
+<clipPath id="clipe0549097-a45d-4fed-a314-dede1a31eaf7">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip23)">
+<g fill="#444444" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 141.23 389.00 L 141.23 377.55 L 145.56 377.55 Q 146.70 377.55 147.30 377.66 Q 148.14 377.80 148.70 378.19 Q 149.28 378.58 149.62 379.30 Q 149.98 380.00 149.98 380.86 Q 149.98 382.31 149.05 383.33 Q 148.12 384.34 145.69 384.34 L 142.75 384.34 L 142.75 389.00 L 141.23 389.00 z M 142.75 382.98 L 145.72 382.98 Q 147.19 382.98 147.80 382.44 Q 148.42 381.89 148.42 380.91 Q 148.42 380.19 148.05 379.67 Q 147.69 379.16 147.09 379.00 Q 146.72 378.89 145.69 378.89 L 142.75 378.89 L 142.75 382.98 z"/>
+<title>点 P</title>
+<desc>点 P: h 与 f 的交点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip23 -->
+<clipPath id="clip09b5bc0d-fe61-4b27-b3ae-ca5b0e560508">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip24)">
+<g fill="#444444" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 348.99 425.40 C 348.99 427.61 347.20 429.40 344.99 429.40 C 342.78 429.40 340.99 427.61 340.99 425.40 C 340.99 423.19 342.78 421.40 344.99 421.40 C 347.20 421.40 348.99 423.19 348.99 425.40 z"/>
+<title>点 Q</title>
+<desc>点 Q: i 与 g 的交点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip24 -->
+<clipPath id="clipbb2a6bf5-bd9b-4e87-9fc9-95f78f80de2e">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip25)">
+<g stroke-opacity="1.0000" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round">
+  <path d="M 348.99 425.40 C 348.99 427.61 347.20 429.40 344.99 429.40 C 342.78 429.40 340.99 427.61 340.99 425.40 C 340.99 423.19 342.78 421.40 344.99 421.40 C 347.20 421.40 348.99 423.19 348.99 425.40 z"/>
+<title>点 Q</title>
+<desc>点 Q: i 与 g 的交点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip25 -->
+<clipPath id="clip1fa09475-3371-417a-b357-2c9e3d4162d5">
+  <path d="M 0.0000 0.0000 L 0.0000 510.00 L 483.00 510.00 L 483.00 0.0000 z"/>
+</clipPath>
+<g clip-path="url(#clip26)">
+<g fill="#444444" fill-rule="nonzero" fill-opacity="1.0000" stroke="none">
+  <path d="M 358.92 415.77 Q 359.97 416.50 360.86 416.83 L 360.42 417.89 Q 359.19 417.45 357.95 416.48 Q 356.69 417.20 355.14 417.20 Q 353.59 417.20 352.33 416.45 Q 351.06 415.69 350.38 414.33 Q 349.69 412.97 349.69 411.27 Q 349.69 409.58 350.38 408.19 Q 351.06 406.80 352.33 406.08 Q 353.61 405.34 355.17 405.34 Q 356.77 405.34 358.03 406.09 Q 359.31 406.84 359.97 408.20 Q 360.64 409.56 360.64 411.27 Q 360.64 412.67 360.20 413.81 Q 359.78 414.94 358.92 415.77 z M 355.58 413.83 Q 356.89 414.20 357.75 414.92 Q 359.08 413.70 359.08 411.27 Q 359.08 409.88 358.61 408.84 Q 358.14 407.80 357.22 407.22 Q 356.31 406.64 355.19 406.64 Q 353.48 406.64 352.36 407.81 Q 351.25 408.97 351.25 411.27 Q 351.25 413.50 352.36 414.70 Q 353.47 415.89 355.19 415.89 Q 356.00 415.89 356.72 415.59 Q 356.00 415.12 355.22 414.94 L 355.58 413.83 z"/>
+<title>点 Q</title>
+<desc>点 Q: i 与 g 的交点</desc>
+
+</g> <!-- drawing style -->
+</g> <!-- clip26 -->
+</g><!-- layer0 -->
+</g> <!-- default stroke -->
+</svg> <!-- bounding box -->
