@@ -2263,3 +2263,32 @@ img::-moz-selection {
 .no-scroll {
   overflow-y: hidden;
 }
+
+/* https://katex.org/docs/issues.html#css-customization */
+.katex-display {
+  overflow: auto hidden;
+}
+
+/* The button for code blocks */
+div.highlighter-rouge {
+  position: relative;
+}
+div.highlighter-rouge>.button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 34px;
+  width: 34px;
+  border-radius: 20%;
+  display: flex;
+  align-items: center;
+}
+div.highlighter-rouge>.button>svg {
+  margin: auto;
+}
+div.highlighter-rouge>.before {
+  border: 1px solid skyblue;
+}
+div.highlighter-rouge>.after {
+  border: 1px solid green;
+}
