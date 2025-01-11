@@ -118,6 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var preList = document.getElementsByTagName('pre');
     for(var i = 2 ; i < preList.length ; i+=3){
         var code = preList[i].outerText;
+        // emplace the end '\n'
+        if(code.length && code[code.length-1] == '\n'){
+            code = code.substring(0,code.length-1);
+        }
         copyCodeList.push(code);
         var parent = preList[i-2].parentNode.parentNode;
         var button = document.getElementById("copyButton").cloneNode(3);
@@ -134,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.cursor = "default";
         });
         button.addEventListener("click", function(){
-            console.log("copy at:" + this.getAttribute("codeId"));
             navigator.clipboard.writeText(copyCodeList[this.getAttribute("codeId")]);
             this.innerHTML = document.getElementById("copyButtonDone").innerHTML;
             this.className = 'button after';
@@ -144,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 that.className = 'button before';
             },2500);
         });
-        console.log(button);
         parent.appendChild(button);
     }
 });
