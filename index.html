@@ -34,12 +34,12 @@ description: "「光阴不可测，岁月亦无歌。」"
 <ul class="pager">
     {% if paginator.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        <a class="menuPrevNext" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
     </li>
     {% endif %}
     {% if paginator.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <a class="menuPrevNext" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
     </li>
     {% endif %}
 </ul>

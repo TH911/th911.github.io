@@ -179,24 +179,131 @@ document.addEventListener("DOMContentLoaded", function(){
         img.style.background = "#fff";
     }
 });
-
+Array.from(document.getElementsByClassName("menuPrevNext")).forEach(element => {
+    element.addEventListener("mouseenter", function(){
+        var lightDarkMode = localStorage.getItem("lightDarkMode");
+        if(lightDarkMode == "system"){
+            lightDarkMode = systemLightDarkMode();
+        }
+        if(lightDarkMode == null){
+            localStorage.setItem("lightDarkMode","light");
+            lightDarkMode = "light";
+        }
+        if(lightDarkMode == "dark"){
+            this.style.color = "#0085A1";
+        }else{
+            this.style.color = "#fff";
+        }
+    });
+    element.addEventListener("mouseleave", function(){
+        var lightDarkMode = localStorage.getItem("lightDarkMode");
+        if(lightDarkMode == "system"){
+            lightDarkMode = systemLightDarkMode();
+        }
+        if(lightDarkMode == null){
+            localStorage.setItem("lightDarkMode","light");
+            lightDarkMode = "light";
+        }
+        if(lightDarkMode == "dark"){
+            this.style.color = "#fff";
+        }else{
+            this.style.color = "#404040";
+        }
+    });
+});
+Array.from(document.getElementsByClassName("post-title")).forEach(element => {
+    element.addEventListener("mouseenter", function(){
+        this.style.color = "#0085A1";
+    });
+    element.addEventListener("mouseleave", function(){
+        var lightDarkMode = localStorage.getItem("lightDarkMode");
+        if(lightDarkMode == "system"){
+            lightDarkMode = systemLightDarkMode();
+        }
+        if(lightDarkMode == null){
+            localStorage.setItem("lightDarkMode","light");
+            lightDarkMode = "light";
+        }
+        if(lightDarkMode == "dark"){
+            this.style.color = "#fff";
+        }else{
+            this.style.color = "#404040";
+        }
+    });
+});
+Array.from(document.getElementsByClassName("post-subtitle")).forEach(element => {
+    element.addEventListener("mouseenter", function(){
+        this.style.color = "#0085A1";
+    });
+    element.addEventListener("mouseleave", function(){
+        var lightDarkMode = localStorage.getItem("lightDarkMode");
+        if(lightDarkMode == "system"){
+            lightDarkMode = systemLightDarkMode();
+        }
+        if(lightDarkMode == null){
+            localStorage.setItem("lightDarkMode","light");
+            lightDarkMode = "light";
+        }
+        if(lightDarkMode == "dark"){
+            this.style.color = "#fff";
+        }else{
+            this.style.color = "#404040";
+        }
+    });
+});
 function changeLightMode(){
     localStorage.setItem("lightDarkMode","light");
     document.body.style.background = "#fff";
     document.body.style.color = "#000";
+    document.getElementById("buttonLightDarkMode").title = "明亮 light";
     var svg = document.getElementById("buttonLightDarkMode").getElementsByTagName('svg')[0];
     svg.innerHTML = '<path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path>';
-    document.getElementById("menuPrevNext").getElementsByTagName('a')[0].style.background = "#fff";
-    document.getElementById("menuPrevNext").getElementsByTagName('a')[1].style.background = "#fff";
+    Array.from(document.getElementsByClassName("menuPrevNext")).forEach(element => {
+        element.style.background = "";
+        element.style.color = "";
+    });
+    Array.from(document.getElementsByClassName("post-title")).forEach(element => {
+        element.style.color = "";
+    });
+    Array.from(document.getElementsByClassName("post-subtitle")).forEach(element => {
+        element.style.color = "";
+    });
 }
 function changeDarkMode(){
     localStorage.setItem("lightDarkMode","dark");
     document.body.style.background = "#000";
     document.body.style.color = "#fff";
+    document.getElementById("buttonLightDarkMode").title = "暗黑 dark";
     var svg = document.getElementById("buttonLightDarkMode").getElementsByTagName('svg')[0];
     svg.innerHTML = '<path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path>';
-    document.getElementById("menuPrevNext").getElementsByTagName('a')[0].style.background = "#000";
-    document.getElementById("menuPrevNext").getElementsByTagName('a')[1].style.background = "#000";
+    Array.from(document.getElementsByClassName("menuPrevNext")).forEach(element => {
+        element.style.background = "#000";
+        element.style.color = "#fff";
+    });
+    Array.from(document.getElementsByClassName("post-title")).forEach(element => {
+        element.style.color = "#fff";
+    });
+    Array.from(document.getElementsByClassName("post-subtitle")).forEach(element => {
+        element.style.color = "#fff";
+    });
+}
+function systemLightDarkMode(){
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        return "dark";
+    } else {
+        return "light";
+    }
+}
+function changeSystemMode(){
+    if(systemLightDarkMode() == "dark"){
+        changeDarkMode();
+    } else {
+        changeLightMode();
+    }
+    localStorage.setItem("lightDarkMode","system");
+    document.getElementById("buttonLightDarkMode").title = "跟随系统 system";
+    var svg = document.getElementById("buttonLightDarkMode").getElementsByTagName('svg')[0];
+    svg.innerHTML = '<path d="M24 12A12 12 0 1 0 0 12a12 12 0 0 0 24 0m-12 7.5v1.5H6.75a.75.75 0 0 0-.14.014A10.5 10.5 0 0 1 4.65 19.5zm0-1.5H3.383a10.5 10.5 0 0 1-.872-1.5H12zm-10.065-3a10.5 10.5 0 0 1-.33-1.5H12v1.5zM2.25 12q0-.765.105-1.5H12v1.5zm.435-3.25q.233-.778.576-1.5H12v1.5zm1.447-3.25q.566-.81 1.269-1.5H12v1.5zm3.206-3.25A10.455 10.455 0 0 1 12 2.25v1.5z"/>';
 }
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("buttonLightDarkMode").style.height = document.getElementById("navButtonHome").offsetHeight + 'px';
@@ -208,11 +315,11 @@ document.addEventListener("DOMContentLoaded", function(){
     if(lightDarkMode == null){
         localStorage.setItem("lightDarkMode","light");
         lightDarkMode = "light";
-        changeLightMode();
     }
 
-    // dark mode
-    if (lightDarkMode == "dark"){
+    if(lightDarkMode == "system"){
+        changeSystemMode();
+    } else if (lightDarkMode == "dark"){
         changeDarkMode();
     }else{
         changeLightMode();
@@ -225,6 +332,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 changeDarkMode();
                 break;
             case "dark":
+                changeSystemMode();
+                break;
+            case "system":
                 changeLightMode();
                 break;
         }
