@@ -902,13 +902,16 @@ pre.highlight {
   color: #98c379;
 }
 .highlight .n {
+  /* color: #9BDBFE; */
   color: #abb2bf;
 }
 .highlight .o {
-  color: #abb2bf;
+  color: #DCDCAA;
+  /* color: #abb2bf; */
 }
 .highlight .p {
-  color: #abb2bf;
+  color: #179FFF;
+  /* color: #abb2bf; */
 }
 .highlight .cm {
   color: #5c6370;
@@ -916,7 +919,7 @@ pre.highlight {
 }
 .highlight .cp {
   color: #5c6370;
-  font-style: italic;
+  /* font-style: italic; */
 }
 .highlight .c1 {
   color: #5c6370;
@@ -1339,6 +1342,7 @@ kbd,
 pre,
 samp {
   font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+  tab-size: 4;
 }
 .postlist-container {
   margin-bottom: 15px;
