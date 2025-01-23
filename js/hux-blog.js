@@ -268,6 +268,9 @@ function changeLightMode(){
     Array.from(document.getElementsByClassName("post-subtitle")).forEach(element => {
         element.style.color = "";
     });
+    Array.from(document.getElementsByTagName('select')).forEach(element => {
+        element.style.background = "#fff";
+    });
 }
 function changeDarkMode(){
     localStorage.setItem("lightDarkMode","dark");
@@ -285,6 +288,9 @@ function changeDarkMode(){
     });
     Array.from(document.getElementsByClassName("post-subtitle")).forEach(element => {
         element.style.color = "#fff";
+    });
+    Array.from(document.getElementsByTagName('select')).forEach(element => {
+        element.style.background = "#000";
     });
 }
 function systemLightDarkMode(){
