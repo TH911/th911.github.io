@@ -4,7 +4,7 @@ SEOTitle: TH911 Blog
 header-img: img/bg/1.jpg
 email: 3260483661@qq.com
 description: "这里是 @TH911 的个人博客，与你一起发现更大的世界 | 要做一个优秀的 OIER"
-keyword: "TH911, TSM, CFY, cfy, th911"
+keyword: "TH911 Blog, OI"
 url: "https://th911.us.kg" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -14,7 +14,7 @@ future: true
 # SNS settings
 RSS: false
 #weibo_username: huxpro
-zhihu_username: 45-46-14-76
+# zhihu_username: 45-46-14-76
 github_username: TH911
 luogu_userid: 967959
 #twitter_username: huxpro
@@ -80,7 +80,7 @@ sidebar-avatar: ../img/favicon.ico # use absolute URL, seeing it's used in both 
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
-featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
+featured-condition-size: 5 # A tag will be featured if the size of it is more than this condition value
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
@@ -90,7 +90,7 @@ service-worker: true
 katex: true
 
 #Img Zoom
-imgzoom: true
+imgzoom: false
 
 # Friends
 friends:

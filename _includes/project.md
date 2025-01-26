@@ -12,10 +12,6 @@
 
 一个简单易用的、可离线的将文件转化为 `data:` 形式的网页工具。
 
-### [OI-Wiki](/OI-Wiki)
-
-一个从 [OI-Wiki](https://github.com/OI-wiki/OI-wiki/) Fork 后自行部署的备份。
-
 ### [Unlock Music](/unlock-music)
 
 解锁各大平台歌曲的加密保护。
@@ -23,3 +19,5 @@
 比如将 `.mflac` 文件转化为 `.flac`。
 
 但新版QQ音乐更改了加密逻辑，因此若您想在QQ音乐上使用，请下载[旧版QQ音乐](/file/2024/11/QQMusic_Setup.exe)。
+
+**此项目仅供学习使用，严禁用于其他用途。**
