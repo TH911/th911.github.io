@@ -2,13 +2,13 @@
 
 即本站。
 
-### [XPlayer](/XPlayer)
+### [XPlayer](https://xplayer.us.kg)
 
 一个基于[wayou](https://github.com/wayou/)的[selected](https://github.com/wayou/selected)项目开发的静态音乐播放器，采取响应式设计。
 
 更多内容参见[XPlayer使用指南](/2024/11/09/2/)。
 
-Vercel部署地址：[link](https://x-player-th911s-projects.vercel.app/)。
+通过 Vercel 部署，但是也有通过 GitHub Pages 部署的：[link](/XPlayer)。（但是这个比Vercel慢一点点）
 
 ### [data-change](/data-change)
 
