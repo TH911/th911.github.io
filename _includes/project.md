@@ -8,6 +8,8 @@
 
 更多内容参见[XPlayer使用指南](/2024/11/09/2/)。
 
+Vercel部署地址：[link](https://x-player-th911s-projects.vercel.app/)。
+
 ### [data-change](/data-change)
 
 一个简单易用的、可离线的将文件转化为 `data:` 形式的网页工具。
