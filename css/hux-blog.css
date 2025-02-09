@@ -538,6 +538,18 @@ DIVIDING LINE
 There're from hux blog.
 */
 
+@media print {
+  .sidebar-container {
+    display: none;
+  }
+  #SOHUCS {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+
 @media (min-width: 1200px) {
   .post-container,
   .sidebar-container {
