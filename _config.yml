@@ -63,7 +63,7 @@ kramdown:
 # disqus_username: hux
 
 #Changyan settings
-changyan_comment: true
+changyan_comment: false
 
 # Analytics settings
 # Baidu Analytics
