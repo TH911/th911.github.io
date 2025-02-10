@@ -346,3 +346,32 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 });
+
+window.addEventListener('beforeprint', function(){
+    document.querySelectorAll('details').forEach(details => {
+        if(details.open){
+            details.opened = true;
+        }
+        details.open = true;
+    });
+    document.querySelectorAll('span.katex-display').forEach(katex => {
+        katex.style.fontSize = '1em';
+        while(katex.scrollWidth > katex.clientWidth){
+            katex.style.fontSize = `calc(${katex.style.fontSize} - 0.05em)`;
+            console.log(katex.style.fontSize);
+        }
+    });
+});
+
+window.addEventListener('afterprint', function(){
+    document.querySelectorAll('details').forEach(details => {
+        if(!details.opened){
+            details.open = false;
+        }else{
+            details.opened = false;
+        }
+    });
+    document.querySelectorAll('span.katex-display').forEach(katex => {
+        katex.style.fontSize = '';
+    });
+});

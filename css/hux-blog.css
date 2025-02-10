@@ -2308,3 +2308,370 @@ div.highlighter-rouge>.before {
 div.highlighter-rouge>.after {
   border: 1px solid green;
 }
+@media print {
+  div.highlighter-rouge>.button {
+    display: none;
+  }
+  header div.tags {
+    display: none;
+  }
+  blockquote {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+  }
+  code {
+    padding: 2px 4px !important;
+    font-size: 90% !important;
+    color: #c7254e !important;
+    background-color: #f9f2f4 !important;
+    border-radius: 4px !important;
+  }
+  article div.row ul.pager {
+    display: none;
+  }
+  summary::before {
+    /* background: red !important; */
+    display: block !important;
+  }
+  p {
+    margin: 5px 0 !important;
+  }
+  .post-container h1,
+  .post-container h2,
+  .post-container h3,
+  .post-container h4,
+  .post-container h5,
+  .post-container h6 {
+    margin-top: 10px;
+  }
+  .intro-header .post-heading h1 {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+  .intro-header .post-heading .subheading,
+  .intro-header .post-heading .meta {
+    line-height: 1.1;
+    display: block;
+  }
+  .intro-header .post-heading .subheading {
+    /* Hux learn from
+       *     TypeIsBeautiful,
+       *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
+       */
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: normal;
+    margin: 10px 0 30px;
+    margin-top: -5px;
+  }
+  .intro-header .post-heading .meta {
+    font-family: 'Lora', 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+  }
+  .intro-header .post-heading .meta a {
+    color: white;
+  }
+  .intro-header .site-heading,
+  .intro-header .page-heading {
+    text-align: center;
+  }
+  .intro-header .site-heading h1,
+  .intro-header .page-heading h1 {
+    margin-top: 0 !important;
+    font-size: 50px !important;
+  }
+  .intro-header .site-heading .subheading,
+  .intro-header .page-heading .subheading {
+    /* Hux learn from
+      *     TypeIsBeautiful,
+      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
+      */
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif !important;
+    line-height: 1.7 !important;
+    font-size: 18px !important;
+    line-height: 1.1 !important;
+    display: block !important;
+    font-weight: 300 !important;
+    margin: 10px 0 0 !important;
+  }
+  article .note>.admonition-title:before,article .note>summary:before {
+    background-color: #448aff !important;
+    -webkit-mask-image: var(--md-admonition-icon--note);
+    mask-image: var(--md-admonition-icon--note)
+  }
+  
+  article .note>.admonition-title:after,article .note>summary:after {
+    color: #448aff !important;
+  }
+  
+  article .admonition.abstract,article details.abstract {
+    border-color: #00b0ff !important;
+  }
+  
+  article .admonition.abstract:focus-within,article details.abstract:focus-within {
+    box-shadow: 0 0 0 .2rem #00b0ff1a !important;
+  }
+  
+  article .abstract>.admonition-title,article .abstract>summary {
+    background-color: #00b0ff1a !important;
+  }
+  
+  article .abstract>.admonition-title:before,article .abstract>summary:before {
+    background-color: #00b0ff !important;
+    -webkit-mask-image: var(--md-admonition-icon--abstract);
+    mask-image: var(--md-admonition-icon--abstract)
+  }
+  
+  article .abstract>.admonition-title:after,article .abstract>summary:after {
+    color: #00b0ff !important;
+  }
+  
+  article .admonition.info,article details.info {
+    border-color: #00b8d4 !important;
+  }
+  
+  article .admonition.info:focus-within,article details.info:focus-within {
+    box-shadow: 0 0 0 .2rem #00b8d41a !important;
+  }
+  
+  article .info>.admonition-title,article .info>summary {
+    background-color: #00b8d41a !important;
+  }
+  
+  article .info>.admonition-title:before,article .info>summary:before {
+    background-color: #00b8d4 !important;
+    -webkit-mask-image: var(--md-admonition-icon--info);
+    mask-image: var(--md-admonition-icon--info)
+  }
+  
+  article .info>.admonition-title:after,article .info>summary:after {
+    color: #00b8d4 !important;
+  }
+  
+  article .admonition.tip,article details.tip {
+    border-color: #00bfa5 !important;
+  }
+  
+  article .admonition.tip:focus-within,article details.tip:focus-within {
+    box-shadow: 0 0 0 .2rem #00bfa51a !important;
+  }
+  
+  article .tip>.admonition-title,article .tip>summary {
+    background-color: #00bfa51a !important;
+  }
+  
+  article .tip>.admonition-title:before,article .tip>summary:before {
+    background-color: #00bfa5 !important;
+    -webkit-mask-image: var(--md-admonition-icon--tip);
+    mask-image: var(--md-admonition-icon--tip)
+  }
+  
+  article .tip>.admonition-title:after,article .tip>summary:after {
+    color: #00bfa5 !important;
+  }
+  
+  article .admonition.success,article details.success {
+    border-color: #00c853 !important
+  }
+  
+  article .admonition.success:focus-within,article details.success:focus-within {
+    box-shadow: 0 0 0 .2rem #00c8531a !important;
+  }
+  
+  article .success>.admonition-title,article .success>summary {
+    background-color: #00c8531a !important
+  }
+  
+  article .success>.admonition-title:before,article .success>summary:before {
+    background-color: #00c853 !important;
+    -webkit-mask-image: var(--md-admonition-icon--success);
+    mask-image: var(--md-admonition-icon--success)
+  }
+  
+  article .success>.admonition-title:after,article .success>summary:after {
+    color: #00c853 !important;
+  }
+  
+  article .admonition.question,article details.question {
+    border-color: #64dd17 !important;
+  }
+  
+  article .admonition.question:focus-within,article details.question:focus-within {
+    box-shadow: 0 0 0 .2rem #64dd171a !important;
+  }
+  
+  article .question>.admonition-title,article .question>summary {
+    background-color: #64dd171a !important;
+  }
+  
+  article .question>.admonition-title:before,article .question>summary:before {
+    background-color: #64dd17 !important;
+    -webkit-mask-image: var(--md-admonition-icon--question);
+    mask-image: var(--md-admonition-icon--question)
+  }
+  
+  article .question>.admonition-title:after,article .question>summary:after {
+    color: #64dd17 !important;
+  }
+  
+  article .admonition.warning,article details.warning {
+    border-color: #ff9100 !important;
+  }
+  
+  article .admonition.warning:focus-within,article details.warning:focus-within {
+    box-shadow: 0 0 0 .2rem #ff91001a !important;
+  }
+  
+  article .warning>.admonition-title,article .warning>summary {
+    background-color: #ff91001a !important;
+  }
+  
+  article .warning>.admonition-title:before,article .warning>summary:before {
+    background-color: #ff9100 !important;
+    -webkit-mask-image: var(--md-admonition-icon--warning);
+    mask-image: var(--md-admonition-icon--warning)
+  }
+  
+  article .warning>.admonition-title:after,article .warning>summary:after {
+    color: #ff9100 !important;
+  }
+  
+  article .admonition.failure,article details.failure {
+    border-color: #ff5252 !important;
+  }
+  
+  article .admonition.failure:focus-within,article details.failure:focus-within {
+    box-shadow: 0 0 0 .2rem #ff52521a !important;
+  }
+  
+  article .failure>.admonition-title,article .failure>summary {
+    background-color: #ff52521a !important;
+  }
+  
+  article .failure>.admonition-title:before,article .failure>summary:before {
+    background-color: #ff5252 !important;
+    -webkit-mask-image: var(--md-admonition-icon--failure);
+    mask-image: var(--md-admonition-icon--failure)
+  }
+  
+  article .failure>.admonition-title:after,article .failure>summary:after {
+    color: #ff5252 !important;
+  }
+  
+  article .admonition.danger,article details.danger {
+    border-color: #ff1744 !important;
+  }
+  
+  article .admonition.danger:focus-within,article details.danger:focus-within {
+    box-shadow: 0 0 0 .2rem #ff17441a !important;
+  }
+  
+  article .danger>.admonition-title,article .danger>summary {
+    background-color: #ff17441a !important;
+  }
+  
+  article .danger>.admonition-title:before,article .danger>summary:before {
+    background-color: #ff1744 !important;
+    -webkit-mask-image: var(--md-admonition-icon--danger);
+    mask-image: var(--md-admonition-icon--danger)
+  }
+  
+  article .danger>.admonition-title:after,article .danger>summary:after {
+    color: #ff1744 !important;
+  }
+  
+  article .admonition.bug,article details.bug {
+    border-color: #f50057 !important
+  }
+  
+  article .admonition.bug:focus-within,article details.bug:focus-within {
+    box-shadow: 0 0 0 .2rem #f500571a !important
+  }
+  
+  article .bug>.admonition-title,article .bug>summary {
+    background-color: #f500571a !important
+  }
+  
+  article .bug>.admonition-title:before,article .bug>summary:before {
+    background-color: #f50057 !important;
+    -webkit-mask-image: var(--md-admonition-icon--bug);
+    mask-image: var(--md-admonition-icon--bug)
+  }
+  
+  article .bug>.admonition-title:after,article .bug>summary:after {
+    color: #f50057 !important
+  }
+  
+  article .admonition.example,article details.example {
+    border-color: #7c4dff !important
+  }
+  
+  article .admonition.example:focus-within,article details.example:focus-within {
+    box-shadow: 0 0 0 .2rem #7c4dff1a !important
+  }
+  
+  article .example>.admonition-title,article .example>summary {
+    background-color: #7c4dff1a !important
+  }
+  
+  article .example>.admonition-title:before,article .example>summary:before {
+    background-color: #7c4dff !important;
+    -webkit-mask-image: var(--md-admonition-icon--example);
+    mask-image: var(--md-admonition-icon--example)
+  }
+  
+  article .example>.admonition-title:after,article .example>summary:after {
+    color: #7c4dff !important
+  }
+  
+  article .admonition.quote,article details.quote {
+    border-color: #9e9e9e !important
+  }
+  
+  article .admonition.quote:focus-within,article details.quote:focus-within {
+    box-shadow: 0 0 0 .2rem #9e9e9e1a !important
+  }
+  
+  article .quote>.admonition-title,article .quote>summary {
+    background-color: #9e9e9e1a !important
+  }
+  
+  article .quote>.admonition-title:before,article .quote>summary:before {
+    background-color: #9e9e9e !important;
+    -webkit-mask-image: var(--md-admonition-icon--quote);
+    mask-image: var(--md-admonition-icon--quote)
+  }
+  
+  article .quote>.admonition-title:after,article .quote>summary:after {
+    color: #9e9e9e !important
+  }
+  article .admonition-title:before,article summary:before {
+    background-color: #448aff;
+    content: "";
+    height: 1rem;
+    -webkit-mask-image: var(--md-admonition-icon--note);
+    mask-image: var(--md-admonition-icon--note);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    position: absolute;
+    top: .625em;
+    width: 1rem;
+    left: .6rem;
+  }
+  
+  article summary {
+    text-indent: 2rem;
+  }
+  div.post-heading h1 {
+    font-size: 55px !important;
+  }
+}
