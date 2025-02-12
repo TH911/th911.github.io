@@ -539,6 +539,9 @@ There're from hux blog.
 */
 
 @media print {
+  a::after {
+    color: #0085a1 !important;
+  }
   .sidebar-container {
     display: none;
   }
