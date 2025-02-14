@@ -357,8 +357,9 @@ window.addEventListener('beforeprint', function(){
     document.querySelectorAll('span.katex-display').forEach(katex => {
         katex.style.fontSize = '1em';
         while(katex.scrollWidth > katex.clientWidth){
-            katex.style.fontSize = `calc(${katex.style.fontSize} - 0.05em)`;
-            console.log(katex.style.fontSize);
+            katex.style.fontSize = `calc(${katex.style.fontSize} - 0.1em)`;
+            console.log(katex);
+            // console.log(katex.style.fontSize);
         }
     });
 });

@@ -551,6 +551,14 @@ There're from hux blog.
   footer {
     display: none;
   }
+  @page {
+    counter-increment: pageNumber;
+    margin-bottom: 2rem;
+    @bottom-center {
+      content: counter(pageNumber);
+      bottom: 2em;
+    }
+  }
 }
 
 @media (min-width: 1200px) {
