@@ -347,7 +347,14 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-window.addEventListener('beforeprint', function(){
+window.addEventListener('beforeprint', event => {
+    if(!sessionStorage.getItem("remindForPrint")){
+        if(confirm("为了确保打印正常，请勾选打印选项中的“背景图形”。")){
+            sessionStorage.setItem("remindForPrint",1);
+        }else{
+            location.reload();
+        }
+    }
     document.querySelectorAll('details').forEach(details => {
         if(details.open){
             details.opened = true;
