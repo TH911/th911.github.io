@@ -5,7 +5,7 @@ header-img: img/bg/1.jpg
 email: 3260483661@qq.com
 description: "这里是 @TH911 的个人博客，与你一起发现更大的世界 | 要做一个优秀的 OIER"
 keyword: "TH911 Blog, OI"
-url: "https://th911.us.kg" # your host, for absolute URL
+url: "https://th911.dpdns.org" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -17,6 +17,7 @@ RSS: false
 # zhihu_username: 45-46-14-76
 github_username: TH911
 luogu_userid: 967959
+cnblogs_id: TH911
 #twitter_username: huxpro
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
